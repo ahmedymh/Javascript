@@ -20,11 +20,11 @@
 <body class="custom-background">
   <!-- HEADER -->
   <div class="lg:flex lg:justify-center lg:items-center">
-    <header class="bg-red-600 p-6 lg:w-1/2 rounded-t-full border-b-4 border-black">
+    <header class="bg-red-600 p-6 lg:w-1/2 rounded-t-full border-b-8 border-black">
       <nav>
-        <ul class="flex justify-between items-center w-full">
+        <ul class="flex justify-center items-center w-full">
           <li><!-- DONT SUPRESS NOR SUDPRESS--></li>
-          <li>PIKLIKER</li>
+          <li><input type="image" src="img/title.png" name="title" class="" id=""/></li>
           <li class=""><i class="fa-solid fa-ellipsis-vertical lg:hidden" style="color: #000000;"></i></li>
         </ul>
       </nav>
@@ -54,16 +54,21 @@
       <div class="md:flex md:order-1 md:flex-col lg:justify-center lg:items-center lg:w-1/2" id="gameplay-wrapper">
         <div id="gameplay-interface" class="relative w-full h-96 bg-red-600">
             <div id="gameplay-main" class="flex justify-center items-center w-full h-full bg-cover bg-center" style="background-image: url(img/stadium.png)">
-              <div id="score" class=""></div>
+              <div id="score" class="bg-stone-500 rounded-xl">Score</div>
               <div id="stadium"></div>
               <div id="pokemon" class=""></div>
-              <div id="pichu" ><input type="image" src="img/pichu.png" name="pichu" class="imgcookie w-1/3 lg:w-1/4 m-auto" id="counter"/></div>
-              <div id="pikachu" class="hidden"><input type="image" src="img/pikachu.png" name="pikachu" class="imgcookie" id="counter"/></div>
-              <div id="Raichu" class="hidden"><input type="image" src="img/Raichu.png" name="raichu" class="imgcookie" id="counter"/></div>
-            </div>
-            <div id="gameplay-notif" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 p-4 rounded-xl bg-stone-500 lg:hidden">
+              <div id="pichu" classe="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <input type="image" src="img/pichu.png" name="pichu" class="w-1/3" id="counter"/></div>
+              <div id="pikachu" class="hidden">
+                <input type="image" src="img/pikachu.png" name="pikachu" class="imgcookie" id="counter"/>
+              </div>
+              <div id="Raichu" class="hidden">
+                <input type="image" src="img/Raichu.png" name="raichu" class="imgcookie" id="counter"/>
+              </div>
+              <div id="gameplay-notif" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 p-4 rounded-xl bg-stone-500 lg:hidden">
                 <div class="hidden md:block">NOTIF</div>
                 <div class="md:hidden">ATTAQUE</div>
+              </div>
             </div>
         </div>
       </div>
@@ -101,7 +106,7 @@
 
   <!-- FOOTER -->
   <div class="lg:flex lg:justify-center lg:items-center">
-      <footer class="bg-zinc-200 p-6 lg:w-1/2 rounded-b-full border-t-4 border-black">
+      <footer class="bg-zinc-200 p-6 lg:w-1/2 rounded-b-full border-t-8 border-black">
         <div class="text-center">ALL RIGHT UNRESERVED, DON'T TAKE OUR MONEY</div>
       </footer>
   </div>
