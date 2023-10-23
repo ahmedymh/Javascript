@@ -4,10 +4,29 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <script type="text/javascript" src="script.js"></script>
+    <title>Pika Clicker</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+  <input type="image" src="img/pichu.png" name="pichu" class="imgcookie" id="counter"/>  
+  <p > Score : <span id="score"></span></p>
+  <hr>
+  <h2>Shop</h2>
+  <p>Click Power</p>
+<p>Produces <span id="autoclick-multiple">1</span> Pika(s) per click</p>
+<button id="buy-click">Buy for <strong id="autoclick-price">50</strong></button>
+<p>level: <strong id="autoclick-level">1</strong></p>
+  <hr>
+  <p>Pokeball</p>
+  <p>Producing <span id="pika-multiple">0</span> pikas per second!</p>
+  <button id="buy-pika">Buy for <span id="pika-price">500</span></button>
+  <p>Level: <span id="pika-level">0</span></p>
+  <hr>
+  <!--Cookie Manufacturing Facility-->
+<hr>
+<p>Arena</p>
+<p>Producing <span id="arena-multiple">0</span> pikas per second!</p>
+<button id="buy-arena">Buy for <span id="arena-price">100000</span></button>
+<p>Level: <span id="arena-level">0</span></p>
   </body>
 </html>
