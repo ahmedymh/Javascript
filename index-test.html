@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--CDN SCRIPT TAILWIND + FONTAWSOME-->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/d6a733dcf4.js" crossorigin="anonymous"></script>
+  <!--BACKGROUND PERSO, A INTEGRER A TAILWIND-->
+  <style>
+    .custom-background 
+    {
+        background-image: url('img/route1.jpg'); 
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat; 
+    }
+  </style>
+</head>
+<body class="custom-background">
+  <!-- HEADER -->
+  <div class="lg:flex lg:justify-center lg:items-center">
+    <header class="bg-red-600 p-6 lg:w-1/2 rounded-t-full">
+      <nav>
+        <ul class="flex justify-between items-center w-full">
+          <li><!-- DONT SUPRESS NOR SUDPRESS--></li>
+          <li>PIKLIKER</li>
+          <li><i class="fa-solid fa-ellipsis-vertical" style="color: #000000;"></i></li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+
+  <!-- MAIN -->
+  <main>
+    <div class="flex flex-col lg:flex-row bg-red-600" id="main">
+
+      <!-- MESSAGE -->
+      <div class="hidden" id="msg-main">
+        <div id="msg-title">
+          <h3 class="text-center">Message</h3>
+        </div>
+        <div id="msg">
+          <ul>
+            <li>UNE NOTIF</li>
+            <li>UNE AUTRE </li>
+            <li>ENCORE UNE</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- GAMEPLAY -->
+      <div id="gameplay-interface">
+        <div id="gameplay-main"></div>
+        <div id="gameplay-notif" class="rounded-xl bg-stone-500 lg:hidden"></div>
+      </div>
+
+      <!-- BOUTIQUE // ATTAQUE -> DESKTOP -->
+
+      <div class="hidden" id="shop-lg-main">
+        <h3 class="text-center">Shop</h3>
+        <div id="shop-interface-lg">
+          <ul>
+            <li>1e ELEMENT</li>
+            <li>2eme ELEMENT</li>
+            <li>3eme ELEMENT</li>
+          </ul>
+        </div>
+        <h3 class="text-center">Attaque</h3>
+        <div id="attaque-interface-lg">
+          <ul>
+            <li>1e ELEMENT</li>
+            <li>2eme ELEMENT</li>
+            <li>3eme ELEMENT</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <div class="lg:flex lg:justify-center lg:items-center">
+      <footer class="bg-zinc-200 p-6 lg:w-1/2 rounded-b-full">
+        <div>ALL RIGHT UNRESERVED, DON'T TAKE OUR MONEY</div>
+      </footer>
+  </div>
+</body>
+</html>
