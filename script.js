@@ -279,44 +279,7 @@ document.addEventListener('DOMContentLoaded', function() {
       autoArenaStart();
       refreshArena();
     }
-  })
+  }) 
+
   
-  
-  // /********************************
-  
-  //           Toggle Pokecoins
-  
-  // ********************************/
-  // // DOM Content
-  //   document.getElementById('pichu').addEventListener('click', togglePokeCoin);
-  //   document.getElementById('pikachu').addEventListener('click', togglePokeCoin);
-  //   document.getElementById('Raichu').addEventListener('click', togglePokeCoin);
-  
-  //   function togglePokeCoin(event) {
-  //   let pokeCoin = document.getElementById('pokecoin');
-  //   let gameInterface = document.getElementById('gameplay-interface');
-  
-    
-  //   let clickX = event.clientX;
-  //   let clickY = event.clientY;
-  
-  //   // Obtenir la position de l'élément 'gameplay-interface'
-  //   let rect = gameInterface.getBoundingClientRect();
-  
-  //   let relativeX = clickX - rect.left;
-  //   let relativeY = clickY - rect.top;
-  
-  //   pokeCoin.style.left = relativeX + 'px';
-  //   pokeCoin.style.top = relativeY + 'px';
-  
-  //   pokeCoin.classList.remove('hidden');
-  //   pokeCoin.style.animation = 'jump 1s ease';
-  
-  //   setTimeout(() => {
-  //     pokeCoin.style.removeProperty('animation');
-  //     pokeCoin.classList.add('hidden');
-  //   }, 1000); 
-  // }
-  
-    
   });
