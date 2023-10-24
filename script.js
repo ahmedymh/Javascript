@@ -1,23 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
   
-  let scoreCount = 0;
-  let clickPower = 1;
-  let scoreHTML = document.getElementById("score");;
-  //DOM Content 
-  let score = document.getElementById("score");
-  let clickerButton = document.getElementById("counter");
+let scoreCount = parseInt(localStorage.getItem("score")) || 0;
+let clickPower = 1;
 
-  // Refresh Score
-  function refreshCookieScore() {
-    score.innerHTML = `Score : ${scoreCount}`;
-  }
+//DOM Content 
+let score = document.getElementById("score");
+let clickerButton = document.getElementById("counter");
 
-  // Base du CC
-  clickerButton.addEventListener('click', function(event) {
-    event.preventDefault();
-    scoreCount = scoreCount + clickPower;
-    refreshCookieScore();
-  });
+// Refresh Score
+function refreshCookieScore() {
+  score.innerHTML = `Score : ${scoreCount}`;
+}
+
+// Base du CC
+clickerButton.addEventListener('click', function(event) {
+  event.preventDefault();
+  scoreCount += clickPower;
+  refreshCookieScore();
+  localStorage.setItem("score", scoreCount);
+});
+
+// IMise à jour au lancement de la page
+refreshCookieScore();
 
 /********************************
 
