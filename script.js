@@ -6,20 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
   let clickPower = 1;
   
   //DOM Content 
-  let autoclickBasePrice = document.getElementById("autoclick-price");
-  let autoclickBaseLevel = document.getElementById("autoclick-level");
-  let autoclickMultiple = document.getElementById("autoclick-multiple");
-  let buyClickPower = document.getElementById("buy-click");
   let score = document.getElementById("score");
   let clickerButton = document.getElementById("counter");
-  let buyPika = document.getElementById ("buy-pika");
-  let pikaPrice = document.getElementById("pika-price");
-  let pikaLevel = document.getElementById("pika-level");
-  let pikaMultiple = document.getElementById("pika-multiple");
-  let buyArena = document.getElementById("buy-arena");
-  let arenaPrice = document.getElementById("arena-price");
-  let arenaLevel = document.getElementById("arena-level");
-  let arenaMultiple = document.getElementById("arena-multiple");
+  let buyClickPower = document.getElementById("buy-click");
 
   // Refresh Score
   function refreshCookieScore() {
@@ -45,7 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
           Shop
 
 ********************************/
+//DOM Content 
+let autoclickBasePrice = document.getElementById("autoclick-price");
+let autoclickBaseLevel = document.getElementById("autoclick-level");
+let autoclickMultiple = document.getElementById("autoclick-multiple");
 
+// Booster click
   buyClickPower.addEventListener("click", () => {
     if (scoreCount >= autoclickPrice) {
       scoreCount -= autoclickPrice;
@@ -63,9 +57,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /********************************
 
-          Autoclick
+          Attaque
 
 ********************************/
+//DOM Content 
+
+let buyPika = document.getElementById ("buy-pika");
+let pikaPrice = document.getElementById("pika-price");
+let pikaLevel = document.getElementById("pika-level");
+let pikaMultiple = document.getElementById("pika-multiple");
 let pikaPower = 50;
 let pikaPriceAmount = 20;
 let pikaLevelNumber = 0;
@@ -105,17 +105,24 @@ buyPika.addEventListener ("click", ()=> {
           Arena
 
 ********************************/
+//DOM Content 
+let buyArena = document.getElementById("buy-arena");
+let arenaPrice = document.getElementById("arena-price");
+let arenaLevel = document.getElementById("arena-level");
+let arenaMultiple = document.getElementById("arena-multiple");
 
 let arenaPower = 2000;
 let arenaPriceAmount = 10;
 let arenaLevelNumber = 0;
 
+//Rafraîchir HTML
 function refreshArena() {
   arenaLevel.innerHTML = arenaLevelNumber;
   arenaPrice.innerHTML = arenaPriceAmount;
   arenaMultiple.innerHTML = arenaPower * arenaLevelNumber;
 }
 
+//Loop Arena
 function autoArenaStart () {
   let autoArenaInt = window.setInterval(() => {
     scoreCount+= arenaPower;
@@ -123,6 +130,7 @@ function autoArenaStart () {
   }, 1000);
 }
 
+// Event sur le click de l'arena
 buyArena.addEventListener("click", () => {
   if (scoreCount >= arenaPriceAmount) {
     scoreCount-=arenaPriceAmount;
