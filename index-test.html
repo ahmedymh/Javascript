@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--CDN SCRIPT TAILWIND + FONTAWSOME-->
+  <!--SCRIPT TAILWIND + FONTAWSOME + GOOGLE FONTS-->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/d6a733dcf4.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
   <!--BACKGROUND PERSO, A INTEGRER A TAILWIND-->
   <style>
     .custom-background 
@@ -14,7 +18,26 @@
         background-size: cover; 
         background-position: center; 
         background-repeat: no-repeat; 
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 24px;
     }
+
+    @keyframes jump 
+    {
+      0% 
+      {
+        transform: translateY(0) translateX(0);
+      }
+      50% 
+      {
+        transform: translateY(-20px); /* La hauteur du saut */
+      }
+      100% 
+      {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
   </style>
 </head>
 <body class="custom-background">
@@ -52,18 +75,19 @@
 
       <!-- GAMEPLAY -->
       <div class="md:flex md:order-1 md:flex-col lg:justify-center lg:items-center lg:w-1/2" id="gameplay-wrapper">
-        <div id="gameplay-interface" class="relative w-full h-96 bg-red-600">
-            <div id="gameplay-main" class="flex justify-center items-center w-full h-full bg-cover bg-center" style="background-image: url(img/stadium.png)">
+        <div id="gameplay-interface" class="relative w-full h-full bg-red-600">
+            <div id="gameplay-main" class="flex justify-center items-center w-full h-96 bg-cover bg-center" style="background-image: url(img/stadium.png)">
               <div id="score" class="absolute top-2 bg-stone-500 rounded-xl w-1/4 text-center">Score</div>
-              <div id="stadium"></div>
-              <div id="pokemon" class=""></div>
-              <div id="pichu" classe="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <input type="image" src="img/pichu.png" name="pichu" class="" id="counter"/></div>
-              <div id="pikachu" class="hidden">
-                <input type="image" src="img/pikachu.png" name="pikachu" class="imgcookie" id="counter"/>
+              <div id="pokecoin" class="hidden absolute bottom-4">
+                <input type="image" src="img/PokeCoin.png" name="pichu" class="" id="counter"/>
               </div>
-              <div id="Raichu" class="hidden">
-                <input type="image" src="img/Raichu.png" name="raichu" class="imgcookie" id="counter"/>
+              <div id="pichu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <input type="image" src="img/pichu.png" name="pichu" class="" id="pichu"/></div>
+              <div id="pikachu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <input type="image" src="img/pikachu.png" name="pikachu" class="imgcookie" id="pikachu"/>
+              </div>
+              <div id="Raichu" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <input type="image" src="img/Raichu.png" name="raichu" class="imgcookie" id="raichu"/>
               </div>
               <div id="gameplay-notif" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 p-4 rounded-xl bg-stone-500 lg:hidden">
                 <div class="hidden md:block">NOTIF</div>
@@ -105,10 +129,38 @@
     </div>
 
   <!-- FOOTER -->
-  <div class="lg:flex lg:justify-center lg:items-center">
+  <div class="lg:flex lg:justify-center lg:items-center pb-8">
       <footer class="bg-zinc-200 p-6 lg:w-1/2 rounded-b-full border-t-8 border-black">
         <div class="text-center">ALL RIGHTS UNRESERVED, DON'T TAKE OUR MONEY</div>
       </footer>
   </div>
+<script>
+  
+// montrer et cacher
+function togglePokeCoin() {
+  let pokeCoin = document.getElementById('pokecoin');
+  pokeCoin.classList.remove('hidden');
+
+  // Générer une direction aléatoire pour le saut en modifiant l'axe X
+  let randomX = Math.random() > 0.5 ? Math.random() * 100 : Math.random() * -100; 
+
+  pokeCoin.style.animation = 'jump 1s ease'; // Appliquer l'animation définie dans le CSS
+  pokeCoin.style.transform = `translateX(${randomX}px)`; 
+  
+  // Une fois l'animation terminée, réinitialiser les styles et cacher la pièce
+  setTimeout(() => {
+    pokeCoin.style.removeProperty('animation');
+    pokeCoin.style.removeProperty('transform');
+    pokeCoin.classList.add('hidden');
+  }, 1000); 
+}
+
+document.getElementById('pichu').addEventListener('click', togglePokeCoin);
+document.getElementById('pikachu').addEventListener('click', togglePokeCoin);
+document.getElementById('Raichu').addEventListener('click', togglePokeCoin);
+
+
+  </script>
+  
 </body>
 </html>
