@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--CDN SCRIPT TAILWIND + FONTAWSOME-->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/d6a733dcf4.js" crossorigin="anonymous"></script>
+  <!--BACKGROUND PERSO, A INTEGRER A TAILWIND-->
+  <style>
+    .custom-background 
+    {
+        background-image: url('img/route1.jpg'); 
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat; 
+    }
+  </style>
+</head>
+<body class="custom-background">
+  <!-- HEADER -->
+  <div class="lg:flex lg:justify-center lg:items-center">
+    <header class="bg-red-600 p-6 lg:w-1/2 rounded-t-full border-b-8 border-black">
+      <nav>
+        <ul class="flex justify-center items-center w-full">
+          <li><!-- DONT SUPRESS NOR SUDPRESS--></li>
+          <li><input type="image" src="img/title.png" name="title" class="" id=""/></li>
+          <li class=""><i class="fa-solid fa-ellipsis-vertical lg:hidden" style="color: #000000;"></i></li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+
+  <!-- MAIN -->
+    <div class="flex flex-col w- lg:flex-row" id="main">
+
+      <!-- MESSAGE -->
+      <div class="hidden lg:flex lg:flex-col lg:order-1 bg-red-600 w-full lg:w-1/4 lg:h-[100%] justify-center align-top pb-8 rounded-bl-lg" id="msg-wrapper">
+        <div id="msg-main" class="flex flex-col">
+          <div id="msg-title" class="bg-yellow-300">
+            <h3 class="text-center p-2">Message</h3>
+          </div>
+          <div class="pt-6 text-center" id="msg">
+            <ul>
+              <li>UNE NOTIF</li>
+              <li>UNE AUTRE </li>
+              <li>ENCORE UNE</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAMEPLAY -->
+      <div class="md:flex md:order-1 md:flex-col lg:justify-center lg:items-center lg:w-1/2" id="gameplay-wrapper">
+        <div id="gameplay-interface" class="relative w-full h-96 bg-red-600">
+            <div id="gameplay-main" class="flex justify-center items-center w-full h-full bg-cover bg-center" style="background-image: url(img/stadium.png)">
+              <div id="score" class="absolute top-2 bg-stone-500 rounded-xl w-1/4 text-center">Score</div>
+              <div id="stadium"></div>
+              <div id="pokemon" class=""></div>
+              <div id="pichu" classe="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <input type="image" src="img/pichu.png" name="pichu" class="" id="counter"/></div>
+              <div id="pikachu" class="hidden">
+                <input type="image" src="img/pikachu.png" name="pikachu" class="imgcookie" id="counter"/>
+              </div>
+              <div id="Raichu" class="hidden">
+                <input type="image" src="img/Raichu.png" name="raichu" class="imgcookie" id="counter"/>
+              </div>
+              <div id="gameplay-notif" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 p-4 rounded-xl bg-stone-500 lg:hidden">
+                <div class="hidden md:block">NOTIF</div>
+                <div class="md:hidden">ATTAQUE</div>
+              </div>
+            </div>
+        </div>
+      </div>
+  
+    
+
+      <!-- BOUTIQUE // ATTAQUE -> DESKTOP -->
+
+      <div class="hidden md:flex md:flex-col lg:flex-row order-2 lg:order-3 w-full lg:w-1/4 lg:h-[100%]" id="shop-lg-main">
+        <div class="flex flex-col bg-red-600 w-full justify-center pb-8 rounded-br-lg" id="shop-wrapper">
+          <div id="msg-title" class="bg-blue-800">
+            <h3 class="text-center p-2">Shop</h3>
+          </div>
+          <div class="py-4 text-center" id="shop-interface-lg">
+            <ul>
+              <li>1e ELEMENT</li>
+              <li>2eme ELEMENT</li>
+              <li>3eme ELEMENT</li>
+            </ul>
+          </div>
+          <div id="msg-title" class="bg-blue-800">
+            <h3 class="text-center p-2">Attaque</h3>
+          </div>
+          <div class="pt-4 text-center" id="attaque-interface-lg">
+            <ul>
+              <li>1e ELEMENT</li>
+              <li>2eme ELEMENT</li>
+              <li>3eme ELEMENT</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  <!-- FOOTER -->
+  <div class="lg:flex lg:justify-center lg:items-center">
+      <footer class="bg-zinc-200 p-6 lg:w-1/2 rounded-b-full border-t-8 border-black">
+        <div class="text-center">ALL RIGHTS UNRESERVED, DON'T TAKE OUR MONEY</div>
+      </footer>
+  </div>
+</body>
+</html>
