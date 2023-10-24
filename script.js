@@ -1,25 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
   
-  let scoreCount = 0;
-  let autoclickPrice = 50;
-  let autoclickLevel = 1;
+  let scoreCount = localStorage.getItem("score") || 0;
   let clickPower = 1;
-  
+  let scoreHTML = document.getElementById("score");
+  scoreHTML.textContent = `Score : ${localStorage.getItem("scoreCount")}`;
   //DOM Content 
   let score = document.getElementById("score");
   let clickerButton = document.getElementById("counter");
-  let buyClickPower = document.getElementById("buy-click");
 
   // Refresh Score
   function refreshCookieScore() {
-    score.innerHTML = scoreCount;
-  }
-
-  // Refresh level/Price
-  function refreshLevel() {
-    autoclickBaseLevel.innerHTML = autoclickLevel;
-    autoclickBasePrice.innerHTML = autoclickPrice;
-    autoclickMultiple.innerHTML = clickPower;
+    score.innerHTML = `Score : ${scoreCount}`;
+    localStorage.setItem("score", scoreCount)
   }
 
   // Base du CC
@@ -31,29 +23,143 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /********************************
 
-          Shop
+          Attaque
 
 ********************************/
+
+/********************************
+          Charge
+********************************/
+
 //DOM Content 
-let autoclickBasePrice = document.getElementById("autoclick-price");
-let autoclickBaseLevel = document.getElementById("autoclick-level");
-let autoclickMultiple = document.getElementById("autoclick-multiple");
+  let chargeBuy = document.getElementById("charge-buy");
+  let chargePrice = document.getElementById("charge-price");
+  let chargeLevel = document.getElementById("charge-level");
+  let autoclickMultiple = document.getElementById("click-power-multiple");
+
+  let chargePriceAmount = 50;
+  let chargeLevelNumber = 1;
+
+// Refresh level/Price
+function refreshChargeLevel() {
+  chargeLevel.innerHTML = chargeLevelNumber;
+  chargePrice.innerHTML = chargePriceAmount;
+  autoclickMultiple.innerHTML = clickPower;
+}
 
 // Booster click
-  buyClickPower.addEventListener("click", () => {
-    if (scoreCount >= autoclickPrice) {
-      scoreCount -= autoclickPrice;
-      autoclickLevel++;
-      autoclickPrice = Math.floor(autoclickPrice * 1.20);
-      clickPower+=0.1;
+  chargeBuy.addEventListener("click", () => {
+    if (scoreCount >= chargePriceAmount) {
+      scoreCount -= chargePriceAmount;
+      chargeLevelNumber++;
+      chargePriceAmount = Math.floor(chargePriceAmount * 1.20);
+      clickPower+=1;
       refreshCookieScore();
-      refreshLevel();
+      refreshChargeLevel();
       console.log(clickPower);
     } else {
       console.log('Not enough clicks!');
     }
   });
 
+/********************************
+          Etincelle
+********************************/
+// DOM Content 
+let etincelleBuy = document.getElementById("etincelle-buy");
+let etincellePrice = document.getElementById("etincelle-price");
+let etincelleLevel = document.getElementById("etincelle-level");
+
+let etincellePriceAmount = 200;
+let etincelleLevelNumber = 1;
+
+// Refresh level/Price
+function refreshEtincelleLevel() {
+  etincelleLevel.innerHTML = etincelleLevelNumber;
+  etincellePrice.innerHTML = etincellePriceAmount;
+  autoclickMultiple.innerHTML = clickPower;
+}
+
+// Booster click
+etincelleBuy.addEventListener("click", () => {
+  if (scoreCount >= etincellePriceAmount) {
+    scoreCount -= etincellePriceAmount;
+    etincelleLevelNumber++;
+    etincellePriceAmount = Math.floor(etincellePriceAmount * 1.20);
+    clickPower += 2;
+    refreshCookieScore();
+    refreshEtincelleLevel();
+    console.log(clickPower);
+  } else {
+    console.log('Not enough clicks!');
+  }
+});
+
+/********************************
+          Fatal Foudre
+********************************/
+// DOM Content 
+let fatalfoudreBuy = document.getElementById("fatalfoudre-buy");
+let fatalfoudrePrice = document.getElementById("fatalfoudre-price");
+let fatalfoudreLevel = document.getElementById("fatalfoudre-level");
+
+let fatalfoudrePriceAmount = 500;
+let fatalfoudreLevelNumber = 1;
+
+// Refresh level/Price
+function refreshFatalfoudreLevel() {
+  fatalfoudreLevel.innerHTML = fatalfoudreLevelNumber;
+  fatalfoudrePrice.innerHTML = fatalfoudrePriceAmount;
+  autoclickMultiple.innerHTML = clickPower;
+}
+
+// Booster click
+fatalfoudreBuy.addEventListener("click", () => {
+  if (scoreCount >= fatalfoudrePriceAmount) {
+    scoreCount -= fatalfoudrePriceAmount;
+    fatalfoudreLevelNumber++;
+    fatalfoudrePriceAmount = Math.floor(etincellePriceAmount * 1.20);
+    clickPower += 5;
+    refreshCookieScore();
+    refreshFatalfoudreLevel();
+    console.log(clickPower);
+  } else {
+    console.log('Not enough clicks!');
+  }
+});
+
+/********************************
+          Trempette
+********************************/
+// DOM Content 
+let trempetteBuy = document.getElementById("trempette-buy");
+let trempettePrice = document.getElementById("trempette-price");
+let trempetteLevel = document.getElementById("trempette-level");
+
+let trempettePriceAmount = 100;
+let trempetteLevelNumber = 1;
+
+// Refresh level/Price
+function refreshtrempetteLevel() {
+  trempetteLevel.innerHTML = trempetteLevelNumber;
+  trempettePrice.innerHTML = trempettePriceAmount;
+  autoclickMultiple.innerHTML = clickPower;
+}
+
+// Booster click
+trempetteBuy.addEventListener("click", () => {
+  if (scoreCount >= trempettePriceAmount) {
+    scoreCount -= trempettePriceAmount;
+    trempetteLevelNumber++;
+    trempettePriceAmount = Math.floor(trempettePriceAmount * 1.20);
+    clickPower += -10;
+    refreshCookieScore();
+    refreshtrempetteLevel();
+    console.log(clickPower);
+  } else {
+    console.log('Not enough clicks!');
+  }
+});
 
 /********************************
 
@@ -102,7 +208,7 @@ buyPika.addEventListener ("click", ()=> {
 
 /********************************
 
-          Arena
+          Shop
 
 ********************************/
 //DOM Content 
@@ -142,4 +248,42 @@ buyArena.addEventListener("click", () => {
   }
 })
 
+
+/********************************
+
+          Toggle Pokecoins
+
+********************************/
+// DOM Content
+  document.getElementById('pichu').addEventListener('click', togglePokeCoin);
+  document.getElementById('pikachu').addEventListener('click', togglePokeCoin);
+  document.getElementById('Raichu').addEventListener('click', togglePokeCoin);
+
+  function togglePokeCoin(event) {
+  let pokeCoin = document.getElementById('pokecoin');
+  let gameInterface = document.getElementById('gameplay-interface');
+
+  
+  let clickX = event.clientX;
+  let clickY = event.clientY;
+
+  // Obtenir la position de l'élément 'gameplay-interface'
+  let rect = gameInterface.getBoundingClientRect();
+
+  let relativeX = clickX - rect.left;
+  let relativeY = clickY - rect.top;
+
+  pokeCoin.style.left = relativeX + 'px';
+  pokeCoin.style.top = relativeY + 'px';
+
+  pokeCoin.classList.remove('hidden');
+  pokeCoin.style.animation = 'jump 1s ease';
+
+  setTimeout(() => {
+    pokeCoin.style.removeProperty('animation');
+    pokeCoin.classList.add('hidden');
+  }, 1000); 
+}
+
+  
 });
