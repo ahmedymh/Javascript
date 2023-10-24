@@ -120,7 +120,7 @@ fatalfoudreBuy.addEventListener("click", () => {
   if (scoreCount >= fatalfoudrePriceAmount) {
     scoreCount -= fatalfoudrePriceAmount;
     fatalfoudreLevelNumber++;
-    fatalfoudrePriceAmount = Math.floor(etincellePriceAmount * 1.20);
+    fatalfoudrePriceAmount = Math.floor(fatalfoudrePriceAmount * 1.20);
     clickPower += 5;
     refreshCookieScore();
     refreshFatalfoudreLevel();
@@ -138,7 +138,7 @@ let trempetteBuy = document.getElementById("trempette-buy");
 let trempettePrice = document.getElementById("trempette-price");
 let trempetteLevel = document.getElementById("trempette-level");
 
-let trempettePriceAmount = 100;
+let trempettePriceAmount = 1000;
 let trempetteLevelNumber = 1;
 
 // Refresh level/Price
@@ -208,11 +208,6 @@ buyPika.addEventListener ("click", ()=> {
 
 })
 
-/********************************
-
-          Shop
-
-********************************/
 //DOM Content 
 let buyArena = document.getElementById("buy-arena");
 let arenaPrice = document.getElementById("arena-price");
