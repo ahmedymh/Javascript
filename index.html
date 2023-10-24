@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!--SCRIPT TAILWIND + FONTAWSOME + GOOGLE FONTS-->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/d6a733dcf4.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +21,10 @@
         background-repeat: no-repeat; 
         font-family: 'Bebas Neue', sans-serif;
         font-size: 24px;
+    }
+    ul
+    {
+      font-size: 18px;
     }
 
     @keyframes jump 
@@ -55,6 +60,7 @@
 
     }
 
+
   </style>
 </head>
 <body class="custom-background">
@@ -80,7 +86,7 @@
           <div id="msg-title" class="bg-yellow-300">
             <h3 class="text-center p-2">Message</h3>
           </div>
-          <div class="pt-6 text-center" id="msg">
+          <div class="py-4 text-center" id="msg">
             <ul>
               <li>UNE NOTIF</li>
               <li>UNE AUTRE </li>
@@ -92,18 +98,20 @@
 
       <!-- GAMEPLAY -->
       <div class="md:flex md:order-1 md:flex-col lg:justify-center lg:items-center lg:w-1/2" id="gameplay-wrapper">
-        <div id="gameplay-interface" class="relative w-full h-screen bg-red-600">
+        <div id="gameplay-interface" class="relative w-full h-96 bg-red-600">
             <div id="gameplay-main" class="flex justify-center items-center w-full h-full bg-cover bg-center" style="background-image: url(img/stadium.png)">
-              <div id="score" class="absolute top-2 bg-stone-500 rounded-xl w-1/4 text-center">Score</div>
+              <div id="score" class="absolute top-2 p-1 lg:left-0 lg:ml-4 mt-4 bg-stone-500 rounded-xl w-1/3 text-center">
+                <div class="flex justify-evenly items-center text-lg" id="score-wrapper"><span>Wallet </span><span> $</span><input type="image" src="img/PokeCoin.png" name="pichu" class="w-auto" id="counter"/></div>
+              </div>
               <div id="pokecoin" class="hidden absolute z-50">
                 <input type="image" src="img/PokeCoin.png" name="pichu" class="" id="counter"/>
               </div>
-              <div id="pichu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div id="pichu" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <input type="image" src="img/pichu.png" name="pichu" class="transition-transform transform hover:scale-90" id="pichu"/></div>
               <div id="pikachu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <input type="image" src="img/pikachu.png" name="pikachu" class="transition-transform transform hover:scale-90" id="pikachu"/>
               </div>
-              <div id="Raichu" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div id="Raichu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <input type="image" src="img/Raichu.png" name="raichu" class="transition-transform transform hover:scale-90" id="raichu"/>
               </div>
               <div id="gameplay-notif" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 p-4 rounded-xl bg-stone-500 lg:hidden">
@@ -146,7 +154,7 @@
     </div>
 
   <!-- FOOTER -->
-  <div class="lg:flex lg:justify-center lg:items-center pb-8">
+  <div class="lg:flex lg:justify-center lg:items-center pb-8 text-lg">
       <footer class="bg-zinc-200 p-6 lg:w-1/2 rounded-b-full border-t-8 border-black">
         <div class="text-center">ALL RIGHTS UNRESERVED, DON'T TAKE OUR MONEY</div>
       </footer>
