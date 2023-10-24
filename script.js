@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
   
-  let scoreCount = localStorage.getItem("score") || 0;
+  let scoreCount = 0;
   let clickPower = 1;
-  let scoreHTML = document.getElementById("score");
-  scoreHTML.textContent = `Score : ${localStorage.getItem("scoreCount")}`;
+  let scoreHTML = document.getElementById("score");;
   //DOM Content 
   let score = document.getElementById("score");
   let clickerButton = document.getElementById("counter");
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Refresh Score
   function refreshCookieScore() {
     score.innerHTML = `Score : ${scoreCount}`;
-    localStorage.setItem("score", scoreCount)
   }
 
   // Base du CC
