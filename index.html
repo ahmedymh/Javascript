@@ -13,54 +13,7 @@
 
   <!--BACKGROUND PERSO, A INTEGRER A TAILWIND-->
   <style>
-    .custom-background 
-    {
-        background-image: url('img/route1.jpg'); 
-        background-size: cover; 
-        background-position: center; 
-        background-repeat: no-repeat; 
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 24px;
-    }
-    ul
-    {
-      font-size: 18px;
-    }
-
-    @keyframes jump 
-    {
-      0% 
-      {
-        transform: translateX(0) translateY(0);
-      }
-      15%
-      {
-        transform: translate(0.2em, -20px);
-      }
-      30%
-      {
-        transform: translate(0.4em, 0px);
-      }
-      45%
-      {
-        transform: translate(0.6em, -15px);
-      }
-      60%
-      {
-        transform: translate(0.8em, 0px);
-      }
-      85%
-      {
-        transform: translate(1em, -10px);
-      }
-      100%
-      {
-        transform: translate(1.2em, 0px);
-      }
-
-    }
-
-
+    
   </style>
 </head>
 <body class="custom-background">
@@ -114,7 +67,7 @@
               <div id="Raichu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <input type="image" src="img/Raichu.png" name="raichu" class="transition-transform transform hover:scale-90" id="raichu"/>
               </div>
-              <div id="gameplay-notif" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 p-4 rounded-xl bg-stone-500 lg:hidden">
+              <div id="gameplay-notif" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 p-4 rounded-xl bg-stone-500 text-lg lg:hidden">
                 <div class="hidden md:block">NOTIF</div>
                 <div class="md:hidden">ATTAQUE</div>
               </div>
