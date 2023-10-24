@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pikliker</title>
   <!--JS-->
   <script src="script.js"></script>
   <!--SCRIPT TAILWIND + FONTAWSOME + GOOGLE FONTS-->
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/d6a733dcf4.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +22,7 @@
 <body class="custom-background">
   <!-- HEADER -->
   <div class="lg:flex lg:justify-center lg:items-center">
-    <header class="bg-red-600 p-6 lg:w-1/2 rounded-t-full border-b-8 border-black">
+    <header class="bg-red-600 p-6 lg:w-1/2 rounded-t-full border-b-8 border-black bg-bottom bg-no-repeat" style="background-image: url(img/pokeballdecot.png)">
       <nav>
         <ul class="flex justify-center items-center w-full">
           <li><!-- DONT SUPRESS NOR SUDPRESS--></li>
@@ -55,8 +56,12 @@
       <div class="md:flex md:order-1 md:flex-col lg:justify-center lg:items-center lg:w-1/2" id="gameplay-wrapper">
         <div id="gameplay-interface" class="relative w-full h-96 bg-red-600">
             <div id="gameplay-main" class="flex justify-center items-center w-full h-full bg-cover bg-center" style="background-image: url(img/stadium.png)">
+              <!-- <div id="score" class="absolute top-2 p-1 lg:left-0 lg:ml-4 mt-4 bg-stone-500 rounded-xl w-1/4 text-center">
+                Score : <strong id="score"></strong>
+                <input type="image" src="img/PokeCoin.png" name="pichu" class="w-auto" id="counter"/>
+              </div> -->
               <div id="score" class="absolute top-2 p-1 lg:left-0 lg:ml-4 mt-4 bg-stone-500 rounded-xl w-1/3 text-center">
-                <div class="flex justify-evenly items-center text-lg" id="score-wrapper"><span>Wallet </span><strong id="score"></strong><input type="image" src="img/PokeCoin.png" name="pichu" class="w-auto" id="counter"/></div>
+                <div class="flex justify-evenly items-center text-lg" id="score-wrapper"><span>Wallet :</span><strong id="score"></strong><input type="image" src="img/PokeCoin2.png" name="pichu" class="" id=""/></div>
               </div>
               <div id="pokecoin" class="hidden absolute z-50">
                 <input type="image" src="img/PokeCoin.png" name="pichu" class="" id="counter"/>
@@ -94,7 +99,7 @@
             </ul>
           </div>
           <div id="msg-title" class="bg-blue-800">
-            <h3 class="text-center p-2">Attaque</h3>
+            <h3 class="text-start pl-6 p-2">Attaque</h3>
           </div>
           <div class="pt-4 text-center" id="attaque-interface-lg">
             <p>Votre curseur fait <span id="click-power-multiple">1</span> pika(s) par click.</p>
@@ -102,8 +107,27 @@
               <li><button id="charge-buy"> Charge (+1 click) <strong id="charge-price">50</strong> Pokecoins </button>
               <span>Level : <strong id="charge-level">1</strong></span></li>
               <li><button id="etincelle-buy"> Etincelle (+2 click) <strong id="etincelle-price">200</strong> Pokecoins </button> <span> Level : <strong id="etincelle-level">1</strong></span></li>
-              <li><button id="fatalfoudre-buy"> Fatal Foudre (+5 click) <strong id="fatalfoudre-price">250</strong> Pokecoins </button><span> Level : <strong id="fatalfoudre-level">1</strong></span></li>
-              <li><button id="trempette-buy"> Trempette (+ ?) <strong id="trempette-price">1000</strong> Pokecoins </button><span> Level : <strong id="trempette-level">1</strong></span></li>
+              <li class="flex justify-between items-center p-1 bg-blue-800">
+                <button id="fatalfoudre-buy" class="flex justify-between items-center bg-gray-100 px-4 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                  <span class="pr-2"><img src="img/badge-electrik.png" alt=""></span>
+                  <span>Fatal Foudre (+5 click)</span> 
+                  <span><strong id="fatalfoudre-price">250</strong> Pokecoins </span>
+                </button>
+                <div>
+                  <span> Level : </span><strong id="fatalfoudre-level">1</strong>
+                </div>
+              </li>
+              
+              <li class="flex justify-between items-center p-1 bg-yellow-300">
+                <button id="trempette-buy" class="flex justify-between items-center bg-gray-100 px-4 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                  <span><img src="img/badge-eau.png" class="" alt=""></span>
+                  <span class="pr-2">Trempette (+ ?)</span>
+                  <span><strong id="trempette-price" class="font-bold">1000</strong> Pokecoins</span>
+                </button>
+                <div>
+                    <span>Level : </span><strong id="trempette-level" class="font-semibold">1</strong>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -113,45 +137,11 @@
 
   <!-- FOOTER -->
   <div class="lg:flex lg:justify-center lg:items-center pb-8 text-lg">
-      <footer class="bg-zinc-200 p-6 lg:w-1/2 rounded-b-full border-t-8 border-black">
-        <div class="text-center">ALL RIGHTS UNRESERVED, DON'T TAKE OUR MONEY</div>
+      <footer class="bg-zinc-200 p-6 lg:w-1/2 rounded-b-full border-t-8 border-black bg-top bg-no-repeat" style="background-image: url(img/pokeballdecob.png)">
+        <div class="text-center bg-zinc-200">ALL RIGHTS UNRESERVED, DON'T TAKE OUR MONEY</div>
       </footer>
   </div>
-<script>
 
-function togglePokeCoin(event) {
-  let pokeCoin = document.getElementById('pokecoin');
-  let gameInterface = document.getElementById('gameplay-interface');
-
-  
-  let clickX = event.clientX;
-  let clickY = event.clientY;
-
-  // Obtenir la position de l'élément 'gameplay-interface'
-  let rect = gameInterface.getBoundingClientRect();
-
-  let relativeX = clickX - rect.left;
-  let relativeY = clickY - rect.top;
-
-  pokeCoin.style.left = relativeX + 'px';
-  pokeCoin.style.top = relativeY + 'px';
-
-  pokeCoin.classList.remove('hidden');
-  pokeCoin.style.animation = 'jump 1s ease';
-
-  setTimeout(() => {
-    pokeCoin.style.removeProperty('animation');
-    pokeCoin.classList.add('hidden');
-  }, 1000); 
-}
-
-document.getElementById('pichu').addEventListener('click', togglePokeCoin);
-document.getElementById('pikachu').addEventListener('click', togglePokeCoin);
-document.getElementById('Raichu').addEventListener('click', togglePokeCoin);
-
-
-
-  </script>
   
 </body>
 </html>
