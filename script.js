@@ -476,7 +476,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let pichu = document.getElementById("pichu");
   let pikachu = document.getElementById("pikachu");
   let raichu = document.getElementById("Raichu");
-  let pierrePriceAmount = 10;
+  let pierrePriceAmount = 50000;
 
   //action on click
   pierreBuy.addEventListener("click",() => {
@@ -493,7 +493,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ********************************/
   //DOM Content
   let pierreBuy2 = document.getElementById("pierre2-buy");
-  let pierrePriceAmount2 = 10;
+  let pierrePriceAmount2 = 150000;
 
   //Action on click
   pierreBuy2.addEventListener("click",() => {
