@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let clickerButton = document.getElementById("counter");
 
   function refreshCookieScore() {
-      score.innerHTML = `Score : ${scoreCount}`;
+      score.innerHTML = `${scoreCount}`;
   }
 
   clickerButton.addEventListener('click', function(event) {
