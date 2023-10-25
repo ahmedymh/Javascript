@@ -58,6 +58,80 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initial score refresh
   refreshCookieScore();
 
+     /********************************
+  
+           Evolution Animation
+  
+  ********************************/
+
+  function toggleHidden(element) {
+    element.classList.toggle('hidden');
+  }
+
+  function Evolution1() {
+    // Task 1: Show and hide Pichu 3 times
+    for (let i = 0; i < 6; i++) {
+      setTimeout(() => {
+        toggleHidden(pichu);
+      }, i * 500);
+    }
+
+    // Task 2: Show and hide Pichu and Raichu alternatively 3 times
+    setTimeout(() => {
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          toggleHidden(pichu);
+          toggleHidden(pikachu);
+        }, i * 500);
+      }
+    }, 6 * 500);
+
+    setTimeout(() => {
+      pichu.classList.add("hidden");
+    }, 12 * 500);
+
+    // Task 3: Show and hide Raichu 3 times
+    setTimeout(() => {
+      for (let i = 0; i < 7; i++) {
+        setTimeout(() => {
+          toggleHidden(pikachu);
+        }, i * 500);
+      }
+    }, 12 * 500);
+    
+  }
+  function Evolution2() {
+    // Task 1: Show and hide Pichu 3 times
+    for (let i = 0; i < 6; i++) {
+      setTimeout(() => {
+        toggleHidden(pikachu);
+      }, i * 500);
+    }
+
+    // Task 2: Show and hide Pichu and Raichu alternatively 3 times
+    setTimeout(() => {
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          toggleHidden(pikachu);
+          toggleHidden(raichu);
+        }, i * 500);
+      }
+    }, 6 * 500);
+
+    setTimeout(() => {
+      pikachu.classList.add("hidden");
+    }, 12 * 500);
+
+    // Task 3: Show and hide Raichu 3 times
+    setTimeout(() => {
+      for (let i = 0; i < 7; i++) {
+        setTimeout(() => {
+          toggleHidden(raichu);
+        }, i * 500);
+      }
+    }, 12 * 500);
+    
+  }
   /********************************
   
             Pokeball
@@ -402,14 +476,13 @@ document.addEventListener('DOMContentLoaded', function() {
   let pichu = document.getElementById("pichu");
   let pikachu = document.getElementById("pikachu");
   let raichu = document.getElementById("Raichu");
-  let pierrePriceAmount = 50000;
+  let pierrePriceAmount = 10;
 
   //action on click
   pierreBuy.addEventListener("click",() => {
     if (scoreCount>=pierrePriceAmount){
       scoreCount-=pierrePriceAmount;
-      pichu.classList.add("hidden");
-      pikachu.classList.remove("hidden");
+      Evolution1();
       listpierre1.classList.add("hidden");
       listpierre2.classList.remove("hidden");
       refreshCookieScore();
@@ -420,14 +493,13 @@ document.addEventListener('DOMContentLoaded', function() {
   ********************************/
   //DOM Content
   let pierreBuy2 = document.getElementById("pierre2-buy");
-  let pierrePriceAmount2 = 150000;
+  let pierrePriceAmount2 = 10;
 
   //Action on click
   pierreBuy2.addEventListener("click",() => {
     if (scoreCount>=pierrePriceAmount2){
       scoreCount-=pierrePriceAmount2;
-      pikachu.classList.add("hidden");
-      raichu.classList.remove("hidden");
+      Evolution2();
       refreshCookieScore();
     }
   })
