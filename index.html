@@ -167,66 +167,6 @@
         <div class="text-center bg-zinc-200">ALL RIGHTS UNRESERVED, DON'T TAKE OUR MONEY</div>
       </footer>
   </div>
-  <script>
-   document.addEventListener('DOMContentLoaded', function() {
-    const pokeballElement = document.getElementById('pokeball');
-    const gameplayWrapper = document.getElementById('gameplay-wrapper');
-    let animationFrameId = null;
-    let clickPower = 1; // Assurez-vous d'initialiser clickPower en fonction de la logique de votre jeu.
-
-    function movePokeball() {
-        const topPosition = parseInt(pokeballElement.style.top) || 0;
-        pokeballElement.style.top = (topPosition + 1) + 'px';
-
-        const rect = gameplayWrapper.getBoundingClientRect();
-
-        // Si la pokeball atteint le bas ou est cliquée, on arrête l'animation
-        if (topPosition > (rect.bottom - rect.top) - pokeballElement.offsetHeight || pokeballElement.style.display === 'none') {
-            cancelAnimationFrame(animationFrameId);
-            pokeballElement.style.display = 'none';
-            schedulePokeball();
-        } else {
-            animationFrameId = requestAnimationFrame(movePokeball);
-        }
-    }
-
-    function spawnPokeball() {
-        const rect = gameplayWrapper.getBoundingClientRect();
-        const randomX = Math.floor(Math.random() * (rect.width - pokeballElement.clientWidth));
-
-        pokeballElement.style.left = randomX + 'px';
-        pokeballElement.style.top = '0px'; // Le point de départ est le haut de la div du gameplay
-        pokeballElement.style.display = 'block';
-
-        movePokeball();
-    }
-
-    function schedulePokeball() {
-        const randomInterval = Math.random() * (1800 - 1200) + 1200; // 2-3 minutes
-        setTimeout(spawnPokeball, randomInterval);
-    }
-
-    pokeballElement.addEventListener('click', function() {
-        pokeballElement.style.display = 'none';
-
-        // Logique pour augmenter temporairement clickPower
-        const originalClickPower = clickPower;
-        clickPower += 10;
-
-        // Réinitialiser clickPower après 5 secondes
-        setTimeout(function() {
-            clickPower = originalClickPower;
-        }, 5000);
-    });
-
-    // Initialiser les positions pour éviter les erreurs de calcul
-    pokeballElement.style.top = '0px';
-    pokeballElement.style.left = '0px';
-
-    schedulePokeball(); // Commencer le cycle d'apparition de la pokeball
-});
-
-  </script>
   
 </body>
 </html>

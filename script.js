@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
       refreshCookieScore();
       localStorage.setItem("score", scoreCount);
   });
+    /********************************
+  
+            TogglePokeCoins
+  
+  ********************************/
   // Attaching the same click event to multiple elements
   ['pichu', 'pikachu', 'Raichu'].forEach(id => {
       document.getElementById(id).addEventListener('click', function(event) {
@@ -52,6 +57,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initial score refresh
   refreshCookieScore();
+
+  /********************************
+  
+            Pokeball
+  
+  ********************************/
+
+  const pokeballElement = document.getElementById('pokeball');
+    const gameplayWrapper = document.getElementById('gameplay-wrapper');
+    let animationFrameId = null;
+    // let clickPower = 1; // Assurez-vous d'initialiser clickPower en fonction de la logique de votre jeu.
+
+    function movePokeball() {
+      const topPosition = parseInt(pokeballElement.style.top) || 0;
+      pokeballElement.style.top = (topPosition + 1) + 'px';
+
+      const rect = gameplayWrapper.getBoundingClientRect();
+
+      // Si la pokeball atteint le bas ou est cliquée, on arrête l'animation
+      if (topPosition > (rect.bottom - rect.top) - pokeballElement.offsetHeight || pokeballElement.style.display === 'none') {
+          cancelAnimationFrame(animationFrameId);
+          pokeballElement.style.display = 'none';
+          schedulePokeball();
+      } else {
+          animationFrameId = requestAnimationFrame(movePokeball);
+      }
+    }
+    // Spawn de la Pokeball
+    function spawnPokeball() {
+        const rect = gameplayWrapper.getBoundingClientRect();
+        const randomX = Math.floor(Math.random() * (rect.width - pokeballElement.clientWidth));
+
+        pokeballElement.style.left = randomX + 'px';
+        pokeballElement.style.top = '0px'; // Le point de départ est le haut de la div du gameplay
+        pokeballElement.style.display = 'block';
+
+        movePokeball();
+    }
+
+    // Durée entre les spawns
+    function schedulePokeball() {
+        const randomInterval = Math.random() * (1800 - 1200) + 1200; // 2-3 minutes
+        setTimeout(spawnPokeball, randomInterval);
+    }
+    // On click sur la Pokeball
+    pokeballElement.addEventListener('click', function() {
+        pokeballElement.style.display = 'none';
+        scoreCount += Math.floor(Math.random()*100);
+        refreshCookieScore();
+    });
+
+    // Initialiser les positions pour éviter les erreurs de calcul
+    pokeballElement.style.top = '0px';
+    pokeballElement.style.left = '0px';
+
+    schedulePokeball(); 
   
   /********************************
   
@@ -206,10 +267,11 @@ document.addEventListener('DOMContentLoaded', function() {
   let potionBuy = document.getElementById ("potion-buy");
   let potionPrice = document.getElementById("potion-price");
   let potionLevel = document.getElementById("potion-level");
-  let allMultiple = document.getElementById("autoclickmultiple2");
+  let allMultiple2 = document.getElementById("autoclickmultiple2");
   let potionPower = 1;
   let potionPriceAmount = 500;
   let potionLevelNumber = 0;
+  let allMultiple = 0;
 
   // Pika on click ajout
   potionBuy.addEventListener ("click", ()=> {
@@ -236,7 +298,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function refreshPotion () {
       potionLevel.innerHTML = potionLevelNumber;
       potionPrice.innerHTML = potionPriceAmount;
-      allMultiple.innerHTML = potionPower * potionLevelNumber;
+      allMultiple += potionPower * potionLevelNumber;
+      allMultiple2.innerHTML = allMultiple;
     }
 
   })
@@ -252,14 +315,15 @@ let multiexpLevel = document.getElementById("multiexp-level");
 // let multiexpMultiple = document.getElementById("multiexp-multiple");
 
 let multiexpPower = 5;
-let multiexpPriceAmount = 1000;
+let multiexpPriceAmount = 100;
 let multiexpLevelNumber = 0;
 
 //Rafraîchir HTML
 function refreshMultiexp() {
   multiexpLevel.innerHTML = multiexpLevelNumber;
   multiexpPrice.innerHTML = multiexpPriceAmount;
-  allMultiple.innerHTML = multiexpPower * multiexpLevelNumber;
+  allMultiple += multiexpPower * multiexpLevelNumber;
+  allMultiple2.innerHTML = allMultiple;
 }
 
 //Loop Multiexp
@@ -301,6 +365,7 @@ function refreshTerrain() {
   terrainLevel.innerHTML = terrainLevelNumber;
   terrainPrice.innerHTML = terrainPriceAmount;
   allMultiple.innerHTML = terrainPower * terrainLevelNumber;
+  allMultiple2.innerHTML = allMultiple;
 }
 
 //Loop Terrain
