@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
           Shop
 
-********************************/
+  ********************************/
     /********************************
             Potion
   ********************************/
@@ -273,17 +273,24 @@ document.addEventListener('DOMContentLoaded', function() {
   let potionLevelNumber = 0;
   let allMultiple = 0;
 
+  // Fonction de loop
+  let potionInt;
+  function potionAutoStart() {
+    potionInt = window.setInterval(()=> {
+      scoreCount = scoreCount + potionPower;
+      refreshCookieScore();
+    }, 1000);
+  }
+
+  // Rafraîchissement des HTML Pika
+  function refreshPotion () {
+    potionLevel.innerHTML = potionLevelNumber;
+    potionPrice.innerHTML = potionPriceAmount;
+    allMultiple += potionPower * potionLevelNumber;
+    allMultiple2.innerHTML = allMultiple;
+  }
   // Pika on click ajout
   potionBuy.addEventListener ("click", ()=> {
-
-    // Fonction de loop
-    function potionAutoStart() {
-      window.setInterval(()=> {
-        scoreCount = scoreCount + potionPower;
-        refreshCookieScore();
-      }, 1000);
-    }
-
   //update du prix + exécution du loop 
     if (scoreCount >= potionPriceAmount){
       scoreCount -= potionPriceAmount;
@@ -293,98 +300,177 @@ document.addEventListener('DOMContentLoaded', function() {
       refreshPotion();
       potionAutoStart();
     }
-
-  // Rafraîchissement des HTML Pika
-    function refreshPotion () {
-      potionLevel.innerHTML = potionLevelNumber;
-      potionPrice.innerHTML = potionPriceAmount;
-      allMultiple += potionPower * potionLevelNumber;
-      allMultiple2.innerHTML = allMultiple;
-    }
-
   })
 
-  /********************************
-          Multi-Exp
-********************************/
+    /********************************
+            Multi-Exp
+  ********************************/
 
-//DOM Content 
-let multiexpBuy = document.getElementById("multiexp-buy");
-let multiexpPrice = document.getElementById("multiexp-price");
-let multiexpLevel = document.getElementById("multiexp-level");
-// let multiexpMultiple = document.getElementById("multiexp-multiple");
+  //DOM Content 
+  let multiexpBuy = document.getElementById("multiexp-buy");
+  let multiexpPrice = document.getElementById("multiexp-price");
+  let multiexpLevel = document.getElementById("multiexp-level");
+  // let multiexpMultiple = document.getElementById("multiexp-multiple");
 
-let multiexpPower = 5;
-let multiexpPriceAmount = 100;
-let multiexpLevelNumber = 0;
+  let multiexpPower = 5;
+  let multiexpPriceAmount = 2500;
+  let multiexpLevelNumber = 0;
 
-//Rafraîchir HTML
-function refreshMultiexp() {
-  multiexpLevel.innerHTML = multiexpLevelNumber;
-  multiexpPrice.innerHTML = multiexpPriceAmount;
-  allMultiple += multiexpPower * multiexpLevelNumber;
-  allMultiple2.innerHTML = allMultiple;
-}
-
-//Loop Multiexp
-function multiexpStart () {
-  let multiexpInt = window.setInterval(() => {
-    scoreCount+= multiexpPower;
-    refreshCookieScore();
-  }, 1000);
-}
-
-// Event sur le click de multiexp
-multiexpBuy.addEventListener("click", () => {
-  if (scoreCount >= multiexpPriceAmount) {
-    scoreCount-=multiexpPriceAmount;
-    refreshCookieScore ();
-    multiexpLevelNumber +=1;
-    multiexpPriceAmount = Math.floor(multiexpPriceAmount * 1.20);
-    multiexpStart();
-    refreshMultiexp();
+  //Rafraîchir HTML
+  function refreshMultiexp() {
+    multiexpLevel.innerHTML = multiexpLevelNumber;
+    multiexpPrice.innerHTML = multiexpPriceAmount;
+    allMultiple += multiexpPower * multiexpLevelNumber;
+    allMultiple2.innerHTML = allMultiple;
   }
-});
 
-  /********************************
-          Terrain
-********************************/
-
-//DOM Content 
-let terrainBuy = document.getElementById("terrain-buy");
-let terrainPrice = document.getElementById("terrain-price");
-let terrainLevel = document.getElementById("terrain-level");
-// let multiexpMultiple = document.getElementById("multiexp-multiple");
-
-let terrainPower = 25;
-let terrainPriceAmount = 10000;
-let terrainLevelNumber = 0;
-
-//Rafraîchir HTML
-function refreshTerrain() {
-  terrainLevel.innerHTML = terrainLevelNumber;
-  terrainPrice.innerHTML = terrainPriceAmount;
-  allMultiple.innerHTML = terrainPower * terrainLevelNumber;
-  allMultiple2.innerHTML = allMultiple;
-}
-
-//Loop Terrain
-function terrainStart () {
-  let terrainInt = window.setInterval(() => {
-    scoreCount+= terrainPower;
-    refreshCookieScore();
-  }, 1000);
-}
-
-// Event sur le click de Terrain
-terrainBuy.addEventListener("click", () => {
-  if (scoreCount >= terrainPriceAmount) {
-    scoreCount-=terrainPriceAmount;
-    refreshCookieScore ();
-    terrainLevelNumber +=1;
-    terrainPriceAmount = Math.floor(terrainPriceAmount * 1.20);
-    terrainStart();
-    refreshTerrain();
+  //Loop Multiexp
+  let multiexpInt;
+  function multiexpStart () {
+      multiexpInt = window.setInterval(() => {
+      scoreCount+= multiexpPower;
+      refreshCookieScore();
+    }, 1000);
   }
-});
+
+  // Event sur le click de multiexp
+  multiexpBuy.addEventListener("click", () => {
+    if (scoreCount >= multiexpPriceAmount) {
+      scoreCount-=multiexpPriceAmount;
+      refreshCookieScore ();
+      multiexpLevelNumber +=1;
+      multiexpPriceAmount = Math.floor(multiexpPriceAmount * 1.20);
+      multiexpStart();
+      refreshMultiexp();
+    }
+    });
+
+    /********************************
+            Terrain
+  ********************************/
+
+  //DOM Content 
+  let terrainBuy = document.getElementById("terrain-buy");
+  let terrainPrice = document.getElementById("terrain-price");
+  let terrainLevel = document.getElementById("terrain-level");
+  // let multiexpMultiple = document.getElementById("multiexp-multiple");
+
+  let terrainPower = 25;
+  let terrainPriceAmount = 10000;
+  let terrainLevelNumber = 0;
+
+  //Rafraîchir HTML
+  function refreshTerrain() {
+    terrainLevel.innerHTML = terrainLevelNumber;
+    terrainPrice.innerHTML = terrainPriceAmount;
+    allMultiple += terrainPower * terrainLevelNumber;
+    allMultiple2.innerHTML = allMultiple;
+  }
+
+  //Loop Terrain
+  let terrainInt;
+  function terrainStart () {
+      terrainInt = window.setInterval(() => {
+      scoreCount+= terrainPower;
+      refreshCookieScore();
+    }, 1000);
+  }
+
+  // Event sur le click de Terrain
+  terrainBuy.addEventListener("click", () => {
+    if (scoreCount >= terrainPriceAmount) {
+      scoreCount-=terrainPriceAmount;
+      refreshCookieScore ();
+      terrainLevelNumber +=1;
+      terrainPriceAmount = Math.floor(terrainPriceAmount * 1.20);
+      terrainStart();
+      refreshTerrain();
+    }
+  });
+    /********************************
+      
+            Pierre évolutive
+
+  ********************************/
+     /********************************
+            Pierre 1
+  ********************************/
+    //DOM Content
+  let pierreBuy = document.getElementById("pierre-buy");
+  let listpierre1 = document.getElementById ("pierre1");
+  let listpierre2 = document.getElementById("pierre2");
+  let pichu = document.getElementById("pichu");
+  let pikachu = document.getElementById("pikachu");
+  let raichu = document.getElementById("Raichu");
+  let pierrePriceAmount = 50000;
+
+  //action on click
+  pierreBuy.addEventListener("click",() => {
+    if (scoreCount>=pierrePriceAmount){
+      scoreCount-=pierrePriceAmount;
+      pichu.classList.add("hidden");
+      pikachu.classList.remove("hidden");
+      listpierre1.classList.add("hidden");
+      listpierre2.classList.remove("hidden");
+      refreshCookieScore();
+    }
+  })
+    /********************************
+     Pierre 2
+  ********************************/
+  //DOM Content
+  let pierreBuy2 = document.getElementById("pierre2-buy");
+  let pierrePriceAmount2 = 150000;
+
+  //Action on click
+  pierreBuy2.addEventListener("click",() => {
+    if (scoreCount>=pierrePriceAmount2){
+      scoreCount-=pierrePriceAmount2;
+      pikachu.classList.add("hidden");
+      raichu.classList.remove("hidden");
+      refreshCookieScore();
+    }
+  })
+  /********************************
+      
+            Reset
+
+  ********************************/
+      document.getElementById("reset").addEventListener("click", () => {
+        localStorage.clear();
+        scoreCount = 0;
+        clickPower = 1;
+        chargeLevelNumber = 1;
+        chargePriceAmount = 50;
+        etincelleLevelNumber = 1;
+        etincellePriceAmount = 200;
+        fatalfoudreLevelNumber = 1;
+        fatalfoudrePriceAmount = 500;
+        trempetteLevelNumber = 1;
+        trempettePriceAmount = 1000;
+        potionLevelNumber = 0;
+        potionPriceAmount = 500;
+        multiexpLevelNumber = 0;
+        multiexpPriceAmount = 2500;
+        terrainLevelNumber = 0;
+        terrainPriceAmount = 10000;
+        refreshCookieScore();
+        refreshEtincelleLevel();
+        refreshChargeLevel();
+        refreshFatalfoudreLevel();
+        refreshtrempetteLevel();
+        clearInterval(potionInt);
+        clearInterval(multiexpInt);
+        clearInterval(terrainInt);
+        refreshPotion();
+        refreshMultiexp();
+        refreshTerrain();
+        count = 0;
+        raichu.classList.add("hidden");
+        pikachu.classList.add("hidden");
+        pichu.classList.remove("hidden");
+        listpierre2.classList.add("hidden");
+        listpierre1.classList.remove("hidden");
+        allMultiple=0;
+      })
 });
