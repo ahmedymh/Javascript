@@ -57,7 +57,10 @@
             <div id="gameplay-main" class="flex justify-center items-center w-full h-full bg-cover bg-center" style="background-image: url(img/stadium.png)">
               <div id="score" class="absolute top-2 bg-stone-500 rounded-xl w-1/4 text-center">Score : <strong id="score"></strong></div>
               <div id="stadium"></div>
-              <div id="pokemon" class=""></div>
+              <div id="pokeball" class="absolute"><input src="img/pokeball.png" type="image" name="pokeball" id="pokeball"></div>
+              <!-- <div id="pokecoin" class="hidden absolute z-50">
+                <input type="image" src="img/PokeCoin.png" name="pichu" class="" id="counter"/>
+              </div> -->
               <div id="pichu" classe="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <input type="image" src="img/pichu.png" name="pichu" class="" id="counter"/></div>
               <div id="pikachu" class="hidden">
@@ -84,12 +87,10 @@
             <h3 class="text-center p-2">Shop</h3>
           </div>
           <div class="py-4 text-center" id="shop-interface-lg">
-            <p>Vous générez <span id="click-autogenerate">0</span> pika(s) par second.</p>
             <ul>
-              <li><button id="potion-buy"> Potion (+1 pika / sec) <strong id="potion-price">50</strong> Pokecoins </button><span> Nombre : <strong id="potion-level">1</strong></span></li>
-              <li><button id="multiexp-buy"> Multi-exp (+5 pikas / sec) <strong id="multiexp-price">200</strong> Pokecoins </button> <span> Nombre : <strong id="multiexp-level">1</strong></span></li>
-              <li><button id="terrain-buy"> Terrain (+10 pikas / sec) <strong id="terrain-price">500</strong> Pokecoins </button><span> Nombre : <strong id="terrain-level">1</strong></span></li>
-              <li><button id="pierre-buy"> Pierre (Evolution) <strong id="pierre-price">10000</strong> Pokecoins </button><span> ? <strong id="pierre-level">1</strong></span></li>
+              <li>1e ELEMENT</li>
+              <li>2eme ELEMENT</li>
+              <li>3eme ELEMENT</li>
             </ul>
           </div>
           <div id="msg-title" class="bg-blue-800">
@@ -101,7 +102,7 @@
               <li><button id="charge-buy"> Charge (+1 click) <strong id="charge-price">50</strong> Pokecoins </button>
               <span>Level : <strong id="charge-level">1</strong></span></li>
               <li><button id="etincelle-buy"> Etincelle (+2 click) <strong id="etincelle-price">200</strong> Pokecoins </button> <span> Level : <strong id="etincelle-level">1</strong></span></li>
-              <li><button id="fatalfoudre-buy"> Fatal Foudre (+5 click) <strong id="fatalfoudre-price">500</strong> Pokecoins </button><span> Level : <strong id="fatalfoudre-level">1</strong></span></li>
+              <li><button id="fatalfoudre-buy"> Fatal Foudre (+5 click) <strong id="fatalfoudre-price">250</strong> Pokecoins </button><span> Level : <strong id="fatalfoudre-level">1</strong></span></li>
               <li><button id="trempette-buy"> Trempette (+ ?) <strong id="trempette-price">1000</strong> Pokecoins </button><span> Level : <strong id="trempette-level">1</strong></span></li>
             </ul>
           </div>
@@ -116,5 +117,34 @@
         <div class="text-center">ALL RIGHTS UNRESERVED, DON'T TAKE OUR MONEY</div>
       </footer>
   </div>
+  <script>  document.getElementById('pichu').addEventListener('click', togglePokeCoin);
+    document.getElementById('pikachu').addEventListener('click', togglePokeCoin);
+    document.getElementById('Raichu').addEventListener('click', togglePokeCoin);
+  
+    function togglePokeCoin(event) {
+    let pokeCoin = document.getElementById('pokecoin');
+    let gameInterface = document.getElementById('gameplay-interface');
+  
+    
+    let clickX = event.clientX;
+    let clickY = event.clientY;
+  
+    // Obtenir la position de l'élément 'gameplay-interface'
+    let rect = gameInterface.getBoundingClientRect();
+  
+    let relativeX = clickX - rect.left;
+    let relativeY = clickY - rect.top;
+  
+    pokeCoin.style.left = relativeX + 'px';
+    pokeCoin.style.top = relativeY + 'px';
+  
+    pokeCoin.classList.remove('hidden');
+    pokeCoin.style.animation = 'jump 1s ease';
+  
+    setTimeout(() => {
+      pokeCoin.style.removeProperty('animation');
+      pokeCoin.classList.add('hidden');
+    }, 1000); 
+  }</script>
 </body>
 </html>
