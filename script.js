@@ -1,35 +1,67 @@
 document.addEventListener('DOMContentLoaded', function() {
+  
+  //DOM elements
+  let pichu = document.getElementById("pichu");
+  let pikachu = document.getElementById("pikachu");
+  let raichu = document.getElementById("Raichu");
+
   let scoreCount = parseInt(localStorage.getItem("score")) || 0;
   let clickPower = 1;
 
   // Reference to DOM elements
   let score = document.getElementById("score");
-  let clickerButton = document.getElementById("counter");
-
+  let evolutionOccurred = false;
   function refreshCookieScore() {
-      score.innerHTML = `${scoreCount}`;
+      score.innerHTML = `Score : ${scoreCount}`;
+      console.log(scoreCount);
   }
 
-  clickerButton.addEventListener('click', function(event) {
-      event.preventDefault();
-      scoreCount += clickPower;
-      refreshCookieScore();
-      localStorage.setItem("score", scoreCount);
-  });
+  ['pichu', 'pikachu', 'Raichu'].forEach(id => {
+    document.getElementById(id).addEventListener('click', function(event) {
+        togglePokeCoin(event);
+        // Suppose clicking these elements also affects the score.
+        scoreCount += clickPower; 
+        if(scoreCount === 10 && !evolutionOccurred ) {
+            Evolution1();
+            console.log("Evolution happened!");
+            evolutionOccurred = true; // Set the flag to true to indicate evolution has occurred
+        }
+        if (scoreCount <0) {
+          GameOver(); 
+        }
+        localStorage.setItem("score", scoreCount);
+        refreshCookieScore(); // Update the score display
+    });
+});
+refreshCookieScore();
+
+  
+          /********************************
+        
+                  Game-Over
+  
+  ********************************/
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+span.addEventListener("click", reset);
+
+btn.addEventListener("click", GameOver);
+function GameOver(){
+modal.style.display="block";
+reset();
+span.onclick = function() {
+  modal.style.display = "none";
+}
+}
+  
     /********************************
   
             TogglePokeCoins
   
   ********************************/
   // Attaching the same click event to multiple elements
-  ['pichu', 'pikachu', 'Raichu'].forEach(id => {
-      document.getElementById(id).addEventListener('click', function(event) {
-          togglePokeCoin(event);
-          // Suppose clicking these elements also affects the score.
-          scoreCount += clickPower; // Or some other calculation based on the clicked element
-          refreshCookieScore(); // Update the score display
-      });
-  });
+ 
 
   function togglePokeCoin(event) {
       let pokeCoin = document.getElementById('pokecoin');
@@ -41,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let rect = gameInterface.getBoundingClientRect();
 
       let relativeX = clickX - rect.left;
-      let relativeY = clickY - rect.top;
+      let relativeY = clickY - rect.top; 
 
       pokeCoin.style.left = relativeX + 'px';
       pokeCoin.style.top = relativeY + 'px';
@@ -58,6 +90,81 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initial score refresh
   refreshCookieScore();
 
+     /********************************
+  
+           Evolution Animation
+  
+  ********************************/
+
+  function toggleHidden(element) {
+    element.classList.toggle('hidden');
+  }
+
+  function Evolution1() {
+    // Task 1: Show and hide Pichu 3 times
+    console.log("fonction called")
+    for (let i = 0; i < 6; i++) {
+      setTimeout(() => {
+        toggleHidden(pichu);
+      }, i * 500);
+    }
+
+    // Task 2: Show and hide Pichu and Raichu alternatively 3 times
+    setTimeout(() => {
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          toggleHidden(pichu);
+          toggleHidden(pikachu);
+        }, i * 500);
+      }
+    }, 6 * 500);
+
+    setTimeout(() => {
+      pichu.classList.add("hidden");
+    }, 12 * 500);
+
+    // Task 3: Show and hide Raichu 3 times
+    setTimeout(() => {
+      for (let i = 0; i < 7; i++) {
+        setTimeout(() => {
+          toggleHidden(pikachu);
+        }, i * 500);
+      }
+    }, 12 * 500);
+    
+  }
+  function Evolution2() {
+    // Task 1: Show and hide Pichu 3 times
+    for (let i = 0; i < 6; i++) {
+      setTimeout(() => {
+        toggleHidden(pikachu);
+      }, i * 500);
+    }
+
+    // Task 2: Show and hide Pichu and Raichu alternatively 3 times
+    setTimeout(() => {
+      for (let i = 0; i < 6; i++) {
+        setTimeout(() => {
+          toggleHidden(pikachu);
+          toggleHidden(raichu);
+        }, i * 500);
+      }
+    }, 6 * 500);
+
+    setTimeout(() => {
+      pikachu.classList.add("hidden");
+    }, 12 * 500);
+
+    // Task 3: Show and hide Raichu 3 times
+    setTimeout(() => {
+      for (let i = 0; i < 7; i++) {
+        setTimeout(() => {
+          toggleHidden(raichu);
+        }, i * 500);
+      }
+    }, 12 * 500);
+    
+  }
   /********************************
   
             Pokeball
@@ -65,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
   ********************************/
 
   const pokeballElement = document.getElementById('pokeball');
-    const gameplayWrapper = document.getElementById('gameplay-interface'); 
+    const gameplayWrapper = document.getElementById('gameplay-interface');
     let animationFrameId = null;
     // let clickPower = 1; // Assurez-vous d'initialiser clickPower en fonction de la logique de votre jeu.
 
@@ -113,364 +220,148 @@ document.addEventListener('DOMContentLoaded', function() {
     pokeballElement.style.left = '0px';
 
     schedulePokeball(); 
-  
-  /********************************
-  
-            Attaque
-  
+
+   /********************************
+
+          Attaques
+
   ********************************/
-  
-  /********************************
-            Charge
-  ********************************/
-  
-  //DOM Content 
-    let chargeBuy = document.getElementById("charge-buy");
-    let chargePrice = document.getElementById("charge-price");
-    let chargeLevel = document.getElementById("charge-level");
-    let autoclickMultiple = document.getElementById("click-power-multiple");
-  
-    let chargePriceAmount = 50;
-    let chargeLevelNumber = 1;
-  
-  // Refresh level/Price
-  function refreshChargeLevel() {
-    chargeLevel.innerHTML = chargeLevelNumber;
-    chargePrice.innerHTML = chargePriceAmount;
-    autoclickMultiple.innerHTML = clickPower;
+    // DOM Content references
+    let autoclickMultipleAtt = document.getElementById("autoclick-multiple");
+    let autoclickMultipleAttAmount=1;
+  const items = [
+    { id: "charge", price: 50, level: 1, power: 1, initialPrice:50 },
+    { id: "etincelle", price: 200, level: 1, power: 2, initialPrice:200 },
+    { id: "fatalfoudre", price: 500, level: 1, power: 5, initialPrice:500 },
+    { id: "trempette", price: 1000, level: 1, power: -10, initialPrice:1000 }
+  ];
+
+  function refreshItemLevel(item) {
+    const element = document.getElementById(`${item.id}-level`);
+    const priceElement = document.getElementById(`${item.id}-price`);
+    element.innerHTML = item.level;
+    priceElement.innerHTML = item.price;
+    autoclickMultipleAtt.innerHTML= autoclickMultipleAttAmount;
   }
-  
-  // Booster click
-    chargeBuy.addEventListener("click", () => {
-      if (scoreCount >= chargePriceAmount) {
-        scoreCount -= chargePriceAmount;
-        chargeLevelNumber++;
-        chargePriceAmount = Math.floor(chargePriceAmount * 1.20);
-        clickPower+=1;
+
+  function buyItem(item) {
+    const itemElement = document.getElementById(`${item.id}-buy`);
+    itemElement.addEventListener("click", () => {
+      if (scoreCount >= item.price) {
+        scoreCount -= item.price;
+        item.level++;
+        item.price = Math.floor(item.price * 1.20);
+        clickPower += item.power;
+        autoclickMultipleAttAmount += item.power;
         refreshCookieScore();
-        refreshChargeLevel();
+        refreshItemLevel(item);       
         console.log(clickPower);
       } else {
         console.log('Not enough clicks!');
       }
     });
-  
-  /********************************
-            Etincelle
-  ********************************/
-  // DOM Content 
-  let etincelleBuy = document.getElementById("etincelle-buy");
-  let etincellePrice = document.getElementById("etincelle-price");
-  let etincelleLevel = document.getElementById("etincelle-level");
-  
-  let etincellePriceAmount = 200;
-  let etincelleLevelNumber = 1;
-  
-  // Refresh level/Price
-  function refreshEtincelleLevel() {
-    etincelleLevel.innerHTML = etincelleLevelNumber;
-    etincellePrice.innerHTML = etincellePriceAmount;
-    autoclickMultiple.innerHTML = clickPower;
   }
-  
-  // Booster click
-  etincelleBuy.addEventListener("click", () => {
-    if (scoreCount >= etincellePriceAmount) {
-      scoreCount -= etincellePriceAmount;
-      etincelleLevelNumber++;
-      etincellePriceAmount = Math.floor(etincellePriceAmount * 1.20);
-      clickPower += 2;
-      refreshCookieScore();
-      refreshEtincelleLevel();
-      console.log(clickPower);
-    } else {
-      console.log('Not enough clicks!');
-    }
+  items.forEach(item => {
+    buyItem(item);
   });
-  
-  /********************************
-            Fatal Foudre
-  ********************************/
-  // DOM Content 
-  let fatalfoudreBuy = document.getElementById("fatalfoudre-buy");
-  let fatalfoudrePrice = document.getElementById("fatalfoudre-price");
-  let fatalfoudreLevel = document.getElementById("fatalfoudre-level");
-  
-  let fatalfoudrePriceAmount = 500;
-  let fatalfoudreLevelNumber = 1;
-  
-  // Refresh level/Price
-  function refreshFatalfoudreLevel() {
-    fatalfoudreLevel.innerHTML = fatalfoudreLevelNumber;
-    fatalfoudrePrice.innerHTML = fatalfoudrePriceAmount;
-    autoclickMultiple.innerHTML = clickPower;
-  }
-  
-  // Booster click
-  fatalfoudreBuy.addEventListener("click", () => {
-    if (scoreCount >= fatalfoudrePriceAmount) {
-      scoreCount -= fatalfoudrePriceAmount;
-      fatalfoudreLevelNumber++;
-      fatalfoudrePriceAmount = Math.floor(fatalfoudrePriceAmount * 1.20);
-      clickPower += 5;
-      refreshCookieScore();
-      refreshFatalfoudreLevel();
-      console.log(clickPower);
-    } else {
-      console.log('Not enough clicks!');
-    }
-  });
-  
-  /********************************
-            Trempette
-  ********************************/
-  // DOM Content 
-  let trempetteBuy = document.getElementById("trempette-buy");
-  let trempettePrice = document.getElementById("trempette-price");
-  let trempetteLevel = document.getElementById("trempette-level");
-  
-  let trempettePriceAmount = 100;
-  let trempetteLevelNumber = 1;
-  
-  // Refresh level/Price
-  function refreshtrempetteLevel() {
-    trempetteLevel.innerHTML = trempetteLevelNumber;
-    trempettePrice.innerHTML = trempettePriceAmount;
-    autoclickMultiple.innerHTML = clickPower;
-  }
-  
-  // Booster click
-  trempetteBuy.addEventListener("click", () => {
-    if (scoreCount >= trempettePriceAmount) {
-      scoreCount -= trempettePriceAmount;
-      trempetteLevelNumber++;
-      trempettePriceAmount = Math.floor(trempettePriceAmount * 1.20);
-      clickPower += -10;
-      refreshCookieScore();
-      refreshChargetrempetteLevel();
-      console.log(clickPower);
-    } else {
-      console.log('Not enough clicks!');
-    }
-  });
-  
   /********************************
 
           Shop
 
   ********************************/
-    /********************************
-            Potion
-  ********************************/
-  //DOM Content 
-
-  let potionBuy = document.getElementById ("potion-buy");
-  let potionPrice = document.getElementById("potion-price");
-  let potionLevel = document.getElementById("potion-level");
-  let allMultiple2 = document.getElementById("autoclickmultiple2");
-  let potionPower = 1;
-  let potionPriceAmount = 500;
-  let potionLevelNumber = 0;
   let allMultiple = 0;
+  let allMultiple2 = document.getElementById("autoclickmultiple2");
 
-  // Fonction de loop
-  let potionInt;
-  function potionAutoStart() {
-    potionInt = window.setInterval(()=> {
-      scoreCount = scoreCount + potionPower;
-      refreshCookieScore();
-    }, 1000);
-  }
-
-  // Rafraîchissement des HTML Pika
-  function refreshPotion () {
-    potionLevel.innerHTML = potionLevelNumber;
-    potionPrice.innerHTML = potionPriceAmount;
-    allMultiple += potionPower * potionLevelNumber;
-    allMultiple2.innerHTML = allMultiple;
-  }
-  // Pika on click ajout
-  potionBuy.addEventListener ("click", ()=> {
-  //update du prix + exécution du loop 
-    if (scoreCount >= potionPriceAmount){
-      scoreCount -= potionPriceAmount;
-      refreshCookieScore();
-      potionLevelNumber +=1; 
-      potionPriceAmount = Math.floor(potionPriceAmount * 1.20);
-      refreshPotion();
-      potionAutoStart();
-    }
-  })
-
-    /********************************
-            Multi-Exp
-  ********************************/
-
-  //DOM Content 
-  let multiexpBuy = document.getElementById("multiexp-buy");
-  let multiexpPrice = document.getElementById("multiexp-price");
-  let multiexpLevel = document.getElementById("multiexp-level");
-  // let multiexpMultiple = document.getElementById("multiexp-multiple");
-
-  let multiexpPower = 5;
-  let multiexpPriceAmount = 2500;
-  let multiexpLevelNumber = 0;
-
-  //Rafraîchir HTML
-  function refreshMultiexp() {
-    multiexpLevel.innerHTML = multiexpLevelNumber;
-    multiexpPrice.innerHTML = multiexpPriceAmount;
-    allMultiple += multiexpPower * multiexpLevelNumber;
+  const itemsData = [
+    { id: "potion", price: 500, power: 1, initialPrice:500, level:0},
+    { id: "multiexp", price: 2500, power: 5, initialPrice :2500, level:0},
+    { id: "terrain", price: 10000, power: 25, initialPrice:10000, level:0}
+  ];
+  
+  function refreshItem(item) {
+    const itemLevel = document.getElementById(`${item.id}-level`);
+    const itemPrice = document.getElementById(`${item.id}-price`);
+    itemLevel.innerHTML = item.level;
+    itemPrice.innerHTML = item.price;
     allMultiple2.innerHTML = allMultiple;
   }
 
-  //Loop Multiexp
-  let multiexpInt;
-  function multiexpStart () {
-      multiexpInt = window.setInterval(() => {
-      scoreCount+= multiexpPower;
-      refreshCookieScore();
-    }, 1000);
-  }
-
-  // Event sur le click de multiexp
-  multiexpBuy.addEventListener("click", () => {
-    if (scoreCount >= multiexpPriceAmount) {
-      scoreCount-=multiexpPriceAmount;
-      refreshCookieScore ();
-      multiexpLevelNumber +=1;
-      multiexpPriceAmount = Math.floor(multiexpPriceAmount * 1.20);
-      multiexpStart();
-      refreshMultiexp();
-    }
+  let itemInt;
+  function buyItem2(item) {
+    const itemBuy = document.getElementById(`${item.id}-buy`);
+    itemBuy.addEventListener("click", () => {
+      if (scoreCount >= item.price) {
+        scoreCount -= item.price;
+        refreshCookieScore();
+        item.level++;
+        item.price = Math.floor(item.price * 1.20);
+        itemInt = window.setInterval(() => {
+          scoreCount += item.power;
+          refreshCookieScore();
+        }, 1000);
+        allMultiple += item.power * item.level;
+        refreshItem(item);
+      }
     });
-
-    /********************************
-            Terrain
-  ********************************/
-
-  //DOM Content 
-  let terrainBuy = document.getElementById("terrain-buy");
-  let terrainPrice = document.getElementById("terrain-price");
-  let terrainLevel = document.getElementById("terrain-level");
-  // let multiexpMultiple = document.getElementById("multiexp-multiple");
-
-  let terrainPower = 25;
-  let terrainPriceAmount = 10000;
-  let terrainLevelNumber = 0;
-
-  //Rafraîchir HTML
-  function refreshTerrain() {
-    terrainLevel.innerHTML = terrainLevelNumber;
-    terrainPrice.innerHTML = terrainPriceAmount;
-    allMultiple += terrainPower * terrainLevelNumber;
-    allMultiple2.innerHTML = allMultiple;
   }
-
-  //Loop Terrain
-  let terrainInt;
-  function terrainStart () {
-      terrainInt = window.setInterval(() => {
-      scoreCount+= terrainPower;
-      refreshCookieScore();
-    }, 1000);
-  }
-
-  // Event sur le click de Terrain
-  terrainBuy.addEventListener("click", () => {
-    if (scoreCount >= terrainPriceAmount) {
-      scoreCount-=terrainPriceAmount;
-      refreshCookieScore ();
-      terrainLevelNumber +=1;
-      terrainPriceAmount = Math.floor(terrainPriceAmount * 1.20);
-      terrainStart();
-      refreshTerrain();
-    }
+  
+  itemsData.forEach(item => {
+    item.level = 0;
+    buyItem2(item);
   });
+  
     /********************************
       
             Pierre évolutive
 
   ********************************/
+
      /********************************
-            Pierre 1
+            Evolution 2
   ********************************/
     //DOM Content
   let pierreBuy = document.getElementById("pierre-buy");
-  let listpierre1 = document.getElementById ("pierre1");
-  let listpierre2 = document.getElementById("pierre2");
-  let pichu = document.getElementById("pichu");
-  let pikachu = document.getElementById("pikachu");
-  let raichu = document.getElementById("Raichu");
   let pierrePriceAmount = 50000;
 
   //action on click
   pierreBuy.addEventListener("click",() => {
     if (scoreCount>=pierrePriceAmount){
       scoreCount-=pierrePriceAmount;
-      pichu.classList.add("hidden");
-      pikachu.classList.remove("hidden");
-      listpierre1.classList.add("hidden");
-      listpierre2.classList.remove("hidden");
+      Evolution2();
       refreshCookieScore();
     }
   })
-    /********************************
-     Pierre 2
-  ********************************/
-  //DOM Content
-  let pierreBuy2 = document.getElementById("pierre2-buy");
-  let pierrePriceAmount2 = 150000;
+ 
 
-  //Action on click
-  pierreBuy2.addEventListener("click",() => {
-    if (scoreCount>=pierrePriceAmount2){
-      scoreCount-=pierrePriceAmount2;
-      pikachu.classList.add("hidden");
-      raichu.classList.remove("hidden");
-      refreshCookieScore();
-    }
-  })
   /********************************
       
             Reset
 
   ********************************/
-      document.getElementById("reset").addEventListener("click", () => {
-        localStorage.clear();
-        scoreCount = 0;
-        clickPower = 1;
-        chargeLevelNumber = 1;
-        chargePriceAmount = 50;
-        etincelleLevelNumber = 1;
-        etincellePriceAmount = 200;
-        fatalfoudreLevelNumber = 1;
-        fatalfoudrePriceAmount = 500;
-        trempetteLevelNumber = 1;
-        trempettePriceAmount = 1000;
-        potionLevelNumber = 0;
-        potionPriceAmount = 500;
-        multiexpLevelNumber = 0;
-        multiexpPriceAmount = 2500;
-        terrainLevelNumber = 0;
-        terrainPriceAmount = 10000;
-        refreshCookieScore();
-        refreshEtincelleLevel();
-        refreshChargeLevel();
-        refreshFatalfoudreLevel();
-        refreshtrempetteLevel();
-        clearInterval(potionInt);
-        clearInterval(multiexpInt);
-        clearInterval(terrainInt);
-        refreshPotion();
-        refreshMultiexp();
-        refreshTerrain();
-        count = 0;
-        raichu.classList.add("hidden");
-        pikachu.classList.add("hidden");
-        pichu.classList.remove("hidden");
-        listpierre2.classList.add("hidden");
-        listpierre1.classList.remove("hidden");
-        allMultiple=0;
-      })
-});
+ document.getElementById("reset").addEventListener("click",reset);
+ function reset (){
+    evolutionOccurred=false;
+    scoreCount = 0;
+    clickPower = 1;
+    refreshCookieScore();
+    items.forEach(item => {
+        clearInterval(itemInt);
+        item.level = 1;
+        item.price = item.initialPrice;
+        refreshItemLevel(item);
+    });
+
+    itemsData.forEach(item => {
+        clearInterval(item.interval);
+        item.level = 1;
+        item.price = item.initialPrice;
+        refreshItem(item);
+    });
+  
+          pichu.classList.remove("hidden");
+          pikachu.classList.add("hidden");
+          raichu.classList.add("hidden");
+        };
+                
+      });
+      ;
