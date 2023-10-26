@@ -1,4 +1,7 @@
+
 document.addEventListener('DOMContentLoaded', function() {
+  
+
   //DOM elements
   let pichu = document.getElementById("pichu");
   let pikachu = document.getElementById("pikachu");
@@ -24,10 +27,31 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("Evolution happened!");
             evolutionOccurred = true; // Set the flag to true to indicate evolution has occurred
         }
+        if (scoreCount <0) {
+          GameOver(); 
+        }
         localStorage.setItem("score", scoreCount);
         refreshCookieScore(); // Update the score display
     });
 });
+    /********************************
+  
+            Game-Over
+  
+  ********************************/
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+span.addEventListener("click", reset);
+
+btn.addEventListener("click", GameOver);
+function GameOver(){
+modal.style.display="block";
+reset();
+span.onclick = function() {
+  modal.style.display = "none";
+}
+}
   
     /********************************
   
@@ -47,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let rect = gameInterface.getBoundingClientRect();
 
       let relativeX = clickX - rect.left;
-      let relativeY = clickY - rect.top;
+      let relativeY = clickY - rect.top; 
 
       pokeCoin.style.left = relativeX + 'px';
       pokeCoin.style.top = relativeY + 'px';
@@ -207,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
     { id: "charge", price: 50, level: 1, power: 1, initialPrice:50 },
     { id: "etincelle", price: 200, level: 1, power: 2, initialPrice:200 },
     { id: "fatalfoudre", price: 500, level: 1, power: 5, initialPrice:500 },
-    { id: "trempette", price: 100, level: 1, power: -10, initialPrice:100 }
+    { id: "trempette", price: 1, level: 1, power: -10, initialPrice:100 }
   ];
 
   function refreshItemLevel(item) {
@@ -306,18 +330,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })
  
-   /********************************
-      
-            Game-Over
-
-  ********************************/
 
   /********************************
       
             Reset
 
   ********************************/
-  document.getElementById("reset").addEventListener("click", () => {
+ document.getElementById("reset").addEventListener("click",reset);
+ function reset (){
+
     scoreCount = 0;
     clickPower = 1;
     refreshCookieScore();
@@ -334,7 +355,6 @@ document.addEventListener('DOMContentLoaded', function() {
         item.price = item.initialPrice;
         refreshItem(item);
     });
-    
-  });
+  };
           
 });
