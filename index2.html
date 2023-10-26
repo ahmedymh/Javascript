@@ -51,7 +51,8 @@
                     <p class="text-xl  ">Shop</p>
                 </button>
                 </div>
-                <div class="bg-black rounded-xl w-[100%] h-[50%] "><button id="reset" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                <div class="bg-black rounded-xl w-[100%] h-[50%] ">
+                    <button id="reset" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
                     <p class="text-xl  ">Reset</p>
                 </button>
                 </div>
@@ -97,7 +98,7 @@
                 </div>
                 <div class="flex flex-row w-[100%] h-[33%] gap-4">
                     <!--BACK TO MENU-->
-                    <div class="bg-black rounded-xl w-[100%]"><button id="button-back" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                    <div class="bg-black rounded-xl w-[100%]"><button id="button-back-from-attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
                         <p class="text-xl  ">BACK</p>
                     </button>
                     </div>
@@ -127,7 +128,7 @@
                 </div>
                 <div class="flex flex-row w-[100%] h-[33%] gap-4">
                     <!--BACK TO MENU-->
-                    <div class="bg-black rounded-xl w-[100%]"><button id="button-back" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                    <div class="bg-black rounded-xl w-[100%]"><button id="button-back-from-shop" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
                         <p class="text-xl  ">BACK</p>
                     </button>
                     </div>
@@ -137,31 +138,59 @@
             
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-       
-        let boutonAttaque = document.getElementById('attack');
-        let gameplayMenu = document.getElementById('gameplay-menu');
-        let attackMenu = document.getElementById('attack-menu');
-
-    
-        if (boutonAttaque && gameplayMenu && attackMenu) 
+        document.addEventListener('DOMContentLoaded', function() 
         {
-           
-            boutonAttaque.addEventListener('click', function() 
-            {
-          
-            gameplayMenu.classList.add('hidden');
+  // Obtenez les éléments nécessaires du DOM
+  var gameplayMenu = document.getElementById('gameplay-menu');
+  var attackMenu = document.getElementById('attack-menu');
+  var shoppingMenu = document.getElementById('shopping-menu');
 
-           
-            attackMenu.classList.remove('hidden');
+  var boutonAttaque = document.getElementById('attack');
+  var boutonShop = document.getElementById('shop');
+  var boutonBackFromAttack = document.getElementById('button-back-from-attack');
+  var boutonBackFromShop = document.getElementById('button-back-from-shop');
 
-            });
-        } 
-        else 
-        {
-           console.error('Certains éléments du DOM ne sont pas trouvés');
-        }
-        });
+  // Fonction pour cacher tous les menus
+  function hideAllMenus() {
+    gameplayMenu.classList.add('hidden');
+    attackMenu.classList.add('hidden');
+    shoppingMenu.classList.add('hidden');
+  }
+
+  // Vérifier si les éléments sont présents
+  if (boutonAttaque && boutonShop && boutonBackFromAttack && boutonBackFromShop && gameplayMenu && attackMenu && shoppingMenu) {
+    // Gérer le clic sur le bouton 'Attaque'
+    boutonAttaque.addEventListener('click', function() {
+      hideAllMenus(); // cache tous les menus
+      attackMenu.classList.remove('hidden'); // montre le menu d'attaque
+    });
+
+    // Gérer le clic sur le bouton 'Shop'
+    boutonShop.addEventListener('click', function() {
+      hideAllMenus(); // cache tous les menus
+      shoppingMenu.classList.remove('hidden'); // montre le menu de shopping
+    });
+
+    // Gérer le clic sur le bouton 'Retour' dans le menu d'attaque
+    boutonBackFromAttack.addEventListener('click', function() {
+      hideAllMenus(); // cache tous les menus
+      gameplayMenu.classList.remove('hidden'); // montre le menu principal
+    });
+
+    // Gérer le clic sur le bouton 'Retour' dans le menu de shopping
+    boutonBackFromShop.addEventListener('click', function() {
+      hideAllMenus(); // cache tous les menus
+      gameplayMenu.classList.remove('hidden'); // montre le menu principal
+    });
+  } else {
+    // Log une erreur si les éléments ne sont pas trouvés
+    console.error('Certains éléments du DOM ne sont pas trouvés');
+  }
+});
+
+
+    </script>
+    <script>
 
     </script>
 </body>
