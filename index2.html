@@ -34,20 +34,21 @@
             <div id="Raichu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <input type="image" src="img/Raichu.png" name="raichu" class="transition-transform transform hover:scale-90" id="raichu"/>
             </div>
-            <div id="gameplay-menu" class="hidden flex rounded-xl bg-gray-400  absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
+            <!-- MAIN MENU -->
+            <div id="gameplay-menu" class="flex rounded-xl bg-gray-400  absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
             <div class="flex flex-col w-[50%] gap-4">
                 <div class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-red-400 px-4  hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
                     <p class="text-xl  ">Attaque</p>
                 </button>
                 </div>
-                <div class="bg-black rounded-xl w-[100%] h-[50%] "><button id="shop" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-blue-400 px-4  hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
-                    <p class="text-xl  ">Shop</p>
-                </button>
-                </div>
-            </div>
-            <div class="flex flex-col w-[50%] gap-4">
                 <div class="bg-black rounded-xl w-[100%] h-[50%] "><button id="guide" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-green-400 px-4  hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
                     <p class="text-xl  ">Guide</p>
+                </button>
+                </div>                
+            </div>
+            <div class="flex flex-col w-[50%] gap-4">
+                <div class="bg-black rounded-xl w-[100%] h-[50%] "><button id="shop" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-blue-400 px-4  hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                    <p class="text-xl  ">Shop</p>
                 </button>
                 </div>
                 <div class="bg-black rounded-xl w-[100%] h-[50%] "><button id="reset" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
@@ -56,7 +57,8 @@
                 </div>
             </div>
             </div>
-            <div id="attack-menu" class="flex flex-col rounded-xl bg-gray-400  absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
+            <!-- ATTACK MENU -->
+            <div id="attack-menu" class="hidden flex flex-col rounded-xl bg-gray-400 absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
                 <div class="flex flex-row w-[100%] h-[33%] gap-4">
                     <!--CHARGE-->
                     <div class="bg-black rounded-xl w-[100%]">
@@ -95,12 +97,72 @@
                 </div>
                 <div class="flex flex-row w-[100%] h-[33%] gap-4">
                     <!--BACK TO MENU-->
-                    <div class="bg-black rounded-xl w-[100%]"><button id="reset" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
-                        <p class="text-xl  ">Reset</p>
+                    <div class="bg-black rounded-xl w-[100%]"><button id="button-back" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                        <p class="text-xl  ">BACK</p>
                     </button>
                     </div>
                 </div>
             </div>
+            <!-- SHOP MENU -->
+            <div id="shopping-menu" class="hidden flex flex-col rounded-xl bg-gray-400 absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
+                <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                    <!--POTION-->
+                    <div class="bg-black rounded-xl w-[100%]">
+                        <button id="potion-buy">Potion (+1 pika(s)/seconde) <strong id="potion-price">500</strong> Pokecoins</button>
+                    </div>
+                    <!--MULTI EXP-->
+                    <div class="bg-black rounded-xl w-[100%]">
+                        <button id="multiexp-buy">Multi-exp (+5 pika(s)/seconde) <strong id="multiexp-price">2500</strong> Pokecoins</button>
+                    </div>
+                </div>
+                <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                    <!--STADE-->
+                    <div class="bg-black rounded-xl w-[100%]">
+                        <button id="terrain-buy">Terrain (+25 pika(s)/seconde) <strong id="terrain-price">10000</strong> Pokecoins</button>
+                    </div>
+                    <!--PIERRE FOUDRE-->
+                    <div class="bg-black rounded-xl w-[100%]">
+                        <button id="pierre-buy">Pierre (+100 pika(s)/seconde) <strong>50000</strong> Pokecoins</button>
+                    </div>
+                </div>
+                <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                    <!--BACK TO MENU-->
+                    <div class="bg-black rounded-xl w-[100%]"><button id="button-back" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                        <p class="text-xl  ">BACK</p>
+                    </button>
+                    </div>
+                </div>
+            </div>
+
+            
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+       
+        let boutonAttaque = document.getElementById('attack');
+        let gameplayMenu = document.getElementById('gameplay-menu');
+        let attackMenu = document.getElementById('attack-menu');
+
+    
+        if (boutonAttaque && gameplayMenu && attackMenu) 
+        {
+           
+            boutonAttaque.addEventListener('click', function() 
+            {
+          
+            gameplayMenu.classList.add('hidden');
+
+           
+            attackMenu.classList.remove('hidden');
+
+            });
+        } 
+        else 
+        {
+           console.error('Certains éléments du DOM ne sont pas trouvés');
+        }
+        });
+
+    </script>
 </body>
 </html>
