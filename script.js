@@ -4,16 +4,17 @@ document.addEventListener('DOMContentLoaded', function() {
   let pichu = document.getElementById("pichu");
   let pikachu = document.getElementById("pikachu");
   let raichu = document.getElementById("Raichu");
-
   let scoreCount = parseInt(localStorage.getItem("score")) || 0;
-  let clickPower = 1;
+  let clickPower = parseInt(localStorage.getItem("clickPower")) || 1;
 
+  
   // Reference to DOM elements
   let score = document.getElementById("score");
   let evolutionOccurred = false;
   function refreshCookieScore() {
-      score.innerHTML = `Score : ${scoreCount}`;
+      score.innerHTML = ` ${scoreCount}`;
       localStorage.setItem("score", scoreCount);
+      localStorage.setItem ("clickPower", clickPower)
       console.log(scoreCount);
   }
 
@@ -25,7 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if(scoreCount === 10 && !evolutionOccurred ) {
             Evolution1();
             console.log("Evolution happened!");
-            evolutionOccurred = true; // Set the flag to true to indicate evolution has occurred
+            localStorage.setItem("Evolutionoccured", 0);
+            evolutionOccurred = true; 
         }
         if (scoreCount <0) {
           GameOver(); 
@@ -258,6 +260,8 @@ span.onclick = function() {
     const priceElement = document.getElementById(`${item.id}-price`);
     priceElement.innerHTML = item.price;
     autoclickMultipleAtt.innerHTML= autoclickMultipleAttAmount;
+    localStorage.setItem("AutoAttackAmount",autoclickMultipleAttAmount);
+    localStorage.setItem(`itemLevel_${item.id}`, item.level);
   }
 
   function buyItem(item) {
@@ -298,6 +302,8 @@ span.onclick = function() {
     const itemPrice = document.getElementById(`${item.id}-price`);
     itemPrice.innerHTML = item.price;
     allMultiple2.innerHTML = allMultiple;
+    localStorage.setItem(`itemLevel_${item.id}`, item.level);
+    localStorage.setItem("allMultiple", allMultiple);
   }
 
   let itemInt;
@@ -342,11 +348,40 @@ span.onclick = function() {
     if (scoreCount>=pierrePriceAmount){
       scoreCount-=pierrePriceAmount;
       Evolution2();
+      localStorage.setItem("Evolutionoccured","1");
       refreshCookieScore();
     }
   })
  
-
+  function initializing (){
+    items.forEach(item =>{
+      item.level = parseInt(localStorage.getItem(`itemLevel_${item.id}`)) || 1;
+      item.price = Math.floor(item.initialPrice*(1.20**(item.level-1)));
+      autoclickMultipleAttAmount = parseInt(localStorage.getItem("AutoAttackAmount")) || 1;
+      refreshItemLevel(item);
+    });
+    itemsData.forEach(item =>{
+      item.level = parseInt(localStorage.getItem(`itemLevel_${item.id}`)) || 0;
+      item.price = Math.floor(item.initialPrice*(1.20**(item.level)));
+      allMultiple = parseInt(localStorage.getItem("allMultiple")) || 0;
+      for (i=0; i<item.level; i++){
+          itemInt = window.setInterval(() => {
+          scoreCount += item.power;
+          refreshCookieScore();
+        }, 1000);
+      }
+      refreshItem(item);
+    });
+    if (localStorage.getItem("Evolutionoccured") == 0){
+      pichu.classList.add("hidden"); 
+      pikachu.classList.remove("hidden");
+    }
+    if (localStorage.getItem("Evolutionoccured") == 1){
+      pichu.classList.add("hidden");
+      raichu.classList.remove("hiden");
+    }
+  }           
+  initializing();
   /********************************
       
             Reset
@@ -375,6 +410,8 @@ span.onclick = function() {
     pichu.classList.remove("hidden");
     pikachu.classList.add("hidden");
     raichu.classList.add("hidden");
+    localStorage.clear();
   };
-                
+  
+  
 });

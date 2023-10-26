@@ -56,8 +56,9 @@
 }
 .score-popup {
     position: fixed;
-    font-size: 20px;
-    color: green;
+    font-size: 30px;
+    color: white;
+    text-shadow: 1px 1px 2px  black;
     font-weight: bold;
     transition: opacity 0.5s ease-in-out;
     pointer-events: none;
@@ -305,9 +306,16 @@
     </script>
 
     <script>
+    const modal = document.getElementById('rules');
+    function initializeRules(){
+    let isRulesApprouved = localStorage.getItem("isRulesAccepted");
+    if (isRulesApprouved == "yes"){
+      modal.style.display = "none";
+    }
+ }
         document.addEventListener('DOMContentLoaded', (event) => {
   // Ciblez la modal elle-même
-  const modal = document.getElementById('rules');
+  
 
   // Ciblez le bouton qui ouvre la modal
   const openModalButton = document.getElementById('guide');
@@ -323,6 +331,7 @@
   // Fonction pour cacher la modal
   function closeModal() {
     modal.style.display = 'none';
+    localStorage.setItem("isRulesAccepted", "yes");
   }
 
   // Écouteur d'événement pour le bouton d'ouverture de la modal
@@ -330,7 +339,10 @@
 
   // Écouteur d'événement pour le bouton de fermeture de la modal
   closeModalButton.addEventListener('click', closeModal);
+  initializeRules();
 });
+
+
 
     </script>
 
