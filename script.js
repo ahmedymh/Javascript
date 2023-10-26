@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let score = document.getElementById("score");
   let evolutionOccurred = false;
   function refreshCookieScore() {
-      score.innerHTML = `Score : ${scoreCount}`;
+      score.innerHTML = `${scoreCount}`;
       localStorage.setItem("score", scoreCount);
       console.log(scoreCount);
   }

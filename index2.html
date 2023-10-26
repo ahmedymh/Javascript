@@ -87,11 +87,28 @@
           <p>Try again...</p>
         </div>  
       </div>
+
+      <div class="hidden fixed inset-0 flex items-center justify-center z-50" role="dialog" aria-modal="true" id="myModal">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    
+        <div class="relative z-10 w-full max-w-lg p-5">
+            <div class="bg-red-600 rounded-t-full p-12 border-b-8 border-black relative bg-bottom bg-no-repeat bg-[url(img/pokeballdecot.png)]"></div>
+            <!--CENTRE-->
+            <div class="bg-white text-center px-5 py-4">
+                <img src="img/title.png" alt="" class="m-auto pb-4">
+                <h3 class="text-xl font-semibold leading-6" id="modal-title">Pas de chance ...</h3>
+                <p class="text-sm text-gray-500">faut vraiment être nul !</p>
+                <p class="text-center p-6 font-bold text-xl">GAME OVER</p>
+                </div>
+                <div class="bg-gray-200 rounded-b-full p-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]"></div>
+            </div>
+            
+        </div>
       
     <!--INTERFACE-->
     <div id="gameplay-interface" class="relative bg-cover w-screen h-screen bg bg-[url(img/stadium.png)]">
         <div class="flex justify-center lg:ml-4">
-            <div class="flex justify-evenly gap-4 absolute top-2 p-1 w-[100%] md:w-[50%] mt-4 bg-stone-500 rounded-xl w-1/3 text-center pl-4">
+            <div class="flex justify-evenly gap-4 absolute top-2 p-1 w-[100%] md:w-[50%] mt-4 bg-stone-500 rounded-xl w-1/3 text-center pl-4 sm:my-2">
                 <div class="flex justify-evenly items-center text-lg gap-2" id="score-wrapper"><span>Wallet :</span><strong id="score"></strong>
                     <img src="img/PokeCoin.png" alt="">
                 </div>
@@ -225,10 +242,7 @@
                     </button>
                     </div>
                 </div>
-            </div>
-          
-            
-            
+            </div>       
     </div>
 
     <script>
