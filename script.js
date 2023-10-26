@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         togglePokeCoin(event);
         // Suppose clicking these elements also affects the score.
         scoreCount += clickPower; 
-        if(scoreCount === 10 && !evolutionOccurred ) {
+        if(scoreCount === 15000 && !evolutionOccurred ) {
             Evolution1();
             console.log("Evolution happened!");
             localStorage.setItem("Evolutionoccured", 0);
@@ -378,7 +378,7 @@ span.onclick = function() {
     }
     if (localStorage.getItem("Evolutionoccured") == 1){
       pichu.classList.add("hidden");
-      raichu.classList.remove("hiden");
+      raichu.classList.remove("hidden");
     }
   }           
   initializing();
@@ -392,6 +392,8 @@ span.onclick = function() {
     evolutionOccurred=false;
     scoreCount = 0;
     clickPower = 1;
+    autoclickMultipleAttAmount=1;
+    allMultiple=0;
     refreshCookieScore();
     items.forEach(item => {
         clearInterval(itemInt);
@@ -411,6 +413,7 @@ span.onclick = function() {
     pikachu.classList.add("hidden");
     raichu.classList.add("hidden");
     localStorage.clear();
+    location.reload();
   };
   
   
