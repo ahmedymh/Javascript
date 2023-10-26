@@ -171,7 +171,9 @@ span.onclick = function() {
             Pokeball
   
   ********************************/
- 
+  const scoreElement = document.createElement('div');
+  scoreElement.className = 'score-popup';
+  document.body.appendChild(scoreElement);
 
   const pokeballElement = document.getElementById('pokeball');
     const gameplayWrapper = document.getElementById('gameplay-interface');
@@ -213,12 +215,22 @@ span.onclick = function() {
     let scoreWin = 0;
 
     pokeballElement.addEventListener('click', function(event) {
-        pokeballElement.style.display = 'none';
-        scoreWin = Math.floor(Math.random()*100);
-        scoreCount += scoreWin;
-
-        refreshCookieScore();
-    });
+      pokeballElement.style.display = 'none';
+      scoreWin = Math.floor(Math.random() * 100);
+      scoreCount += scoreWin;
+      refreshCookieScore();
+  
+      // Display the score at the mouse click coordinates
+      scoreElement.innerText = `+${scoreWin}`;
+      scoreElement.style.top = `${event.clientY}px`;
+      scoreElement.style.left = `${event.clientX}px`;
+      scoreElement.style.display = 'block';
+  
+      // Hide the score after one second
+      setTimeout(() => {
+          scoreElement.style.display = 'none';
+      }, 1000);
+  });
 
   
     // Initialiser les positions pour éviter les erreurs de calcul
