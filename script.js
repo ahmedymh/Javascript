@@ -1,35 +1,41 @@
 document.addEventListener('DOMContentLoaded', function() {
+  //DOM elements
+  let pichu = document.getElementById("pichu");
+  let pikachu = document.getElementById("pikachu");
+  let raichu = document.getElementById("Raichu");
+
   let scoreCount = parseInt(localStorage.getItem("score")) || 0;
   let clickPower = 1;
 
   // Reference to DOM elements
   let score = document.getElementById("score");
-  let clickerButton = document.getElementById("counter");
-
+  let evolutionOccurred = false;
   function refreshCookieScore() {
       score.innerHTML = `Score : ${scoreCount}`;
+      console.log(scoreCount);
   }
-
-  clickerButton.addEventListener('click', function(event) {
-      event.preventDefault();
-      scoreCount += clickPower;
-      refreshCookieScore();
-      localStorage.setItem("score", scoreCount);
-  });
+  ['pichu', 'pikachu', 'Raichu'].forEach(id => {
+    document.getElementById(id).addEventListener('click', function(event) {
+        togglePokeCoin(event);
+        // Suppose clicking these elements also affects the score.
+        scoreCount += clickPower; 
+        if(scoreCount === 15000 && !evolutionOccurred) {
+            Evolution1();
+            console.log("Evolution happened!");
+            evolutionOccurred = true; // Set the flag to true to indicate evolution has occurred
+        }
+        localStorage.setItem("score", scoreCount);
+        refreshCookieScore(); // Update the score display
+    });
+});
+  
     /********************************
   
             TogglePokeCoins
   
   ********************************/
   // Attaching the same click event to multiple elements
-  ['pichu', 'pikachu', 'Raichu'].forEach(id => {
-      document.getElementById(id).addEventListener('click', function(event) {
-          togglePokeCoin(event);
-          // Suppose clicking these elements also affects the score.
-          scoreCount += clickPower; // Or some other calculation based on the clicked element
-          refreshCookieScore(); // Update the score display
-      });
-  });
+ 
 
   function togglePokeCoin(event) {
       let pokeCoin = document.getElementById('pokecoin');
@@ -70,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function Evolution1() {
     // Task 1: Show and hide Pichu 3 times
+    console.log("fonction called")
     for (let i = 0; i < 6; i++) {
       setTimeout(() => {
         toggleHidden(pichu);
@@ -282,43 +289,29 @@ document.addEventListener('DOMContentLoaded', function() {
             Pierre évolutive
 
   ********************************/
+
      /********************************
-            Pierre 1
+            Evolution 2
   ********************************/
     //DOM Content
   let pierreBuy = document.getElementById("pierre-buy");
-  let listpierre1 = document.getElementById ("pierre1");
-  let listpierre2 = document.getElementById("pierre2");
-  let pichu = document.getElementById("pichu");
-  let pikachu = document.getElementById("pikachu");
-  let raichu = document.getElementById("Raichu");
   let pierrePriceAmount = 50000;
 
   //action on click
   pierreBuy.addEventListener("click",() => {
     if (scoreCount>=pierrePriceAmount){
       scoreCount-=pierrePriceAmount;
-      Evolution1();
-      listpierre1.classList.add("hidden");
-      listpierre2.classList.remove("hidden");
-      refreshCookieScore();
-    }
-  })
-    /********************************
-     Pierre 2
-  ********************************/
-  //DOM Content
-  let pierreBuy2 = document.getElementById("pierre2-buy");
-  let pierrePriceAmount2 = 150000;
-
-  //Action on click
-  pierreBuy2.addEventListener("click",() => {
-    if (scoreCount>=pierrePriceAmount2){
-      scoreCount-=pierrePriceAmount2;
       Evolution2();
       refreshCookieScore();
     }
   })
+ 
+   /********************************
+      
+            Game-Over
+
+  ********************************/
+
   /********************************
       
             Reset
