@@ -55,36 +55,37 @@
   cursor: pointer;
 }
   </style>
-    <!--MODAL DE BASE-->
-    <div class="relative z-50" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="rules">
+    <!--MODAL ACCUEIL-->
+   <div class="fixed inset-0 flex items-center justify-center z-50" role="dialog" aria-modal="true" id="rules">
+    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
 
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-      
-        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-              <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                <div class="sm:flex sm:items-start">
-                  <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                    <img src="img/title.png" alt="" class="m-auto">
-                    <h3 class="text-base text-center font-semibold leading-6 text-gray-900" id="modal-title">Bienvenue</h3>
-                    <div class="mt-2 text-center">
-                      <p class="text-sm text-gray-500">Les règles sont simples ...</p>
-                      <ol>
-                        <li>Cliquez</li>
-                        <li>Débloquez des bonus</li>
-                        <li>Faites évoluer votre Pichu</li>
-                      </ol>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                <button type="button" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto" id="close-modal">Compris !</button>
-              </div>
+    <div class="relative z-10 w-full max-w-lg p-5">
+        <div class="bg-red-600 rounded-t-full p-12 border-b-8 border-black relative bg-bottom bg-no-repeat bg-[url(img/pokeballdecot.png)]"></div>
+        <!--CENTRE-->
+        <div class="bg-white text-center px-5 py-4">
+            <img src="img/title.png" alt="" class="m-auto pb-4">
+            <h3 class="text-xl font-semibold leading-6" id="modal-title">Bienvenue</h3>
+            <p class="text-sm text-gray-500">Les règles sont simples ...</p>
+            <ol class="text-center p-6">
+                <li>Cliquez</li>
+                <li>Débloquez des bonus</li>
+                <li>Faites évoluer votre Pichu</li>
+            </ol>
+            <button type="button" class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" id="ranking-button">Classement</button>
+            <button type="button" class="bg-red-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-red-500 focus:outline-none" id="close-modal">Compris !</button>
             </div>
-          </div>
+            <div class="bg-gray-200 rounded-b-full p-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]"></div>
         </div>
+        
+    </div>
+
+      <!--MODAL GAME OVER -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close"><button>Ok</button></span>
+          <h1>Game Over</h1>
+          <p>Try again...</p>
+        </div>  
       </div>
       
     <!--INTERFACE-->
@@ -119,18 +120,6 @@
             <input type="image" src="img/Raichu.png" name="raichu" class="transition-transform transform hover:scale-90" id="raichu"/>
         </div>
         <button id="myBtn">Open Modal</button>
-
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-      
-        <!-- Modal content -->
-          <div class="modal-content">
-            <span class="close"><button>Ok</button></span>
-            <h1>Game Over</h1>
-            <p>Try again...</p>
-          </div>
-      
-        </div>
     </div>
             <!-- MAIN MENU -->
             <div id="gameplay-menu" class="flex rounded-xl bg-gray-400  absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
@@ -243,9 +232,8 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() 
-        {
-  // Obtenez les éléments nécessaires du DOM
+document.addEventListener('DOMContentLoaded', function() {
+  // Éléments du DOM
   var gameplayMenu = document.getElementById('gameplay-menu');
   var attackMenu = document.getElementById('attack-menu');
   var shoppingMenu = document.getElementById('shopping-menu');
@@ -254,75 +242,60 @@
   var boutonShop = document.getElementById('shop');
   var boutonBackFromAttack = document.getElementById('button-back-from-attack');
   var boutonBackFromShop = document.getElementById('button-back-from-shop');
+  var modal = document.getElementById('rules');
+  var openModalButton = document.getElementById('guide');
+  var closeModalButton = document.getElementById('close-modal');
 
-  // Fonction pour cacher tous les menus
   function hideAllMenus() {
     gameplayMenu.classList.add('hidden');
     attackMenu.classList.add('hidden');
     shoppingMenu.classList.add('hidden');
   }
 
-  // Vérifier si les éléments sont présents
-  if (boutonAttaque && boutonShop && boutonBackFromAttack && boutonBackFromShop && gameplayMenu && attackMenu && shoppingMenu) {
-    // Gérer le clic sur le bouton 'Attaque'
-    boutonAttaque.addEventListener('click', function() {
-      hideAllMenus(); // cache tous les menus
-      attackMenu.classList.remove('hidden'); // montre le menu d'attaque
-    });
-
-    // Gérer le clic sur le bouton 'Shop'
-    boutonShop.addEventListener('click', function() {
-      hideAllMenus(); // cache tous les menus
-      shoppingMenu.classList.remove('hidden'); // montre le menu de shopping
-    });
-
-    // Gérer le clic sur le bouton 'Retour' dans le menu d'attaque
-    boutonBackFromAttack.addEventListener('click', function() {
-      hideAllMenus(); // cache tous les menus
-      gameplayMenu.classList.remove('hidden'); // montre le menu principal
-    });
-
-    // Gérer le clic sur le bouton 'Retour' dans le menu de shopping
-    boutonBackFromShop.addEventListener('click', function() {
-      hideAllMenus(); // cache tous les menus
-      gameplayMenu.classList.remove('hidden'); // montre le menu principal
-    });
-  } else {
-    // Log une erreur si les éléments ne sont pas trouvés
-    console.error('Certains éléments du DOM ne sont pas trouvés');
-  }
-});
-
-
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-  // Ciblez la modal elle-même
-  const modal = document.getElementById('rules');
-
-  // Ciblez le bouton qui ouvre la modal
-  const openModalButton = document.getElementById('guide');
-
-  // Ciblez le bouton qui fermera la modal
-  const closeModalButton = document.getElementById('close-modal');
-
-  // Fonction pour afficher la modal
-  function openModal() {
-    modal.style.display = 'block';
+  function showModal() {
+    modal.style.display = 'flex';  
+    modal.style.justifyContent = 'center';
+    modal.style.alignItems = 'center';
   }
 
-  // Fonction pour cacher la modal
-  function closeModal() {
+  function hideModal() {
     modal.style.display = 'none';
   }
 
-  // Écouteur d'événement pour le bouton d'ouverture de la modal
-  openModalButton.addEventListener('click', openModal);
+  document.addEventListener('click', function(event) {
 
-  // Écouteur d'événement pour le bouton de fermeture de la modal
-  closeModalButton.addEventListener('click', closeModal);
+    switch (event.target) {
+      case boutonAttaque:
+        hideAllMenus();
+        attackMenu.classList.remove('hidden');
+        break;
+
+      case boutonShop:
+        hideAllMenus();
+        shoppingMenu.classList.remove('hidden');
+        break;
+
+      case boutonBackFromAttack:
+        hideAllMenus();
+        gameplayMenu.classList.remove('hidden');
+        break;
+
+      case boutonBackFromShop:
+        hideAllMenus();
+        gameplayMenu.classList.remove('hidden');
+        break;
+
+      case openModalButton:
+        showModal();
+        break;
+
+      case closeModalButton:
+        hideModal();
+        break;
+    }
+  });
 });
+
 
     </script>
 
