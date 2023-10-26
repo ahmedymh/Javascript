@@ -34,80 +34,50 @@
             <div id="Raichu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <input type="image" src="img/Raichu.png" name="raichu" class="transition-transform transform hover:scale-90" id="raichu"/>
             </div>
-            <div id="gameplay-menu" class="flex rounded-xl bg-gray-400 opacity-50 absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4">
+            <div id="gameplay-menu" class="hidden flex rounded-xl bg-gray-400  absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
             <div class="flex flex-col w-[50%] gap-4">
-                <div  class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                <div  class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-red-400 px-4  hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
                     <p class="text-xl  ">Attaque</p>
                 </button>
                 </div>
-                <div id="shop" class="bg-black rounded-xl w-[100%] h-[50%]"> Shop</div>
+                <div  class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-blue-400 px-4  hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                    <p class="text-xl  ">Shop</p>
+                </button>
+                </div>
             </div>
             <div class="flex flex-col w-[50%] gap-4">
-                <div id="guide" class="bg-black rounded-xl w-[100%] h-[50%]">Guide</div>
-                <div id="reset" class="bg-black rounded-xl w-[100%] h-[50%]">Reset</div>
+                <div  class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-green-400 px-4  hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                    <p class="text-xl  ">Guide</p>
+                </button>
+                </div>
+                <div  class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                    <p class="text-xl  ">Reset</p>
+                </button>
+                </div>
             </div>
             </div>
+            <div id="attack-menu" class="flex rounded-xl bg-gray-400  absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
+                <div class="flex flex-col w-[50%] gap-4">
+                    <div  class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-red-400 px-4  hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                        <p class="text-xl  ">Attaque</p>
+                    </button>
+                    </div>
+                    <div  class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-blue-400 px-4  hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                        <p class="text-xl  ">Shop</p>
+                    </button>
+                    </div>
+                </div>
+                <div class="flex flex-col w-[50%] gap-4">
+                    <div  class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-green-400 px-4  hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                        <p class="text-xl  ">Guide</p>
+                    </button>
+                    </div>
+                    <div  class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                        <p class="text-xl  ">Reset</p>
+                    </button>
+                    </div>
+                </div>
+                </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-         const pokeballElement = document.getElementById('pokeball');
-         const gameplayWrapper = document.getElementById('gameplay-interface');
-         let animationFrameId = null;
-         let clickPower = 1; // Assurez-vous d'initialiser clickPower en fonction de la logique de votre jeu.
-     
-         function movePokeball() {
-             const topPosition = parseInt(pokeballElement.style.top) || 0;
-             pokeballElement.style.top = (topPosition + 1) + 'px';
-     
-             const rect = gameplayWrapper.getBoundingClientRect();
-     
-             // Si la pokeball atteint le bas ou est cliquée, on arrête l'animation
-             if (topPosition > (rect.bottom - rect.top) - pokeballElement.offsetHeight || pokeballElement.style.display === 'none') {
-                 cancelAnimationFrame(animationFrameId);
-                 pokeballElement.style.display = 'none';
-                 schedulePokeball();
-             } else {
-                 animationFrameId = requestAnimationFrame(movePokeball);
-             }
-         }
-     
-         function spawnPokeball() {
-             const rect = gameplayWrapper.getBoundingClientRect();
-             const randomX = Math.floor(Math.random() * (rect.width - pokeballElement.clientWidth));
-     
-             pokeballElement.style.left = randomX + 'px';
-             pokeballElement.style.top = '0px'; // Le point de départ est le haut de la div du gameplay
-             pokeballElement.style.display = 'block';
-     
-             movePokeball();
-         }
-     
-         function schedulePokeball() {
-             const randomInterval = Math.random() * (1800 - 1200) + 1200; // 2-3 minutes
-             setTimeout(spawnPokeball, randomInterval);
-         }
-     
-         pokeballElement.addEventListener('click', function() {
-             pokeballElement.style.display = 'none';
-     
-             // Logique pour augmenter temporairement clickPower
-             const originalClickPower = clickPower;
-             clickPower += 10;
-     
-             // Réinitialiser clickPower après 5 secondes
-             setTimeout(function() {
-                 clickPower = originalClickPower;
-             }, 5000);
-         });
-     
-         // Initialiser les positions pour éviter les erreurs de calcul
-         pokeballElement.style.top = '0px';
-         pokeballElement.style.left = '0px';
-     
-         schedulePokeball(); // Commencer le cycle d'apparition de la pokeball
-     });
-     
-       </script>
 </body>
 </html>
