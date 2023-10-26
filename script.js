@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let evolutionOccurred = false;
   function refreshCookieScore() {
       score.innerHTML = `Score : ${scoreCount}`;
+      localStorage.setItem("score", scoreCount);
       console.log(scoreCount);
   }
 
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (scoreCount <0) {
           GameOver(); 
         }
-        localStorage.setItem("score", scoreCount);
+        
         refreshCookieScore(); // Update the score display
     });
 });
@@ -195,7 +196,6 @@ span.onclick = function() {
     function spawnPokeball() {
         const rect = gameplayWrapper.getBoundingClientRect();
         const randomX = Math.floor(Math.random() * (rect.width - pokeballElement.clientWidth));
-
         pokeballElement.style.left = randomX + 'px';
         pokeballElement.style.top = '0px'; // Le point de départ est le haut de la div du gameplay
         pokeballElement.style.display = 'block';
@@ -209,12 +209,17 @@ span.onclick = function() {
         setTimeout(spawnPokeball, randomInterval);
     }
     // On click sur la Pokeball
-    pokeballElement.addEventListener('click', function() {
+    let scoreWin = 0;
+
+    pokeballElement.addEventListener('click', function(event) {
         pokeballElement.style.display = 'none';
-        scoreCount += Math.floor(Math.random()*100);
+        scoreWin = Math.floor(Math.random()*100);
+        scoreCount += scoreWin;
+
         refreshCookieScore();
     });
 
+  
     // Initialiser les positions pour éviter les erreurs de calcul
     pokeballElement.style.top = '0px';
     pokeballElement.style.left = '0px';
@@ -237,9 +242,7 @@ span.onclick = function() {
   ];
 
   function refreshItemLevel(item) {
-    const element = document.getElementById(`${item.id}-level`);
     const priceElement = document.getElementById(`${item.id}-price`);
-    element.innerHTML = item.level;
     priceElement.innerHTML = item.price;
     autoclickMultipleAtt.innerHTML= autoclickMultipleAttAmount;
   }
@@ -279,9 +282,7 @@ span.onclick = function() {
   ];
   
   function refreshItem(item) {
-    const itemLevel = document.getElementById(`${item.id}-level`);
     const itemPrice = document.getElementById(`${item.id}-price`);
-    itemLevel.innerHTML = item.level;
     itemPrice.innerHTML = item.price;
     allMultiple2.innerHTML = allMultiple;
   }
@@ -358,10 +359,9 @@ span.onclick = function() {
         refreshItem(item);
     });
   
-          pichu.classList.remove("hidden");
-          pikachu.classList.add("hidden");
-          raichu.classList.add("hidden");
-        };
+    pichu.classList.remove("hidden");
+    pikachu.classList.add("hidden");
+    raichu.classList.add("hidden");
+  };
                 
-      });
-      ;
+});
