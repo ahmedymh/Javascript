@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         togglePokeCoin(event);
         // Suppose clicking these elements also affects the score.
         scoreCount += clickPower; 
-        if(scoreCount === 15000 && !evolutionOccurred) {
+        if(scoreCount === 10 && !evolutionOccurred ) {
             Evolution1();
             console.log("Evolution happened!");
             evolutionOccurred = true; // Set the flag to true to indicate evolution has occurred
@@ -231,7 +231,7 @@ span.onclick = function() {
     { id: "charge", price: 50, level: 1, power: 1, initialPrice:50 },
     { id: "etincelle", price: 200, level: 1, power: 2, initialPrice:200 },
     { id: "fatalfoudre", price: 500, level: 1, power: 5, initialPrice:500 },
-    { id: "trempette", price: 1, level: 1, power: -10, initialPrice:100 }
+    { id: "trempette", price: 1000, level: 1, power: -10, initialPrice:1000 }
   ];
 
   function refreshItemLevel(item) {
@@ -355,6 +355,10 @@ span.onclick = function() {
         item.price = item.initialPrice;
         refreshItem(item);
     });
+
+    pichu.classList.remove("hidden");
+    pikachu.classList.add("hidden");
+    raichu.classList.add("hidden");
   };
           
 });
