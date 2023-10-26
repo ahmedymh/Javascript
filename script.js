@@ -338,7 +338,7 @@ span.onclick = function() {
   ********************************/
  document.getElementById("reset").addEventListener("click",reset);
  function reset (){
-
+    evolutionOccurred = false;
     scoreCount = 0;
     clickPower = 1;
     refreshCookieScore();
@@ -355,6 +355,7 @@ span.onclick = function() {
         item.price = item.initialPrice;
         refreshItem(item);
     });
+
 
     pichu.classList.remove("hidden");
     pikachu.classList.add("hidden");
