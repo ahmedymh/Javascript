@@ -121,20 +121,27 @@
     <!--INTERFACE-->
     <div id="gameplay-interface" class="relative bg-cover w-screen h-screen bg bg-[url(img/stadium.png)]">
         <div class="flex justify-center lg:ml-4">
-            <div class="flex justify-evenly gap-4 absolute top-2 p-1 w-[100%] md:w-[50%] mt-4 bg-stone-500 rounded-xl w-1/3 text-center pl-4 sm:my-2">
-                <div class="flex justify-evenly items-center text-lg gap-2" id="score-wrapper"><span>Wallet :</span><strong id="score"></strong>
-                    <img src="img/PokeCoin.png" alt="">
+            <div class="flex flex-col fixed shrink absolute top-2 p-1 w-[100%] md:w-[50%] mt-4 bg-stone-500 rounded-xl w-1/3 text-center pl-4 sm:my-2">
+                <div class="flex justify-center gap-2 items-center text-lg " id="score-wrapper"><span>Wallet :</span><strong id="score"></strong>
+                    <img src="img/PokeCoin.png" alt="" class="w-[5%]">
                 </div>
-                <div id="stats-wrapper-1" class="flex justify-evenly items-center text-lg">
-                    <img src="img/PokeCoin.png" alt="">
+                <div class="flex justify-center gap-4 w-[100%]">
+                <div id="stats-wrapper-1" class="flex  items-center text-lg w-[20%] gap-0">
+                    <img src="img/PokeCoin.png" alt="" class="w-[15%]">
                     <span>/ Sec : </span>
                     <span id="autoclickmultiple2">0</span>
                 </div>
-                <div id="stats-wrapper" class="flex justify-evenly items-center text-lg">
-                    <img src="img/PokeCoin.png" alt="">
+                <div id="stats-wrapper" class="flex  items-center text-lg w-[20%] gap-0">
+                    <img src="img/PokeCoin.png" alt="" class="w-[15%]">
                     <span>/ Click : </span>
                     <span id="autoclick-multiple">1</span>
                 </div>
+                <div class="flex  items-center text-lg w-[20%] gap-1">
+                    <img src="img/PokeCoin.png" alt="" class="w-[15%]">
+                    <span>Dépensé : </span>
+                    <span id="spend">0</span>
+                </div>
+            </div>
             </div>
         </div>
         <div id="pokeball" class="hidden absolute z-40 top-2"><input src="img/pokeball.png" type="image" name="pokeball" id="pokeball"></div>
@@ -177,6 +184,35 @@
             </div>
            <!-- ATTACK MENU -->
            <div id="attack-menu" class="hidden flex flex-col rounded-xl bg-gray-400 absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[40%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
+            <div class="hidden flex flex-row w-[100%] h-[33%] gap-4">
+                <!--CHARGE-->
+                
+                <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="charge-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <span>???</span>
+                    </button>
+                </div>
+                <!--ETINCELLE-->
+                <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="etincelle-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <span>???</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden flex flex-row w-[100%] h-[33%] gap-4">
+                <!--FATAL FOUDRE-->
+                <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="fatalfoudre-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <span>???</span>
+                    </button>
+                </div>
+                <!--TREMPETTE-->
+                <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="trempette-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <span>???</span>
+                    </button>
+                </div>
+            </div>
             <div class="flex flex-row w-[100%] h-[33%] gap-4">
                 <!--CHARGE-->
                 
@@ -192,7 +228,7 @@
                 </div>
                     </button>
                 </div>
-                <!--MULTI EXP-->
+                <!--ETINCELLE-->
                 <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
                     <button id="etincelle-buy" class="flex justify-center  bg-yellow-400 hover:bg-yellow-300 w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
                     <img src="img/badge-electrik.png" class="w-[20%]" alt="">
@@ -308,6 +344,36 @@
                     </button>
                     </div>
                 </div>
+                <div class="hidden flex flex-row w-[100%] h-[33%] gap-4">
+                    <!--POTION-->
+                    
+                    <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="potion-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                            <span>???</span>
+                        </button>
+                    </div>
+                    <!--MULTI EXP-->
+                    <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="multiexp-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                            <span>???</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="hidden flex flex-row w-[100%] h-[33%] gap-4">
+                    <!--STADE-->
+                    <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="terrain-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                            <span>???</span>
+                        </button>
+                    </div>
+                    <!--PIERRE FOUDRE-->
+                    <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="pierre-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                            <span>???</span>
+                        </button>
+                    </div>
+                </div>
+                 
             </div>       
     </div>
     <!--COOKIE CLIKER 2.0-->
