@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let pichu = document.getElementById("pichu");
   let pikachu = document.getElementById("pikachu");
   let raichu = document.getElementById("Raichu");
+  
   let scoreCount = parseInt(localStorage.getItem("score")) || 0;
   let clickPower = parseInt(localStorage.getItem("clickPower")) || 1;
 
@@ -23,10 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem("evolution", evolutionOccured);
   }
   
-
+  
   ['pichu', 'pikachu', 'Raichu'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(event) {
         togglePokeCoin(event);
+
         scoreCount += clickPower; 
         if (scoreCount >= 15000 && evolutionOccured === 1) {
             Evolution1();         
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         refreshCookieScore();
     });
 });
-  
+
 refreshCookieScore();
 
   
@@ -63,6 +65,7 @@ refreshCookieScore();
       myModal.classList.add("hidden");
     }
   }
+
   
     /********************************
   
@@ -594,7 +597,11 @@ refreshCookieScore();
 
   function hideRulesModal() {
   rulesModal.style.display = 'none';
+
   }
+  items.forEach(item => {
+    buyItem(item);
+  });
 
   function showLeaderboardModal() {
   leaderboardModal.classList.remove('hidden');
