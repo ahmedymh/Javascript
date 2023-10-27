@@ -10,32 +10,40 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Reference to DOM elements
   let score = document.getElementById("score");
-  let evolutionOccurred = false;
   function refreshCookieScore() {
       score.innerHTML = ` ${scoreCount}`;
       localStorage.setItem("score", scoreCount);
       localStorage.setItem ("clickPower", clickPower)
       console.log(scoreCount);
   }
+  let evolutionOccured = parseInt(localStorage.getItem("evolution"));
+  if (localStorage.getItem("evolution") === null) {
+    // If it doesn't exist, create it with a default value of 1
+    evolutionOccured = 1;
+    localStorage.setItem("evolution", evolutionOccured);
+  }
+  
 
   ['pichu', 'pikachu', 'Raichu'].forEach(id => {
     document.getElementById(id).addEventListener('click', function(event) {
         togglePokeCoin(event);
-        // Suppose clicking these elements also affects the score.
         scoreCount += clickPower; 
-        if(scoreCount === 15000 && !evolutionOccurred ) {
-            Evolution1();
-            console.log("Evolution happened!");
-            localStorage.setItem("Evolutionoccured", 0);
-            evolutionOccurred = true; 
+        if (scoreCount >= 100 && evolutionOccured === 1) {
+            Evolution1();         
+            evolutionOccured = 2; // Set it to 2 since evolution has occurred
+            console.log(evolutionOccured);
+            localStorage.setItem("evolution", evolutionOccured); // Update the local storage value
         }
-        if (scoreCount <0) {
-          GameOver(); 
-        }
-        
-        refreshCookieScore(); // Update the score display
+        if (scoreCount < 0) {
+            GameOver(); 
+            console.log("gameover");
+        } 
+
+        // Update the score display
+        refreshCookieScore();
     });
 });
+  
 refreshCookieScore();
 
   
@@ -44,19 +52,17 @@ refreshCookieScore();
                   Game-Over
   
   ********************************/
-var modal = document.getElementById("myModal");
-var btn = document.getElementById("myBtn");
-var span = document.getElementsByClassName("close")[0];
-span.addEventListener("click", reset);
+  let myModal = document.getElementById("myModal");
+  let closeGameOver = document.getElementById("close-gameover");
+  closeGameOver.addEventListener("click", reset);
 
-btn.addEventListener("click", GameOver);
-function GameOver(){
-modal.style.display="block";
-reset();
-span.onclick = function() {
-  modal.style.display = "none";
-}
-}
+  function GameOver() {
+    myModal.classList.remove("hidden");
+    
+    closeGameOver.onclick = function() {
+      myModal.classList.add("hidden");
+    }
+  }
   
     /********************************
   
@@ -134,7 +140,8 @@ span.onclick = function() {
         }, i * 500);
       }
     }, 12 * 500);
-    
+    clickPower+=10;
+    autoclickMultipleAtt.innerHTML = autoclickMultipleAttAmount+=10;
   }
   function Evolution2() {
     // Task 1: Show and hide Pichu 3 times
@@ -166,7 +173,8 @@ span.onclick = function() {
         }, i * 500);
       }
     }, 12 * 500);
-    
+    clickPower+=100;
+    autoclickMultipleAtt.innerHTML = autoclickMultipleAttAmount+=100;
   }
   /********************************
   
@@ -253,7 +261,7 @@ span.onclick = function() {
     { id: "charge", price: 50, level: 1, power: 1, initialPrice:50 },
     { id: "etincelle", price: 200, level: 1, power: 2, initialPrice:200 },
     { id: "fatalfoudre", price: 500, level: 1, power: 5, initialPrice:500 },
-    { id: "trempette", price: 1000, level: 1, power: -10, initialPrice:1000 }
+    { id: "trempette", price: 10, level: 1, power: -10, initialPrice:10 }
   ];
 
   function refreshItemLevel(item) {
@@ -348,7 +356,8 @@ span.onclick = function() {
     if (scoreCount>=pierrePriceAmount){
       scoreCount-=pierrePriceAmount;
       Evolution2();
-      localStorage.setItem("Evolutionoccured","1");
+      evolutionOccured = 3;
+      localStorage.setItem("evolution", evolutionOccured);
       refreshCookieScore();
     }
   })
@@ -372,11 +381,11 @@ span.onclick = function() {
       }
       refreshItem(item);
     });
-    if (localStorage.getItem("Evolutionoccured") == 0){
+    if (evolutionOccured == 2){
       pichu.classList.add("hidden"); 
       pikachu.classList.remove("hidden");
     }
-    if (localStorage.getItem("Evolutionoccured") == 1){
+    if (evolutionOccured == 3){
       pichu.classList.add("hidden");
       raichu.classList.remove("hidden");
     }
@@ -389,7 +398,6 @@ span.onclick = function() {
   ********************************/
  document.getElementById("reset").addEventListener("click",reset);
  function reset (){
-    evolutionOccurred=false;
     scoreCount = 0;
     clickPower = 1;
     autoclickMultipleAttAmount=1;

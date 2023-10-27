@@ -127,19 +127,7 @@
         <div id="Raichu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <input type="image" src="img/Raichu.png" name="raichu" class="transition-transform transform hover:scale-90" id="raichu"/>
         </div>
-        <button id="myBtn">Open Modal</button>
 
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-      
-        <!-- Modal content -->
-          <div class="modal-content">
-            <span class="close"><button>Ok</button></span>
-            <h1>Game Over</h1>
-            <p>Try again...</p>
-          </div>
-      
-        </div>
     </div>
             <!-- MAIN MENU -->
             <div id="gameplay-menu" class="flex rounded-xl bg-gray-400  absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
@@ -246,7 +234,24 @@
                     </div>
                 </div>
             </div>
-          
+          <!--MODAL GAME OVER -->
+      <div class="hidden fixed inset-0 flex items-center justify-center z-50" role="dialog" aria-modal="true" id="myModal">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+
+        <div class="relative z-10 w-full max-w-lg p-5">
+            <div class="bg-red-600 rounded-t-full p-12 border-b-8 border-black relative bg-bottom bg-no-repeat bg-[url(img/pokeballdecot.png)]"></div>
+            <!--CENTRE-->
+            <div class="bg-white text-center px-5 py-4">
+                <img src="img/title.png" alt="" class="m-auto pb-4">
+                <h3 class="text-xl font-semibold leading-6" id="modal-title">Pas de chance ...</h3>
+                <p class="text-sm text-gray-500">faut vraiment être nul !</p>
+                <p class="text-center p-6 font-bold text-xl">GAME OVER</p>
+                <button type="button" class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" id="close-gameover">Fermer</button>
+                </div>
+                <div class="bg-gray-200 rounded-b-full p-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]"></div>
+            </div>
+
+        </div>
             
             
     </div>
