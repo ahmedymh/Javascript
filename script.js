@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById(id).addEventListener('click', function(event) {
         togglePokeCoin(event);
         scoreCount += clickPower; 
-        if (scoreCount >= 100 && evolutionOccured === 1) {
+        if (scoreCount >= 15000 && evolutionOccured === 1) {
             Evolution1();         
             evolutionOccured = 2; // Set it to 2 since evolution has occurred
             console.log(evolutionOccured);
@@ -261,8 +261,9 @@ refreshCookieScore();
     { id: "charge", price: 50, level: 1, power: 1, initialPrice:50 },
     { id: "etincelle", price: 200, level: 1, power: 2, initialPrice:200 },
     { id: "fatalfoudre", price: 500, level: 1, power: 5, initialPrice:500 },
-    { id: "trempette", price: 10, level: 1, power: -10, initialPrice:10 }
+    { id: "trempette", price: 1000, level: 1, power: -10, initialPrice:1000 }
   ];
+  
 
   function refreshItemLevel(item) {
     const priceElement = document.getElementById(`${item.id}-price`);
@@ -271,8 +272,8 @@ refreshCookieScore();
     localStorage.setItem("AutoAttackAmount",autoclickMultipleAttAmount);
     localStorage.setItem(`itemLevel_${item.id}`, item.level);
   }
-
-  function buyItem(item) {
+ 
+  function buyItem(item) {  
     const itemElement = document.getElementById(`${item.id}-buy`);
     itemElement.addEventListener("click", () => {
       if (scoreCount >= item.price) {
@@ -292,6 +293,21 @@ refreshCookieScore();
   items.forEach(item => {
     buyItem(item);
   });
+  setInterval(() => {
+    items.forEach(item => {
+      const itemElement = document.getElementById(`${item.id}-buy`);
+      if (scoreCount<item.price){
+        itemElement.classList.add("disabled:opacity-25");
+        itemElement.classList.add("cursor-not-allowed");
+      }
+      else {
+        itemElement.classList.remove("disabled:opacity-25");
+        itemElement.classList.remove("cursor-not-allowed");
+      }
+    })
+  }, 10);
+ 
+
   /********************************
 
           Shop
