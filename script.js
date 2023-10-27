@@ -313,7 +313,7 @@ refreshCookieScore();
   const itemsData = [
     { id: "potion", price: 500, power: 1, initialPrice:500, level:0},
     { id: "multiexp", price: 2500, power: 5, initialPrice :2500, level:0},
-    { id: "terrain", price: 10000, power: 25, initialPrice:10000, level:0}
+    { id: "terrain", price: 10, power: 25, initialPrice:10, level:0}
   ];
   
   function refreshItem(item) {
@@ -400,7 +400,14 @@ refreshCookieScore();
       }
     });
   }, 500);
-    
+    let arenaButton = document.getElementById("terrain-buy");
+    let Background = document.getElementById("gameplay-interface");
+    arenaButton.addEventListener ('click',()=>{
+      Background.classList.remove("md:bg-[url(img/stadiumDesktop.png)]");
+      Background.classList.remove("bg-[url(img/stadiumPhone.png)]");
+      Background.classList.add("bg-[url(img/arenaUpPhone.png)]");
+      Background.classList.add("md:bg-[url(img/arenaUp.png)");
+    })
    
     /********************************
       
