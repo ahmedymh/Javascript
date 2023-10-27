@@ -421,6 +421,86 @@
     return userScores; // Retourner les scores mis à jour
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Éléments du DOM
+    var gameplayMenu = document.getElementById('gameplay-menu');
+    var attackMenu = document.getElementById('attack-menu');
+    var shoppingMenu = document.getElementById('shopping-menu');
+
+    var boutonAttaque = document.getElementById('attack');
+    var boutonShop = document.getElementById('shop');
+    var boutonBackFromAttack = document.getElementById('button-back-from-attack');
+    var boutonBackFromShop = document.getElementById('button-back-from-shop');
+    
+    // Gestion de la modal des règles
+    var rulesModal = document.getElementById('rules');
+    var openRulesModalButton = document.getElementById('guide');
+    var closeRulesModalButton = document.getElementById('close-modal');
+
+    // Gestion de la modal du leaderboard
+    var leaderboardModal = document.getElementById('leaderboard');
+    var openLeaderboardButton = document.getElementById('ranking-button'); // Bouton pour ouvrir le leaderboard
+    var closeLeaderboardButton = document.getElementById('close-leaderboard');
+
+    function hideAllMenus() {
+        gameplayMenu.classList.add('hidden');
+        attackMenu.classList.add('hidden');
+        shoppingMenu.classList.add('hidden');
+    }
+
+    function showRulesModal() {
+        rulesModal.style.display = 'flex';
+        rulesModal.style.justifyContent = 'center';
+        rulesModal.style.alignItems = 'center';
+    }
+
+    function hideRulesModal() {
+        rulesModal.style.display = 'none';
+    }
+
+    function showLeaderboardModal() {
+        leaderboardModal.classList.remove('hidden');
+    }
+
+    function hideLeaderboardModal() {
+        leaderboardModal.classList.add('hidden');
+    }
+
+    document.addEventListener('click', function(event) {
+        switch (event.target) {
+            case boutonAttaque:
+                hideAllMenus();
+                attackMenu.classList.remove('hidden');
+                break;
+            case boutonShop:
+                hideAllMenus();
+                shoppingMenu.classList.remove('hidden');
+                break;
+            case boutonBackFromAttack:
+                hideAllMenus();
+                gameplayMenu.classList.remove('hidden');
+                break;
+            case boutonBackFromShop:
+                hideAllMenus();
+                gameplayMenu.classList.remove('hidden');
+                break;
+            case openRulesModalButton:
+                showRulesModal();
+                break;
+            case closeRulesModalButton:
+                hideRulesModal();
+                break;
+            case openLeaderboardButton: // Cas où l'on gère l'ouverture du leaderboard
+                showLeaderboardModal();
+                break;
+            case closeLeaderboardButton:
+                hideLeaderboardModal();
+                break;
+        }
+    });
+});
+
+
         </script>
         
 
