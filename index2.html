@@ -7,7 +7,6 @@
   <!--JS-->
   <script src="script.js"></script>
   <!--SCRIPT TAILWIND + FONTAWSOME + GOOGLE FONTS-->
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/d6a733dcf4.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,46 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Modal Game Over style-->
-  <style>
-    /* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-  </style>
     <!--MODAL ACCUEIL-->
    <div class="fixed inset-0 flex items-center justify-center z-50" role="dialog" aria-modal="true" id="rules">
     <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
@@ -70,7 +30,13 @@
                 <li>Cliquez</li>
                 <li>Débloquez des bonus</li>
                 <li>Faites évoluer votre Pichu</li>
+                <li>Mais d'abord, choississez un nom d'utilisateur :</li>
             </ol>
+            <form id="usernameForm" class="flex flex-col p-4 gap-2 text-center">
+                <label for="username">Entrez votre pseudonyme:</label>
+                <input type="text" id="username" name="username" required>
+                <input type="submit" value="Envoyer">
+            </form>
             <button type="button" class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" id="ranking-button">Classement</button>
             <button type="button" class="bg-red-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-red-500 focus:outline-none" id="close-modal">Compris !</button>
             </div>
@@ -81,10 +47,9 @@
         
     </div>
 
-      <!--MODAL GAME OVER -->
-      <div class="hidden fixed inset-0 flex items-center justify-center z-50" role="dialog" aria-modal="true" id="myModal">
+    <!--MODAL GAME OVER -->
+    <div class="hidden fixed inset-0 flex items-center justify-center z-50" role="dialog" aria-modal="true" id="myModal">
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-    
         <div class="relative z-10 w-full max-w-lg p-5">
             <div class="bg-red-600 rounded-t-full p-12 border-b-8 border-black relative bg-bottom bg-no-repeat bg-[url(img/pokeballdecot.png)]"></div>
             <!--CENTRE-->
@@ -94,12 +59,65 @@
                 <p class="text-sm text-gray-500">faut vraiment être nul !</p>
                 <p class="text-center p-6 font-bold text-xl">GAME OVER</p>
                 <button type="button" class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" id="close-gameover">Fermer</button>
-                </div>
-                <div class="bg-gray-200 rounded-b-full p-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]"></div>
             </div>
-            
-        </div>
+            <div class="bg-gray-200 rounded-b-full p-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]"></div>
+        </div>        
+    </div>  
+
+    <!--MODAL LEADERBOARD-->
+    <div class="hidden fixed inset-0 flex items-center justify-center z-50" role="dialog" aria-modal="true" id="leaderboard">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        <div class="relative z-10 w-full max-w-lg p-5">
+            <div class="bg-red-600 rounded-t-full p-12 border-b-8 border-black relative bg-bottom bg-no-repeat bg-[url(img/pokeballdecot.png)]"></div>
+            <!--CENTRE-->
+            <div class="bg-white text-center px-5 py-4">
+                <img src="img/title.png" alt="" class="m-auto pb-4">
+                <h3 class="text-xl font-semibold leading-6" id="modal-title">Classement</h3>
+                <!-- Après le <h3>... -->
+                <table class="w-full table-fixed">
+                    <thead>
+                        <tr>
+                            <th class="w-1/3 px-4 py-2">Position</th>
+                            <th class="w-1/3 px-4 py-2">Nom d'utilisateur</th>
+                            <th class="w-1/3 px-4 py-2">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border px-4 py-2">1</td>
+                            <td class="border px-4 py-2">User1</td>
+                            <td class="border px-4 py-2">Score1</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2">2</td>
+                            <td class="border px-4 py-2">User2</td>
+                            <td class="border px-4 py-2">Score2</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2">3</td>
+                            <td class="border px-4 py-2">User3</td>
+                            <td class="border px-4 py-2">Score3</td>
+                        </tr>
+                        <tr>
+                            <td class="border px-4 py-2">4</td>
+                            <td class="border px-4 py-2">User4</td>
+                            <td class="border px-4 py-2">Score4</td>
+                        </tr>
+                        <!-- Ligne vide pour les données dynamiques -->
+                        <tr id="dynamic-row">
+                            <td class="border px-4 py-2"></td>
+                            <td class="border px-4 py-2"></td>
+                            <td class="border px-4 py-2"></td>
+                        </tr>
+                    </tbody>
+                </table>              
+                <button type="button" class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" id="close-leaderboard">Fermer</button>
+            </div>
+            <div class="bg-gray-200 rounded-b-full p-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]"></div>
+        </div>        
+    </div>  
       
+    
     <!--INTERFACE-->
     <div id="gameplay-interface" class="relative bg-cover w-screen h-screen bg bg-[url(img/stadium.png)]">
         <div class="flex justify-center lg:ml-4">
@@ -134,7 +152,7 @@
         <button id="myBtn">Open Modal</button>
     </div>
             <!-- MAIN MENU -->
-            <div id="gameplay-menu" class="flex rounded-xl bg-gray-400  absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
+            <div id="gameplay-menu" class="flex rounded-xl bg-gray-400   fixed  w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[40%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
             <div class="flex flex-col w-[50%] gap-4">
                 <div class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-red-400 px-4  hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
                     <p class="text-xl">Attaque</p>
@@ -157,77 +175,130 @@
                 </div>
             </div>
             </div>
-            <!-- ATTACK MENU -->
-            <div id="attack-menu" class="hidden flex flex-col rounded-xl bg-gray-400 absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
-                <div class="flex flex-row w-[100%] h-[33%] gap-4">
-                    <!--CHARGE-->
-                    <div class="bg-black rounded-xl w-[100%]">
-                        <button id="charge-buy" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-300 px-4  hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
-                            <span class="pr-2"><img src="img/badge-normal.png" alt=""></span>
-                            <span>Charge (+1) </span>
-                            <span><strong id="charge-price" class="pl-1"> 50</strong> Pokecoins</span> 
-                        </button>
-                    </div>
-                    <!--ETINCELLE-->
-                    <div class="bg-black rounded-xl w-[100%]">
-                        <button id="etincelle-buy" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-yellow-400 px-4  hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
-                            <span class="pr-2"><img src="img/badge-electrik.png" alt=""></span>
-                            <span>Etincelle (+2) </span>
-                            <span><strong id="etincelle-price" class="pl-1"> 200</strong> Pokecoins </span>
-                        </button>
-                    </div>
+           <!-- ATTACK MENU -->
+           <div id="attack-menu" class="hidden flex flex-col rounded-xl bg-gray-400 absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[40%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
+            <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                <!--CHARGE-->
+                
+                <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="charge-buy" class="flex justify-center bg-gray-400 w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                    <img src="img/badge-normal.png" class="w-[20%]" alt="">
+                    <div class="flex flex-col">
+                        <span>Charge (+1)</span>
+                        <div class="flex flex-row text-center justify-center gap-2">
+                  <strong id="charge-price">50</strong>
+                  <img src="img/pokedollars.png" class="w-[5%] " alt="">
                 </div>
-                <div class="flex flex-row w-[100%] h-[33%] gap-4">
-                    <!--FATAL FOUDRE-->
-                    <div class="bg-black rounded-xl w-[100%]">
-                        <button id="fatalfoudre-buy" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-yellow-400 px-4  hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
-                            <span class="pr-2"><img src="img/badge-electrik.png" alt=""></span>
-                            <span>Fatal Foudre (+5) </span> 
-                            <span><strong id="fatalfoudre-price" class="pl-1"> 500</strong> Pokecoins </span>
-                        </button>
-                    </div>
-                    <!--TREMPETTE-->
-                    <div class="bg-black rounded-xl w-[100%]">
-                        <button id="trempette-buy" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-blue-400 px-4 space-x-4 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
-                            <span><img src="img/badge-eau.png" class="" alt=""></span>
-                            <span class="pr-2">Trempette (?) </span>
-                            <span><strong id="trempette-price" class="pl-1"> 1000</strong> Pokecoins</span>
-                        </button>
-                    </div>
                 </div>
-                <div class="flex flex-row w-[100%] h-[33%] gap-4">
-                    <!--BACK TO MENU-->
-                    <div class="bg-black rounded-xl w-[100%]"><button id="button-back-from-attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
-                        <p class="text-xl  ">BACK</p>
                     </button>
-                    </div>
+                </div>
+                <!--MULTI EXP-->
+                <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="etincelle-buy" class="flex justify-center  bg-yellow-400 hover:bg-yellow-300 w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                    <img src="img/badge-electrik.png" class="w-[20%]" alt="">
+                    <div class="flex flex-col">
+                        <span>Etincelle (+2)</span>
+                        <div class="flex flex-row text-center justify-center gap-2">
+                  <strong id="etincelle-price">200</strong>
+                  <img src="img/pokedollars.png" class="w-[5%]" alt="">
+                </div>
+                </div>
+                    </button>
                 </div>
             </div>
+            <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                <!--FATAL FOUDRE-->
+                <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="fatalfoudre-buy" class="flex justify-center bg-yellow-400 hover:bg-yellow-300 w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                    <img src="img/badge-electrik.png" class="w-[20%]" alt="">
+                    <div class="flex flex-col">
+                        <span>Fatal-Foudre (+5)</span>
+                        <div class="flex flex-row text-center justify-center gap-2">
+                  <strong id="fatalfoudre-price">500</strong>
+                  <img src="img/pokedollars.png" class="w-[5%]" alt="">
+                </div>
+                </div>
+                    </button>
+                </div>
+                <!--TREMPETTE-->
+                <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="trempette-buy" class="flex justify-center bg-blue-400 hover:bg-blue-300 w-[100%] h-[100%] border-2 border-black rounded-xl items-center  px-4   focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                    <img src="img/badge-eau.png" class="w-[20%]" alt="">
+                    <div class="flex flex-col">
+                        <span>Trempette (?)</span>
+                        <div class="flex flex-row text-center justify-center gap-2">
+                  <strong id="trempette-price">1000</strong>
+                  <img src="img/pokedollars.png" class="w-[5%]" alt="">
+                </div>
+                </div>
+                    </button>
+                </div>
+            </div>
+            <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                <!--BACK TO MENU-->
+                <div class="bg-black rounded-xl w-[100%]"><button id="button-back-from-attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                    <p class="text-xl  ">BACK</p>
+                </button>
+                </div>
+            </div>
+        </div>  
             <!-- SHOP MENU -->
-            <div id="shopping-menu" class="hidden flex flex-col rounded-xl bg-gray-400 absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[33%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
+            <div id="shopping-menu" class="hidden flex flex-col rounded-xl bg-gray-400 absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[40%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
                 <div class="flex flex-row w-[100%] h-[33%] gap-4">
                     <!--POTION-->
-                    <div class="flex flex-row bg-black rounded-xl w-[100%]">
-                        <span><img src="img/potion.png" class="" alt=""></span>
-                        <button id="potion-buy" class="flex flex-col justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">Potion (+1 pika(s)/seconde) <strong id="potion-price">500</strong> Pokecoins</button>
+                    
+                    <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="potion-buy" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <img src="img/potion.png" class="w-[20%]" alt="">
+                        <div class="flex flex-col">
+                            <span>Potion (+1 pika(s)/seconde)</span>
+                            <div class="flex flex-row text-center justify-center gap-2">
+                      <strong id="potion-price">500</strong>
+                      <img src="img/pokedollars.png" class="w-[5%]" alt="">
+                    </div>
+                    </div>
+                        </button>
                     </div>
                     <!--MULTI EXP-->
-                    <div class="flex flex-row bg-black rounded-xl w-[100%]">
-                        <span><img src="img/multi-exp.png" class="" alt=""></span>
-                        <button id="multiexp-buy" class="flex flex-col justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">Multi-exp (+5 pika(s)/seconde) <strong id="multiexp-price">2500</strong> Pokecoins</button>
+                    <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="multiexp-buy" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <img src="img/multi-exp.png" class="w-[30%]" alt="">
+                        <div class="flex flex-col">
+                            <span>Multi-exp (+1 pika(s)/seconde)</span>
+                            <div class="flex flex-row text-center justify-center gap-2">
+                      <strong id="multiexp-price">2500</strong>
+                      <img src="img/pokedollars.png" class="w-[5%]" alt="">
+                    </div>
+                    </div>
+                        </button>
                     </div>
                 </div>
                 <div class="flex flex-row w-[100%] h-[33%] gap-4">
                     <!--STADE-->
-                    <div class="flex flex-row bg-black rounded-xl w-[100%]">
-                        <span><img src="" class="" alt=""></span>
-                        <button id="terrain-buy" class="flex flex-col justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">Terrain (+25 pika(s)/seconde) <strong id="terrain-price">10000</strong> Pokecoins</button>
+                    <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="terrain-buy" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <img src="img/stadium.png" class="w-[30%]" alt="">
+                        <div class="flex flex-col">
+                            <span>stadium (+1 pika(s)/seconde)</span>
+                            <div class="flex flex-row text-center justify-center gap-2">
+                      <strong id="terrain-price">10000</strong>
+                      <img src="img/pokedollars.png" class="w-[5%]" alt="">
+                    </div>
+                    </div>
+                        </button>
                     </div>
                     <!--PIERRE FOUDRE-->
-                    <div class="flex flex-row rounded-xl w-[100%]">
-                        <span><img src="img/pierre-foudre.png" class="" alt=""></span>
-                        <button id="pierre-buy" class="flex flex-col justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">Pierre (?) <strong>50000</strong> Pokecoins</button>
-                        <li class="hidden" id="pierre2"><button id="pierre2-buy">Pierre 2 (+1000 pika(s)/seconde) <strong>150000</strong> Pokecoins</button></li>
+                    <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="pierre-buy" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <img src="img/pierre-foudre.png" class="w-[20%]" alt="">
+                        <div class="flex flex-col">
+                            <span>Potion (+1 pika(s)/seconde)</span>
+                            <div class="flex flex-row text-center justify-center gap-2">
+                      <strong id="pierre-price">50000</strong>
+                      <img src="img/pokedollars.png" class="w-[5%]" alt="">
+                    </div>
+                    </div>
+                        </button>
                     </div>
                 </div>
                 <div class="flex flex-row w-[100%] h-[33%] gap-4">
@@ -239,74 +310,120 @@
                 </div>
             </div>       
     </div>
+    <!--COOKIE CLIKER 2.0-->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-red-600 p-4 text-center text-white shadow-lg opacity-90 z-50">
+        Ce site utilise des cookies pour améliorer votre expérience.
+        <button class="ml-4 px-4 py-2 bg-green-500 text-white rounded" onclick="Cookies()">Accepter</button>
+        <button class="ml-4 px-4 py-2 bg-red-500 text-white rounded" onclick="Cookies()">Refuser</button>
+    </div>      
 
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Éléments du DOM
-  var gameplayMenu = document.getElementById('gameplay-menu');
-  var attackMenu = document.getElementById('attack-menu');
-  var shoppingMenu = document.getElementById('shopping-menu');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Shared DOM references
+            var usernameForm = document.getElementById('usernameForm');
+            var usernameInput = document.getElementById('username');
+            var leaderboardModal = document.getElementById('leaderboard');
+            var openLeaderboardButton = document.getElementById('ranking-button');
+            var closeLeaderboardButton = document.getElementById('close-leaderboard');
+            var leaderboardTableBody = document.querySelector("#leaderboard table tbody");
+        
+            // Function to handle the username form submission
+            function handleFormSubmit(event) {
+                event.preventDefault();
+                var username = usernameInput.value.trim();
+                if (username) {
+                    localStorage.setItem('username', username); // Consider checking and sanitizing input
+                    console.log('Username submitted:', username);
+                } else {
+                    alert('Please enter a valid username!');
+                }
+            }
+        
+            // Function to open the leaderboard modal and populate the table
+            function showLeaderboardModal() {
+                updateLeaderboard(); // Populate the table
+                leaderboardModal.classList.remove('hidden');
+            }
+        
+            function hideLeaderboardModal() {
+                leaderboardModal.classList.add('hidden');
+            }
+        
+            // Function to retrieve and populate the leaderboard
+            function updateLeaderboard() {
+                // Here you'd fetch new scores from the server/localStorage, then update the DOM.
+                // This example assumes you have a method to retrieve updated scores.
+                var updatedScores = getUpdatedScores(); // Replace with actual score retrieval
+        
+                leaderboardTableBody.innerHTML = ''; // Clear existing rows
+        
+                updatedScores.forEach(function(score, index) {
+                    var newRow = `
+                        <tr>
+                            <td class="border px-4 py-2">${index + 1}</td>
+                            <td class="border px-4 py-2">${score.username}</td>
+                            <td class="border px-4 py-2">${score.score}</td>
+                        </tr>
+                    `;
+                    leaderboardTableBody.innerHTML += newRow;
+                });
+            }
+        
+            // Event listeners
+            usernameForm.addEventListener('submit', handleFormSubmit);
+            openLeaderboardButton.addEventListener('click', showLeaderboardModal);
+            closeLeaderboardButton.addEventListener('click', hideLeaderboardModal);
+        
+            // Further logic and event listeners can be added here (e.g., for other menus or modals)
+        
+            // NOTE: The function 'getUpdatedScores' should be defined or replaced with your actual logic
+            // for retrieving the latest scores. The auto-refresh logic should also be handled based on your application's requirements.
+        });
 
-  var boutonAttaque = document.getElementById('attack');
-  var boutonShop = document.getElementById('shop');
-  var boutonBackFromAttack = document.getElementById('button-back-from-attack');
-  var boutonBackFromShop = document.getElementById('button-back-from-shop');
-  var modal = document.getElementById('rules');
-  var openModalButton = document.getElementById('guide');
-  var closeModalButton = document.getElementById('close-modal');
+        function Cookies() {
+                document.getElementById('cookie-banner').style.display = 'none';
+            }
 
-  function hideAllMenus() {
-    gameplayMenu.classList.add('hidden');
-    attackMenu.classList.add('hidden');
-    shoppingMenu.classList.add('hidden');
-  }
+            function getUpdatedScores() {
+    // Cette fonction est un exemple et dépend de la manière dont vous stockez les scores des utilisateurs.
+    // Ici, nous simulons une récupération de données.
 
-  function showModal() {
-    modal.style.display = 'flex';  
-    modal.style.justifyContent = 'center';
-    modal.style.alignItems = 'center';
-  }
+    var userScores = [
+        { username: "User1", score: 3000 },
+        { username: "User2", score: 2500 },
+        { username: "User3", score: 2000 },
+        { username: "User4", score: 1000 }
+    ];
 
-  function hideModal() {
-    modal.style.display = 'none';
-  }
+    // Essayez de récupérer les scores de l'utilisateur depuis le localStorage
+    var storedUserScore = localStorage.getItem('score');
+    var storedUsername = localStorage.getItem('username');
 
-  document.addEventListener('click', function(event) {
+    if (storedUserScore && storedUsername) {
+        var currentUserScore = {
+            username: storedUsername,
+            score: parseInt(storedUserScore, 10) // Assurez-vous que le score est un nombre
+        };
 
-    switch (event.target) {
-      case boutonAttaque:
-        hideAllMenus();
-        attackMenu.classList.remove('hidden');
-        break;
-
-      case boutonShop:
-        hideAllMenus();
-        shoppingMenu.classList.remove('hidden');
-        break;
-
-      case boutonBackFromAttack:
-        hideAllMenus();
-        gameplayMenu.classList.remove('hidden');
-        break;
-
-      case boutonBackFromShop:
-        hideAllMenus();
-        gameplayMenu.classList.remove('hidden');
-        break;
-
-      case openModalButton:
-        showModal();
-        break;
-
-      case closeModalButton:
-        hideModal();
-        break;
+        // Vous pouvez choisir de remplacer le score de l'utilisateur s'il existe déjà ou simplement l'ajouter à la liste
+        var existingUser = userScores.find(user => user.username === currentUserScore.username);
+        
+        if (existingUser) {
+            existingUser.score = currentUserScore.score; // Mettre à jour le score existant
+        } else {
+            userScores.push(currentUserScore); // Ajout du nouvel utilisateur
+        }
     }
-  });
-});
 
+    // Trier les scores
+    userScores.sort((a, b) => b.score - a.score);
 
-    </script>
+    return userScores; // Retourner les scores mis à jour
+}
+
+        </script>
+        
+
 
 </body>
 </html>
