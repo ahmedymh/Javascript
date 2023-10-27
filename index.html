@@ -16,7 +16,43 @@
 
   <!--BACKGROUND PERSO, A INTEGRER A TAILWIND-->
   <style>
-    
+    /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
   </style>
 </head>
 <body class="custom-background">
@@ -100,14 +136,13 @@
               <li><button id="multiexp-buy">Multi-exp (+5 pika(s)/seconde) <strong id="multiexp-price">2500</strong> Pokecoins</button><span>Nombre : <span id="multiexp-level">1</span></span></li>
               <li><button id="terrain-buy">Terrain (+25 pika(s)/seconde) <strong id="terrain-price">10000</strong> Pokecoins</button><span>Nombre : <span id="terrain-level">1</span></span></li>
               <li id="pierre1"><button id="pierre-buy">Pierre (+100 pika(s)/seconde) <strong>50000</strong> Pokecoins</button></li>
-              <li class="hidden" id="pierre2"><button id="pierre2-buy">Pierre 2 (+1000 pika(s)/seconde) <strong>150000</strong> Pokecoins</button></li>
             </ul>
           </div>
           <div id="msg-title" class="bg-blue-800">
             <h3 class="text-start pl-6 p-2">Attaque</h3>
           </div>
           <div class="pt-1 text-center text-xl bg-gray-300" id="attaque-interface-lg">
-            <p>Votre curseur fait <span id="click-power-multiple">1</span> pika(s) par click.</p>
+            <p>Votre curseur fait <span id="autoclick-multiple">1</span> pika(s) par click.</p>
             <ul>
               <!--CHARGE-->
               <li class="flex justify-between items-center p-1 bg-blue-800">
@@ -162,7 +197,22 @@
       </div>
 
     </div>
+  <!-- Modal -->
+  <!-- Trigger/Open The Modal -->
+  <button id="myBtn">Open Modal</button>
 
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close"><button>Ok</button></span>
+      <h1>Game Over</h1>
+      <p>Try again...</p>
+    </div>
+
+  </div>
+  
   <!-- FOOTER -->
   <div class="lg:flex lg:justify-center lg:items-center pb-8 text-lg">
       <footer class="bg-zinc-200 p-6 pb-20 lg:w-1/2 rounded-b-full border-t-8 border-black bg-top bg-no-repeat" style="background-image: url(img/pokeballdecob.png)">
