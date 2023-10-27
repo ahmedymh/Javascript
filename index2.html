@@ -82,14 +82,6 @@
     </div>
 
       <!--MODAL GAME OVER -->
-      <div id="myModal" class="modal">
-        <div class="modal-content">
-          <span class="close"><button>Ok</button></span>
-          <h1>Game Over</h1>
-          <p>Try again...</p>
-        </div>  
-      </div>
-
       <div class="hidden fixed inset-0 flex items-center justify-center z-50" role="dialog" aria-modal="true" id="myModal">
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
     
@@ -101,6 +93,7 @@
                 <h3 class="text-xl font-semibold leading-6" id="modal-title">Pas de chance ...</h3>
                 <p class="text-sm text-gray-500">faut vraiment être nul !</p>
                 <p class="text-center p-6 font-bold text-xl">GAME OVER</p>
+                <button type="button" class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" id="close-gameover">Fermer</button>
                 </div>
                 <div class="bg-gray-200 rounded-b-full p-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]"></div>
             </div>
