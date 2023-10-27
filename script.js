@@ -449,6 +449,8 @@ refreshCookieScore();
     pichu.classList.remove("hidden");
     pikachu.classList.add("hidden");
     raichu.classList.add("hidden");
+    pcSpent=0;
+    pcSpentHTML.innerHTML=pcSpent;
     localStorage.clear();
     location.reload();
   };
@@ -457,6 +459,24 @@ refreshCookieScore();
             LeaderBoard + Modal
 
   ********************************/
+  /********************************
+      Cookies
+  ********************************/
+  //DOM Content 
+  let cookieBanner = document.getElementById("cookie-banner");
+  let cookiesaccepted = document.getElementById("cookies-accept");
+  let cookierefused = document.getElementById("cookies-refuse")
+  function Cookies() {
+    cookieBanner.classList.add("hidden");
+    localStorage.setItem("cookies", "yes");
+    }
+  cookiesaccepted.addEventListener("click", Cookies);
+  cookierefused.addEventListener("click", Cookies);
+
+   /********************************
+      Leaderboard
+  ********************************/
+  
     let usernameForm = document.getElementById('usernameForm');
     let usernameInput = document.getElementById('username');
     let leaderboardModal = document.getElementById('leaderboard');
@@ -467,7 +487,7 @@ refreshCookieScore();
     // Function to handle the username form submission
     function handleFormSubmit(event) {
         event.preventDefault();
-        var username = usernameInput.value.trim();
+        let username = usernameInput.value.trim();
         if (username) {
             localStorage.setItem('username', username); // Consider checking and sanitizing input
             console.log('Username submitted:', username);
@@ -506,32 +526,16 @@ refreshCookieScore();
         });
     }
 
-    // Event listeners
-    usernameForm.addEventListener('submit', handleFormSubmit);
-    openLeaderboardButton.addEventListener('click', showLeaderboardModal);
-    closeLeaderboardButton.addEventListener('click', hideLeaderboardModal);
+    
 
     // Further logic and event listeners can be added here (e.g., for other menus or modals)
 
     // NOTE: The function 'getUpdatedScores' should be defined or replaced with your actual logic
     // for retrieving the latest scores. The auto-refresh logic should also be handled based on your application's requirements.
 
-    /********************************
-      Cookies
-  ********************************/
-  //DOM Content 
-  let cookieBanner = document.getElementById("cookie-banner");
-  let cookiesaccepted = document.getElementById("cookies-accept");
-  let cookierefused = document.getElementById("cookies-refuse")
-  function Cookies() {
-    cookieBanner.classList.add("hidden");
-    localStorage.setItem("cookies", "yes");
-    }
-  cookiesaccepted.addEventListener("click", Cookies);
-  cookierefused.addEventListener("click", Cookies);
+
   function getUpdatedScores() {
-  // Cette fonction est un exemple et dépend de la manière dont vous stockez les scores des utilisateurs.
-  // Ici, nous simulons une récupération de données.
+
 
   let userScores = [
   { username: "Hmitch", score: 50001 },
@@ -581,7 +585,10 @@ refreshCookieScore();
   let openRulesModalButton = document.getElementById('guide');
   let closeRulesModalButton = document.getElementById('close-modal');
   
-
+  // Event listeners
+  usernameForm.addEventListener('submit', handleFormSubmit);
+  openLeaderboardButton.addEventListener('click', showLeaderboardModal);
+  closeLeaderboardButton.addEventListener('click', hideLeaderboardModal);
 
   function hideAllMenus() {
   gameplayMenu.classList.add('hidden');
