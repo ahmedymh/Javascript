@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Reference to DOM elements
   let score = document.getElementById("score");
   function refreshCookieScore() {
-      score.innerHTML = ` ${scoreCount}`;
+      score.innerHTML = `${scoreCount}`;
       localStorage.setItem("score", scoreCount);
       localStorage.setItem ("clickPower", clickPower)
       console.log(scoreCount);
