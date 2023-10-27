@@ -263,7 +263,7 @@ refreshCookieScore();
   const items = [
     { id: "charge", price: 50, level: 1, power: 1, initialPrice:50 },
     { id: "etincelle", price: 200, level: 1, power: 2, initialPrice:200 },
-    { id: "fatalfoudre", price: 10, level: 1, power: 5, initialPrice:10 },
+    { id: "fatalfoudre", price: 500, level: 1, power: 5, initialPrice:500 },
     { id: "trempette", price: 1000, level: 1, power: -10, initialPrice:1000 }
   ];
   
@@ -376,25 +376,32 @@ refreshCookieScore();
       }
     });
     localStorage.setItem("pcSpent",pcSpent);
-  }, 10);
+  }, 500);
 
   // Items à delock
-    // items.forEach(item => {
-    //   const itemElementunlocked = document.getElementById(`${item.id}-unlocked`);
-    //   const itemElement = document.getElementById(`${item.id}-buy`);
-    //   if (scoreCount>item.price){
-    //     itemElementunlocked.classList.remove("hidden");
-    //     itemElement.classList.add("hidden");
-    //   }
-    // });
-    // itemsData.forEach(item => {
-    //   const itemElementunlocked = document.getElementById(`${item.id}-unlocked`);
-    //   const itemElement = document.getElementById(`${item.id}-buy`);
-    //   if (scoreCount>item.price){
-    //     itemElementunlocked.classList.add("hidden");
-    //     itemElement.classList.remove("hidden");
-    //   }
-    // });
+  setInterval(() => {
+    items.forEach(item => {
+      const itemElementunlocked = document.getElementById(`${item.id}-locked`);
+      const itemElement = document.getElementById(`${item.id}-buy`);
+      const itemPrice = item.initialPrice;
+      
+      if (scoreCount>=itemPrice || pcSpent>=itemPrice){
+        itemElementunlocked.parentElement.classList.add("hidden");
+        itemElement.parentElement.classList.remove("hidden");
+      }
+    });
+    itemsData.forEach(item => {
+      const itemElementunlocked = document.getElementById(`${item.id}-locked`);
+      const itemElement = document.getElementById(`${item.id}-buy`);
+      const itemPrice = item.initialPrice;
+      if (scoreCount>=itemPrice || pcSpent>=itemPrice){
+        itemElementunlocked.parentElement.classList.add("hidden");
+        itemElement.parentElement.classList.remove("hidden");
+      }
+    });
+  }, 500);
+    
+   
     /********************************
       
             Pierre évolutive
