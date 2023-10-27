@@ -92,7 +92,7 @@
       
     
     <!--INTERFACE-->
-    <div id="gameplay-interface" class="relative bg-cover w-screen h-screen bg bg-[url(img/stadium.png)]">
+    <div id="gameplay-interface" class="relative bg-cover w-screen h-screen  bg-[url(img/stadiumPhone.png)] md:bg-[url(img/stadiumDesktop.png)]">
         <div class="flex justify-center lg:ml-4">
             <div class="flex flex-col fixed shrink absolute top-2 p-1 w-[100%] md:w-[50%] mt-4 bg-stone-500 rounded-xl w-1/3 text-center pl-4 sm:my-2">
                 <div class="flex justify-center gap-2 items-center text-lg " id="score-wrapper"><span>Wallet :</span><strong id="score"></strong>
@@ -121,12 +121,13 @@
         <div id="pokecoin" class="hidden absolute z-30">
             <input type="image" src="img/PokeCoin.png" name="pichu" class="" id="counter"/>
         </div>
-        <div id="pichu" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <input type="image" src="img/pichu.png" name="pichu" class="transition-transform transform hover:scale-90" id="pichu"/></div>
-        <div id="pikachu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div id="pichu" class="halo absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <input type="image" src="img/pichu.png" name="pichu" class="transition-transform transform hover:scale-90" id="pichu"/>
+        </div>
+        <div id="pikachu" class="halo hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <input type="image" src="img/pikachu.png" name="pikachu" class="transition-transform transform hover:scale-90" id="pikachu"/>
         </div>
-        <div id="Raichu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div id="Raichu" class="halo hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <input type="image" src="img/Raichu.png" name="raichu" class="transition-transform transform hover:scale-90" id="raichu"/>
         </div>
         <button id="myBtn">Open Modal</button>
@@ -286,7 +287,8 @@
                     <!--STADE-->
                     <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
                         <button id="terrain-buy" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
-                        <img src="img/stadium.png" class="w-[30%]" alt="">
+                        <img src="img/arenaUp.png" class="w-[30%]" alt="img/arenaUpPhone">
+                        <img src="" alt="md:arenaUp">
                         <div class="flex flex-col">
                             <span>Stade (+25)</span>
                             <div class="flex flex-row text-center justify-center gap-2">
