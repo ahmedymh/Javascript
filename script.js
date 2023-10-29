@@ -178,6 +178,7 @@ refreshCookieScore();
     }, 12 * 500);
     clickPower+=100;
     autoclickMultipleAtt.innerHTML = autoclickMultipleAttAmount+=100;
+    pierreBuy.classList.add("disabled");
   }
   /********************************
   
@@ -263,7 +264,7 @@ refreshCookieScore();
   const items = [
     { id: "charge", price: 50, level: 1, power: 1, initialPrice:50 },
     { id: "etincelle", price: 200, level: 1, power: 2, initialPrice:200 },
-    { id: "fatalfoudre", price: 500, level: 1, power: 5, initialPrice:500 },
+    // { id: "fatalfoudre", price: 500, level: 1, power: 5, initialPrice:500 },
     { id: "trempette", price: 1000, level: 1, power: -10, initialPrice:1000 }
   ];
   let pcSpent = parseInt(localStorage.getItem("pcSpent")) || 0;
@@ -299,7 +300,38 @@ refreshCookieScore();
     buyItem(item);
   });
   
- 
+  let boostDuration = 0;
+  let fatalfoudrepriceAmount = 10;
+  function boostDuration2(){
+    let originalClickPower = clickPower;
+    clickPower+=9;
+    refreshCookieScore();
+    boostDuration = 30;    
+    setTimeout(() => {
+      clickPower = originalClickPower;
+      refreshCookieScore();
+      boostDuration = 0;
+      document.getElementById("boost-duration").innerHTML = boostDuration;
+    }, 30000);
+    const countdown = setInterval(function () {
+      boostDuration--;
+      document.getElementById("boost-duration").innerHTML = boostDuration;
+      if (boostDuration <= 0) {
+          clearInterval(countdown);
+          boostDuration = 30;
+          document.getElementById("boost-duration").innerHTML = boostDuration;
+      }
+    }, 1000);
+  }
+  // Add click event listener to the button
+  document.getElementById("fatalfoudre-buy").addEventListener("click", ()=>{
+    if (fatalfoudrepriceAmount<scoreCount){
+      scoreCount-=fatalfoudrepriceAmount;
+      boostDuration2();
+      refreshCookieScore();
+      document.getElementById("boost-duration").innerHTML = boostDuration;
+    }
+  });
 
   /********************************
 
@@ -536,7 +568,6 @@ refreshCookieScore();
             leaderboardTableBody.innerHTML += newRow;
         });
     }
-    console.log(updateLeaderboard)
 
 
   function getUpdatedScores() {
@@ -574,7 +605,6 @@ refreshCookieScore();
 
   return userScores; // Retourner les scores mis à jour
   }
-console.log(getUpdatedScores)
   // Éléments du DOM
   let gameplayMenu = document.getElementById('gameplay-menu');
   let attackMenu = document.getElementById('attack-menu');
