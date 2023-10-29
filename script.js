@@ -264,7 +264,7 @@ refreshCookieScore();
   const items = [
     { id: "charge", price: 50, level: 1, power: 1, initialPrice:50 },
     { id: "etincelle", price: 200, level: 1, power: 2, initialPrice:200 },
-    { id: "trempette", price: 1000, level: 1, power: -10, initialPrice:1000 }
+    { id: "trempette", price: 1000, level: 1, power: -50, initialPrice:1000 }
   ];
   let pcSpent = parseInt(localStorage.getItem("pcSpent")) || 0;
   let pcSpentHTML = document.getElementById("spend");
