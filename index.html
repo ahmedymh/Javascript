@@ -24,6 +24,7 @@
         <!--CENTRE-->
         <div class="bg-white text-center px-5 py-4">
             <img src="img/title.png" alt="" class="m-auto pb-4">
+            <div class="">ALL RIGHTS UNRESERVED, DON'T TAKE OUR MONEY</div>
             <h3 class="text-xl font-semibold leading-6" id="modal-title">Bienvenue</h3>
             <p class="text-sm text-gray-500">Les règles sont simples ...</p>
             <ol class="text-center p-6">
@@ -32,19 +33,16 @@
                 <li>Faites évoluer votre Pichu</li>
                 <li>Mais d'abord, choississez un nom d'utilisateur :</li>
             </ol>
-            <form id="usernameForm" class="flex flex-col p-4 gap-2 text-center">
-                <label for="username">Entrez votre pseudonyme:</label>
-                <input type="text" id="username" name="username" required>
-                <input type="submit" value="Envoyer">
+            <form id="usernameForm" class="flex flex-col p-2 gap-2 text-center pb-6">
+                <label for="username" class="font-bold text-red-500">Entrez votre pseudonyme:</label>
+                <input class="border-2 border-black" type="text" id="username" name="username" required>
+                <input class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" type="submit" value="Envoyer">
             </form>
             <button type="button" class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" id="ranking-button">Classement</button>
             <button type="button" class="bg-red-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-red-500 focus:outline-none" id="close-modal">Compris !</button>
             </div>
-            <div class="bg-gray-200 rounded-b-full pb-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]">
-              <div class="">ALL RIGHTS UNRESERVED, DON'T TAKE OUR MONEY</div>
-            </div>
+            <div class="bg-gray-200 rounded-b-full p-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]"></div>
         </div>
-        
     </div>
 
     <!--MODAL GAME OVER -->
@@ -121,13 +119,13 @@
         <div id="pokecoin" class="hidden absolute z-30">
             <input type="image" src="img/PokeCoin.png" name="pichu" class="" id="counter"/>
         </div>
-        <div id="pichu" class="halo absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div id="pichu" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <input type="image" src="img/pichu.png" name="pichu" class="transition-transform transform hover:scale-90" id="pichu"/>
         </div>
-        <div id="pikachu" class="halo hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div id="pikachu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <input type="image" src="img/pikachu.png" name="pikachu" class="transition-transform transform hover:scale-90" id="pikachu"/>
         </div>
-        <div id="Raichu" class="halo hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <div id="Raichu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <input type="image" src="img/Raichu.png" name="raichu" class="transition-transform transform hover:scale-90" id="raichu"/>
         </div>
     </div>
