@@ -508,8 +508,7 @@ refreshCookieScore();
             alert('Please enter a valid username!');
         }
     }
-    console.log(handleFormSubmit);
-console.log(leaderboardTableBody);
+
     // Function to open the leaderboard modal and populate the table
     function showLeaderboardModal() {
         updateLeaderboard(); // Populate the table
