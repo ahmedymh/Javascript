@@ -1,62 +1,66 @@
-# Construction du site d'un restaurant fictif a l'aide de TailwindCSS de N. Chelbat
+# Pickliker
 
-Ce projet consiste en la réalisation d'un site vitrine de restaurant à l'aide du Frameworks Tailwind CSS
+Ce projet, "Pickliker", est un jeu interactif de type "cookie clicker" avec de nombreuses fonctionnalités cachées et des éléments surprenants qui s'activent au cours du jeu. Le projet a été construit en utilisant "Vite" pour une expérience de développement plus rapide et plus efficace.
 
-## Aperçu du site
+## Aperçu du jeu
 
-Le portfolio est conçu avec un look minimaliste, mettant en avant mon nom, mon domaine d'expertise et des liens vers mes profils sur diverses plateformes professionnelles et sociales.
+Pickliker a été conçu pour offrir une expérience amusante et addictive. Le jeu devient progressivement plus intéressant avec des éléments qui se débloquent, une arène qui change dynamiquement, et beaucoup plus de surprises !
 
-![Aperçu du site](img/SCREENSHOTS/home.jpg)
+![Aperçu du jeu](img/SCREEN/desktop.png)
 
-Celui ci est pensé comme un hamburger, particulièrement la page d'acceuil qui reprend également les condiments et l'ensemble du site et est complétement responsive.
+Le jeu est également entièrement responsive, ce qui signifie que vous pouvez y jouer efficacement sur des appareils mobiles.
 
-![Apercu mobile](img/SCREENSHOTS/MOBILE.png)
+![Aperçu mobile](img/SCREEN/mobile.png)
 
 ## Technologies Utilisées
 
 - HTML
 - CSS
-- Javascript
-- TailWind CSS ( EN CDN )
+- JavaScript
+- Tailwind CSS (via CDN)
 - [Font Awesome](https://fontawesome.com/) pour les icônes
 - Google Fonts
-- DALL-E 
-- Un peu de Chat GPT
+- Vite
+
+## Fonctionnalités spéciales
+
+- **Déblocage d'éléments** : Au fur et à mesure que vous progressez dans le jeu, de nouveaux éléments se débloquent, ajoutant une dimension supplémentaire à l'expérience globale.
+- **Arène dynamique** : L'arène change de manière significative lors de votre premier achat, vous récompensant et vous incitant à continuer à jouer.
+- **Stockage local** : Vos scores et votre progression sont enregistrés dans le stockage local, vous pouvez donc quitter le jeu et revenir à tout moment sans perdre votre progression.
+- **Classement** : Entrez votre nom pour voir où vous vous situez par rapport aux autres joueurs. Le classement est mis à jour en fonction de vos scores.
+- **Pokeballs** : Utilisez les pokeballs pour randomiser les scores, ajoutant un élément de chance au jeu.
+- **Évolution** : Atteignez un score de 15 000 pour débloquer une évolution. Utilisez la pierre d'évolution pour accéder à des formes encore plus puissantes !
 
 ## Structure du Projet
 
-Le projet contient les fichiers et dossiers suivants :
-
-- `index.html` : la page d'acceuil du site, plus un "cookie clicker" que j'ai désactivé sur les autres pages.
-- `menu.html` : reprend la structure de la page d'acceuil, sans les condiments et y incorpore un menu responsive.
-- `gallery.html` : il existe 4 variantes de cette page, une par pagination, elles reprennent également la structure de la page d'acceuil pour y ajouter des photos.
-- `contact.html` : reprend la structure de la page d'acceuil et remplace le corp par un formulaire de contact.
-- `about.html` : reprend la structure des pages précédente et remplace le corp par la localisation des restaurants.
-- `css/` : un dossier contenant le fichier `custom.css` qui contrôle les insertions personnelles dans le CSS.
-- `img/` : un dossier contenant des sous dossiers et toutes les images présentes dans ce dépot.
-- `README.md` : ce fichier qui décrit le projet.
+- `index.html` : La page principale du jeu, contenant la logique principale du "clicker".
+- `style.css` : Contient les quelques ajouts CSS.
+- `main.js` : La configuration générale du site.
+- `script.js` : Les scripts présent sur la page.
+- `img/` : Pour toutes les images utilisées dans le jeu, y compris les captures d'écran et les éléments graphiques.
+- `README.md` : Ce fichier détaillant le projet et comment le configurer.
+- Les fichiers ajouté par l'installation de TailwindCSS & de Vite.
 
 ## Installation
 
 1. Clonez ce dépôt sur votre machine locale :
-    ```bash
-    git clone git@github.com:Eneuem/restaurant-css-framework.git
-    ```
-2. Ouvrez le fichier `index.html` ou n'importe quel page pour ouvrir le site et le visiter.
+   ```bash
+   git clone git@github.com:ahmedymh/Javascript.git
+   ```
+2. Depuis le dossier du projet, installez les dépendances nécessaires (si applicable) :
+   ```bash
+   npm install
+   ```
+3. Lancez le projet :
+   ```bash
+   npm run dev
+   ```
+
+Ceci démarrera le serveur de développement fourni par Vite.
+
+4. Ouvrez votre navigateur et accédez à `http://localhost:3000` (ou un autre port si vous avez configuré différemment) pour commencer à jouer.
 
 ## Personnalisation
 
-Vous pouvez personnaliser ce portfolio en modifiant les fichier `.html` pour y inclure vos informations personnelles, et en ajustant le fichier `css/custom.css` pour changer l'apparence selon vos préférences.
-
-## Licence
-
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
-## Contact
-
-- Naïm Chelbat - nemozor@gmail.com
-- Lien vers le projet : https://eneuem.github.io/restaurant-css-framwork
-
-
-
+Le jeu est hautement personnalisable. Les développeurs peuvent ajuster les règles, le style, et ajouter de nouvelles fonctionnalités en modifiant les fichiers de code source.
 
