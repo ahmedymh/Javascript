@@ -266,9 +266,8 @@ refreshCookieScore();
     { id: "fatalfoudre", price: 500, level: 1, power: 5, initialPrice:500 },
     { id: "trempette", price: 1000, level: 1, power: -10, initialPrice:1000 }
   ];
-  
+  let pcSpent = parseInt(localStorage.getItem("pcSpent")) || 0;
   let pcSpentHTML = document.getElementById("spend");
-  let pcSpent = 0;
   function refreshItemLevel(item) {
     const priceElement = document.getElementById(`${item.id}-price`);
     priceElement.innerHTML = item.price;
@@ -322,7 +321,7 @@ refreshCookieScore();
     allMultiple2.innerHTML = allMultiple;
     localStorage.setItem(`itemLevel_${item.id}`, item.level);
     localStorage.setItem("allMultiple", allMultiple);
-    localStorage.setItem("cookiespent", pcSpent);
+    localStorage.setItem("pcSpent", pcSpent);
   }
 
   let itemInt;
@@ -405,8 +404,8 @@ refreshCookieScore();
     arenaButton.addEventListener ('click',()=>{
       Background.classList.remove("md:bg-[url(img/stadiumDesktop.png)]");
       Background.classList.remove("bg-[url(img/stadiumPhone.png)]");
-      Background.classList.add("bg-[url(img/arenaUpPhone.png)]");
       Background.classList.add("md:bg-[url(img/arenaUp.png)");
+      Background.classList.add("bg-[url(img/arenaUpPhone.png)]");
     })
    
     /********************************
@@ -496,12 +495,12 @@ refreshCookieScore();
     let leaderboardModal = document.getElementById('leaderboard');
     let openLeaderboardButton = document.getElementById('ranking-button');
     let closeLeaderboardButton = document.getElementById('close-leaderboard');
-    let leaderboardTableBody = document.querySelector("#leaderboard table tbody");
+    let leaderboardTableBody = document.getElementById("tbody");
 
     // Function to handle the username form submission
     function handleFormSubmit(event) {
         event.preventDefault();
-        let username = usernameInput.value.trim();
+   let username = usernameInput.value.trim();     
         if (username) {
             localStorage.setItem('username', username); // Consider checking and sanitizing input
             console.log('Username submitted:', username);
@@ -509,7 +508,8 @@ refreshCookieScore();
             alert('Please enter a valid username!');
         }
     }
-
+    console.log(handleFormSubmit);
+console.log(leaderboardTableBody);
     // Function to open the leaderboard modal and populate the table
     function showLeaderboardModal() {
         updateLeaderboard(); // Populate the table
@@ -519,11 +519,9 @@ refreshCookieScore();
     function hideLeaderboardModal() {
         leaderboardModal.classList.add('hidden');
     }
-
+    
     // Function to retrieve and populate the leaderboard
     function updateLeaderboard() {
-        // Here you'd fetch new scores from the server/localStorage, then update the DOM.
-        // This example assumes you have a method to retrieve updated scores.
         let updatedScores = getUpdatedScores(); // Replace with actual score retrieval
 
         leaderboardTableBody.innerHTML = ''; // Clear existing rows
@@ -539,13 +537,7 @@ refreshCookieScore();
             leaderboardTableBody.innerHTML += newRow;
         });
     }
-
-    
-
-    // Further logic and event listeners can be added here (e.g., for other menus or modals)
-
-    // NOTE: The function 'getUpdatedScores' should be defined or replaced with your actual logic
-    // for retrieving the latest scores. The auto-refresh logic should also be handled based on your application's requirements.
+    console.log(updateLeaderboard)
 
 
   function getUpdatedScores() {
@@ -583,7 +575,7 @@ refreshCookieScore();
 
   return userScores; // Retourner les scores mis à jour
   }
-
+console.log(getUpdatedScores)
   // Éléments du DOM
   let gameplayMenu = document.getElementById('gameplay-menu');
   let attackMenu = document.getElementById('attack-menu');
@@ -623,10 +615,6 @@ refreshCookieScore();
   items.forEach(item => {
     buyItem(item);
   });
-
-  function showLeaderboardModal() {
-  leaderboardModal.classList.remove('hidden');
-  }
 
   function hideLeaderboardModal() {
   leaderboardModal.classList.add('hidden');
@@ -711,6 +699,7 @@ function initializing (){
    }
   pcSpent =parseInt(localStorage.getItem("pcSpent"));
   pcSpentHTML.innerHTML = pcSpent;
+  console.log(pcSpent);
 }           
 initializing();
 });
