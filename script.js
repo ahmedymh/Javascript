@@ -264,7 +264,6 @@ refreshCookieScore();
   const items = [
     { id: "charge", price: 50, level: 1, power: 1, initialPrice:50 },
     { id: "etincelle", price: 200, level: 1, power: 2, initialPrice:200 },
-    // { id: "fatalfoudre", price: 500, level: 1, power: 5, initialPrice:500 },
     { id: "trempette", price: 1000, level: 1, power: -10, initialPrice:1000 }
   ];
   let pcSpent = parseInt(localStorage.getItem("pcSpent")) || 0;
@@ -301,10 +300,10 @@ refreshCookieScore();
   });
   
   let boostDuration = 0;
-  let fatalfoudrepriceAmount = 10;
+  let fatalfoudrepriceAmount = 500;
   function boostDuration2(){
     let originalClickPower = clickPower;
-    clickPower+=9;
+    clickPower+=19;
     refreshCookieScore();
     boostDuration = 30;    
     setTimeout(() => {
