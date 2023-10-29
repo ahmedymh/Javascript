@@ -6,11 +6,11 @@ Ce projet, "Pickliker", est un jeu interactif de type "cookie clicker" avec de n
 
 Pickliker a été conçu pour offrir une expérience amusante et addictive. Le jeu devient progressivement plus intéressant avec des éléments qui se débloquent, une arène qui change dynamiquement, et beaucoup plus de surprises !
 
-![Aperçu du jeu](img/SCREEN/desktop.png)
+![Aperçu du jeu](img/Screen/desktop.png)
 
 Le jeu est également entièrement responsive, ce qui signifie que vous pouvez y jouer efficacement sur des appareils mobiles.
 
-![Aperçu mobile](img/SCREEN/mobile.png)
+![Aperçu mobile](img/Screen/mobile.png)
 
 ## Technologies Utilisées
 
