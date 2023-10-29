@@ -344,13 +344,14 @@ refreshCookieScore();
   const itemsData = [
     { id: "potion", price: 500, power: 1, initialPrice:500, level:0},
     { id: "multiexp", price: 2500, power: 5, initialPrice :2500, level:0},
-    { id: "terrain", price: 10, power: 25, initialPrice:10, level:0}
+    { id: "terrain", price: 40, power: 2, initialPrice:40, level:0}
   ];
   
   function refreshItem(item) {
     const itemPrice = document.getElementById(`${item.id}-price`);
     itemPrice.innerHTML = item.price;
     allMultiple2.innerHTML = allMultiple;
+    pcSpent.innerHTML = pcSpent;
     localStorage.setItem(`itemLevel_${item.id}`, item.level);
     localStorage.setItem("allMultiple", allMultiple);
     localStorage.setItem("pcSpent", pcSpent);
@@ -362,9 +363,9 @@ refreshCookieScore();
     itemBuy.addEventListener("click", () => {
       if (scoreCount >= item.price) {
         scoreCount -= item.price;
+        pcSpent += item.price;
         refreshCookieScore();
         item.level++;
-        pcSpent += item.price;
         item.price = Math.floor(item.price * 1.20);
         itemInt = window.setInterval(() => {
           scoreCount += item.power;
@@ -409,9 +410,11 @@ refreshCookieScore();
     localStorage.setItem("pcSpent",pcSpent);
     if (fatalfoudrepriceAmount>scoreCount){
       document.getElementById("fatalfoudre-buy").classList.add("cursor-not-allowed");
+      document.getElementById("fatalfoudre-buy").classList.add("disabled:opacity-25");
     }
     else {
-      document.getElementById("fatalfoudre-buy").classList.remove("cursor-not-allowed")
+      document.getElementById("fatalfoudre-buy").classList.remove("cursor-not-allowed");
+      document.getElementById("fatalfoudre-buy").classList.remove("disabled:opacity-25");
     }
   }, 500);
 
