@@ -322,6 +322,7 @@ refreshCookieScore();
       }
     }, 1000);
   }
+  
   // Add click event listener to the button
   document.getElementById("fatalfoudre-buy").addEventListener("click", ()=>{
     if (fatalfoudrepriceAmount<scoreCount){
@@ -406,6 +407,12 @@ refreshCookieScore();
       }
     });
     localStorage.setItem("pcSpent",pcSpent);
+    if (fatalfoudrepriceAmount>scoreCount){
+      document.getElementById("fatalfoudre-buy").classList.add("cursor-not-allowed");
+    }
+    else {
+      document.getElementById("fatalfoudre-buy").classList.remove("cursor-not-allowed")
+    }
   }, 500);
 
   // Items à delock
