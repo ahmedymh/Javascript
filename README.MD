@@ -64,3 +64,10 @@ Ceci démarrera le serveur de développement fourni par Vite.
 
 Le jeu est hautement personnalisable. Les développeurs peuvent ajuster les règles, le style, et ajouter de nouvelles fonctionnalités en modifiant les fichiers de code source.
 
+## Contributeurs
+- Naim : [Eneuem/Eratz](https://github.com/Eneuem)
+- Gwendoline : [Fainteasy/Cthulwho](https://github.com/Fainteasy)
+- Ahmed : [Hmitch/Ahmedymh](https://github.com/ahmedymh)
+
+## But
+Ce projet a été réalisé dans le cadre de la formation BeCode de Bruxelles en Junior Dev (promo Swartz-8 - 2023). Il a été demandé de développer un Cookie Clicker avec quelques fonctionnalités, et pour le reste, laisser notre imagination le complexifier !
