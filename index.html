@@ -1,0 +1,342 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pikliker</title>
+  <!--JS-->
+  <script src="script.js"></script>
+  <!--SCRIPT TAILWIND + FONTAWSOME + GOOGLE FONTS-->
+  
+  <script src="https://kit.fontawesome.com/d6a733dcf4.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/index-906277ca.css">
+</head>
+<body>
+
+    <!--MODAL ACCUEIL-->
+   <div class="fixed inset-0 flex items-center justify-center z-50" role="dialog" aria-modal="true" id="rules">
+    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+
+    <div class="relative z-10 w-full max-w-lg p-5">
+        <div class="bg-red-600 rounded-t-full p-12 border-b-8 border-black relative bg-bottom bg-no-repeat bg-[url(img/pokeballdecot.png)]"></div>
+        <!--CENTRE-->
+        <div class="bg-white text-center px-5 py-4">
+            <img src="/assets/title-da7b94a7.png" alt="" class="m-auto pb-4">
+            <div class="">ALL RIGHTS UNRESERVED, DON'T TAKE OUR MONEY</div>
+            <h3 class="text-xl font-semibold leading-6" id="modal-title">Bienvenue</h3>
+            <p class="text-sm text-gray-500">Les règles sont simples ...</p>
+            <ol class="text-center p-6">
+                <li>Cliquez</li>
+                <li>Débloquez des bonus</li>
+                <li>Faites évoluer votre Pichu</li>
+                <li>Mais d'abord, choississez un nom d'utilisateur :</li>
+            </ol>
+            <form id="usernameForm" class="flex flex-col p-2 gap-2 text-center pb-6">
+                <label for="username" class="font-bold text-red-500">Entrez votre pseudonyme:</label>
+                <input class="border-2 border-black" type="text" id="username" name="username" required>
+                <input class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" type="submit" value="Envoyer">
+            </form>
+            <button type="button" class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" id="ranking-button">Classement</button>
+            <button type="button" class="bg-red-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-red-500 focus:outline-none" id="close-modal">Compris !</button>
+            </div>
+            <div class="bg-gray-200 rounded-b-full p-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]"></div>
+        </div>
+    </div>
+
+    <!--MODAL GAME OVER -->
+    <div class="hidden fixed inset-0 flex items-center justify-center z-50" role="dialog" aria-modal="true" id="myModal">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        <div class="relative z-10 w-full max-w-lg p-5">
+            <div class="bg-red-600 rounded-t-full p-12 border-b-8 border-black relative bg-bottom bg-no-repeat bg-[url(img/pokeballdecot.png)]"></div>
+            <!--CENTRE-->
+            <div class="bg-white text-center px-5 py-4">
+                <img src="/assets/title-da7b94a7.png" alt="" class="m-auto pb-4">
+                <h3 class="text-xl font-semibold leading-6" id="modal-title">Pas de chance ...</h3>
+                <p class="text-sm text-gray-500">faut vraiment être nul !</p>
+                <p class="text-center p-6 font-bold text-xl">GAME OVER</p>
+                <button type="button" class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" id="close-gameover">Fermer</button>
+            </div>
+            <div class="bg-gray-200 rounded-b-full p-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]"></div>
+        </div>        
+    </div>  
+
+    <!--MODAL LEADERBOARD-->
+    <div class="hidden fixed inset-0 flex items-center justify-center z-50" role="dialog" aria-modal="true" id="leaderboard">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        <div class="relative z-10 w-full max-w-lg p-5">
+            <div class="bg-red-600 rounded-t-full p-12 border-b-8 border-black relative bg-bottom bg-no-repeat bg-[url(img/pokeballdecot.png)]"></div>
+            <!--CENTRE-->
+            <div class="bg-white text-center px-5 py-4">
+                <img src="/assets/title-da7b94a7.png" alt="" class="m-auto pb-4">
+                <h3 class="text-xl font-semibold leading-6" id="modal-title">Classement</h3>
+                <!-- Après le <h3>... -->
+                <table class="w-full table-fixed">
+                    <thead>
+                        <tr>
+                            <th class="w-1/3 px-4 py-2">Position</th>
+                            <th class="w-1/3 px-4 py-2">Nom d'utilisateur</th>
+                            <th class="w-1/3 px-4 py-2">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>              
+                <button type="button" class="bg-green-600 px-3 py-2 text-sm font-semibold text-white rounded-md shadow-sm hover:bg-green-500 focus:outline-none" id="close-leaderboard">Fermer</button>
+            </div>
+            <div class="bg-gray-200 rounded-b-full p-12 border-t-8 border-black relative flex justify-end space-x-3 bg-top bg-no-repeat bg-[url(img/pokeballdecob.png)]"></div>
+        </div>        
+    </div>  
+      
+    
+    <!--INTERFACE-->
+    <div id="gameplay-interface" class="relative bg-cover w-screen h-screen  bg-[url(img/stadiumPhone.png)] md:bg-[url(img/stadiumDesktop.png)]">
+        <div class="flex justify-center lg:ml-4">
+            <div class="flex flex-col fixed shrink absolute top-2 p-1 w-[100%] md:w-[50%] mt-4 bg-stone-500 rounded-xl w-1/3 text-center pl-4 sm:my-2">
+                <div class="flex justify-center gap-2 items-center text-lg " id="score-wrapper"><span>Wallet :</span><strong id="score"></strong>
+                    <img src="/assets/PokeCoin-460e22e1.png" alt="" class="w-[5%]">
+                </div>
+                <div class="flex justify-center gap-4 w-[100%]">
+                <div id="stats-wrapper-1" class="flex  items-center text-lg w-[20%] gap-0">
+                    <img src="/assets/PokeCoin-460e22e1.png" alt="" class="w-[15%]">
+                    <span>/ Sec : </span>
+                    <span id="autoclickmultiple2">0</span>
+                </div>
+                <div id="stats-wrapper" class="flex  items-center text-lg w-[20%] gap-0">
+                    <img src="/assets/PokeCoin-460e22e1.png" alt="" class="w-[15%]">
+                    <span>/ Click : </span>
+                    <span id="autoclick-multiple">1</span>
+                </div>
+                <div class="flex  items-center text-lg w-[20%] gap-1">
+                    <img src="/assets/PokeCoin-460e22e1.png" alt="" class="w-[15%]">
+                    <span>Dépensé : </span>
+                    <span id="spend">0</span>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div id="pokeball" class="hidden absolute z-40 top-2"><input src="img/pokeball.png" type="image" name="pokeball" id="pokeball"></div>
+        <div id="pokecoin" class="hidden absolute z-30">
+            <input type="image" src="img/PokeCoin.png" name="pichu" class="" id="counter"/>
+        </div>
+        <div id="pichu" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <input type="image" src="img/pichu.png" name="pichu" class="transition-transform transform hover:scale-90" id="pichu"/>
+        </div>
+        <div id="pikachu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <input type="image" src="img/pikachu.png" name="pikachu" class="transition-transform transform hover:scale-90" id="pikachu"/>
+        </div>
+        <div id="Raichu" class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <input type="image" src="img/Raichu.png" name="raichu" class="transition-transform transform hover:scale-90" id="raichu"/>
+        </div>
+    </div>
+            <!-- MAIN MENU -->
+            <div id="gameplay-menu" class="flex rounded-xl bg-gray-400   fixed  w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[40%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
+            <div class="flex flex-col w-[50%] gap-4">
+                <div class="bg-black rounded-xl w-[100%] h-[50%] "><button id="attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-red-400 px-4  hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 bg-gradient-to-r from-red-500 via-red-300 to-red-500">
+                    <p class="text-xl">Attaque</p>
+                </button>
+                </div>
+                <div class="bg-black rounded-xl w-[100%] h-[50%] "><button id="guide" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-green-400 px-4  hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 bg-gradient-to-r from-green-500 via-green-300 to-green-500">
+                    <p class="text-xl">Guide</p>
+                </button>
+                </div>                
+            </div>
+            <div class="flex flex-col w-[50%] gap-4">
+                <div class="bg-black rounded-xl w-[100%] h-[50%] "><button id="shop" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-blue-400 px-4  hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 bg-gradient-to-r from-blue-500 via-blue-300 to-blue-500">
+                    <p class="text-xl">Shop</p>
+                </button>
+                </div>
+                <div class="bg-black rounded-xl w-[100%] h-[50%] ">
+                    <button id="reset" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 bg-gradient-to-r from-stone-500 via-stone-300 to-stone-500">
+                    <p class="text-xl">Reset</p>
+                </button>
+                </div>
+            </div>
+            </div>
+           <!-- ATTACK MENU -->
+           <div id="attack-menu" class="hidden flex flex-col rounded-xl bg-gray-400 absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[40%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
+            
+            <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                <!--CHARGE-->
+                
+                <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="charge-buy" class="flex justify-center bg-gray-400 w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                    <img src="data:image/png;base64,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" class="w-[20%]" alt="">
+                    <div class="flex flex-col">
+                        <span>Charge (+1)</span>
+                        <div class="flex flex-row text-center justify-center gap-2">
+                  <strong id="charge-price">50</strong>
+                  <img src="/assets/pokedollars-c3e5e1e6.png" class="w-[5%] " alt="">
+                </div>
+                </div>
+                    </button>
+                </div>
+                <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="charge-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <span>???</span>
+                    </button>
+                </div>
+                <!--ETINCELLE-->
+                <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="etincelle-buy" class="flex justify-center  bg-yellow-400 hover:bg-yellow-300 w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                    <img src="data:image/png;base64,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" class="w-[20%]" alt="">
+                    <div class="flex flex-col">
+                        <span>Etincelle (+2)</span>
+                        <div class="flex flex-row text-center justify-center gap-2">
+                  <strong id="etincelle-price">200</strong>
+                  <img src="/assets/pokedollars-c3e5e1e6.png" class="w-[5%]" alt="">
+                </div>
+                </div>
+                    </button>
+                </div>
+                <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="etincelle-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <span>???</span>
+                    </button>
+                </div>
+            </div>
+            <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                <!--FATAL FOUDRE-->
+                <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="fatalfoudre-buy" class="flex justify-center bg-yellow-400 hover:bg-yellow-300 w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                    <img src="data:image/png;base64,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" class="w-[20%]" alt="">
+                    <div class="flex flex-col">
+                        <span>Fatal-Foudre (+20 - <span id="boost-duration">30</span>sec)</span>
+                        <div class="flex flex-row text-center justify-center gap-2">
+                  <strong id="fatalfoudre-price">500</strong>
+                  <img src="/assets/pokedollars-c3e5e1e6.png" class="w-[5%]" alt="">
+                </div>
+                </div>
+                    </button>
+                </div>
+                <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="fatalfoudre-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <span>???</span>
+                    </button>
+                </div>
+                <!--TREMPETTE-->
+                <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="trempette-buy" class="flex justify-center bg-blue-400 hover:bg-blue-300 w-[100%] h-[100%] border-2 border-black rounded-xl items-center  px-4   focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                    <img src="data:image/png;base64,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" class="w-[20%]" alt="">
+                    <div class="flex flex-col">
+                        <span>Trempette (?)</span>
+                        <div class="flex flex-row text-center justify-center gap-2">
+                  <strong id="trempette-price">1000</strong>
+                  <img src="/assets/pokedollars-c3e5e1e6.png" class="w-[5%]" alt="">
+                </div>
+                </div>
+                    </button>
+                </div>
+                <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                    <button id="trempette-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <span>???</span>
+                    </button>
+                </div>
+            </div>
+            <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                <!--BACK TO MENU-->
+                <div class="bg-black rounded-xl w-[100%]"><button id="button-back-from-attack" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                    <p class="text-xl  ">BACK</p>
+                </button>
+                </div>
+            </div>
+        </div>  
+            <!-- SHOP MENU -->
+            <div id="shopping-menu" class="hidden flex flex-col rounded-xl bg-gray-400 absolute w-[100%] h-[30%] bottom-0 gap-5 justify-center p-4 lg:w-[40%] lg:right-0 lg:mr-4 border-black border-2 lg:mb-2">
+                <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                    <!--POTION-->
+                    
+                    <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="potion-buy" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <img src="/assets/potion-3f0e2c6b.png" class="w-[20%]" alt="">
+                        <div class="flex flex-col">
+                            <span>Potion (+1)</span>
+                            <div class="flex flex-row text-center justify-center gap-2">
+                      <strong id="potion-price">500</strong>
+                      <img src="/assets/pokedollars-c3e5e1e6.png" class="w-[5%]" alt="">
+                    </div>
+                    </div>
+                        </button>
+                    </div>
+                    <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="potion-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                            <span>???</span>
+                        </button>
+                    </div>
+                    <!--MULTI EXP-->
+                    <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="multiexp-buy" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <img src="/assets/multi-exp-00beb231.png" class="w-[30%]" alt="">
+                        <div class="flex flex-col">
+                            <span>Multi-exp (+5)</span>
+                            <div class="flex flex-row text-center justify-center gap-2">
+                      <strong id="multiexp-price">2500</strong>
+                      <img src="/assets/pokedollars-c3e5e1e6.png" class="w-[5%]" alt="">
+                    </div>
+                    </div>
+                        </button>
+                    </div>
+                    <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="multiexp-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                            <span>???</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                    <!--STADE-->
+                    <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="terrain-buy" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <img src="/assets/ArenaUp-17967b2d.png" class="w-[30%]" alt="img/arenaUpPhone">
+                        <div class="flex flex-col">
+                            <span>Stade (+25)</span>
+                            <div class="flex flex-row text-center justify-center gap-2">
+                      <strong id="terrain-price">10000</strong>
+                      <img src="/assets/pokedollars-c3e5e1e6.png" class="w-[5%]" alt="">
+                    </div>
+                    </div>
+                        </button>
+                    </div>
+                    <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="terrain-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                            <span>???</span>
+                        </button>
+                    </div>
+                    <!--PIERRE FOUDRE-->
+                    <div class="hidden flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="pierre-buy" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                        <img src="/assets/pierre-foudre-f9826dce.png" class="w-[20%]" alt="">
+                        <div class="flex flex-col">
+                            <span>Pierre Foudre (???)</span>
+                            <div class="flex flex-row text-center justify-center gap-2">
+                      <strong id="pierre-price">50000</strong>
+                      <img src="/assets/pokedollars-c3e5e1e6.png" class="w-[5%]" alt="">
+                    </div>
+                    </div>
+                        </button>
+                    </div>
+                    <div class="flex shrink flex-row bg-black rounded-xl w-[100%] text-sm md:text-base">
+                        <button id="pierre-locked" class="flex justify-center  w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-400 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50">
+                            <span>???</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-row w-[100%] h-[33%] gap-4">
+                    <!--BACK TO MENU-->
+                    <div class="bg-black rounded-xl w-[100%]"><button id="button-back-from-shop" class="flex justify-center w-[100%] h-[100%] border-2 border-black rounded-xl items-center bg-gray-100 px-4  hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 ">
+                        <p class="text-xl  ">BACK</p>
+                    </button>
+                    </div>
+                </div>
+                 
+            </div>       
+    </div>
+    <!--COOKIE CLIKER 2.0-->
+    <div id="cookie-banner" class="fixed bottom-0 w-full bg-red-600 p-4 text-center text-white shadow-lg opacity-90 z-50">
+        Ce site utilise des cookies pour améliorer votre expérience.
+        <button class="ml-4 px-4 py-2 bg-green-500 text-white rounded" id="cookies-accept">Accepter</button>
+        <button class="ml-4 px-4 py-2 bg-red-500 text-white rounded" id="cookies-refuse">Refuser</button>
+    </div>      
+
+</body>
+</html>
