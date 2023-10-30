@@ -541,14 +541,14 @@ refreshCookieScore();
     // Function to handle the username form submission
     function handleFormSubmit(event) {
         event.preventDefault();
-   let username = usernameInput.value.trim();     
-        if (username) {
-            localStorage.setItem('username', username); // Consider checking and sanitizing input
-            console.log('Username submitted:', username);
-        } else {
-            alert('Please enter a valid username!');
-        }
-    }
+    let username = usernameInput.value.trim();     
+          if (username) {
+              localStorage.setItem('username', username); // Consider checking and sanitizing input
+              document.getElementById('form-boutton').value = "Bien envoyé ! Cliquez maintenant sur classement";
+          } else {
+              alert('Please enter a valid username!');
+          }
+      }
 
     // Function to open the leaderboard modal and populate the table
     function showLeaderboardModal() {
